@@ -5,6 +5,8 @@ import {
   RetroInput,
   RetroTextarea,
   RetroDivider,
+  VHSCard,
+  VHSTapeSpine,
   ChevronPattern,
   GridPattern,
   ScanLines,
@@ -78,19 +80,20 @@ export default function Page() {
             Buttons
           </h2>
           <div className="flex flex-wrap gap-4">
-            <RetroButton variant="primary">Primary Button</RetroButton>
-            <RetroButton variant="secondary">Secondary Button</RetroButton>
-            <RetroButton variant="accent">Accent Button</RetroButton>
-            <RetroButton variant="outline">Outline Button</RetroButton>
+            <RetroButton>Default</RetroButton>
+            <RetroButton borderColor="#4ECDC4">Teal Border</RetroButton>
+            <RetroButton borderColor="#FF9A76">Orange Border</RetroButton>
+            <RetroButton borderColor="#C77DFF">Purple Border</RetroButton>
+            <RetroButton borderColor="#FF6B9D">Pink Border</RetroButton>
           </div>
           <div className="flex flex-wrap gap-4">
-            <RetroButton variant="primary" size="sm">
+            <RetroButton size="sm">
               Small
             </RetroButton>
-            <RetroButton variant="primary" size="md">
+            <RetroButton size="md">
               Medium
             </RetroButton>
-            <RetroButton variant="primary" size="lg">
+            <RetroButton size="lg">
               Large
             </RetroButton>
           </div>
@@ -139,6 +142,95 @@ export default function Page() {
             <RetroBadge variant="orange">Orange Badge</RetroBadge>
             <RetroBadge variant="purple">Purple Badge</RetroBadge>
             <RetroBadge variant="pink">Pink Badge</RetroBadge>
+          </div>
+        </section>
+
+        <RetroDivider />
+
+        {/* VHS Cards Section */}
+        <section className="space-y-8">
+          <div>
+            <h2 className="text-3xl font-bold uppercase tracking-wide mb-2">
+              VHS Tape Covers
+            </h2>
+            <p className="text-muted-foreground max-w-2xl">
+              Authentic 80s VHS cassette cover design with faded aesthetics
+            </p>
+          </div>
+          
+          <div className="flex flex-wrap gap-8">
+            <VHSCard
+              brand="Scotch"
+              model="EG"
+              format="T-120"
+              footerTitle="EVERYDAY"
+              footerSubtitle="Low noise for improved recording"
+              sphereGradient={{
+                top: "#FFD700",
+                middle: "#FF6B35",
+                bottom: "#6B4FBB"
+              }}
+            />
+            <VHSCard
+              brand="Retro"
+              model="HS"
+              format="E-180"
+              footerTitle="HIGH STANDARD"
+              footerSubtitle="Premium quality extended play"
+              sphereGradient={{
+                top: "#4ecdc4",
+                middle: "#2a9d8f",
+                bottom: "#1a5f5a"
+              }}
+            />
+            <VHSCard
+              brand="Digital"
+              model="VX"
+              format="T-120"
+              footerTitle="ARCHIVE"
+              footerSubtitle="Professional grade recording"
+              sphereGradient={{
+                top: "#c77dff",
+                middle: "#9b59b6",
+                bottom: "#5a189a"
+              }}
+            />
+          </div>
+        </section>
+
+        <RetroDivider />
+
+        {/* VHS Tape Spines Section */}
+        <section className="space-y-8">
+          <div>
+            <h2 className="text-3xl font-bold uppercase tracking-wide mb-2">
+              VHS Tape Spines
+            </h2>
+            <p className="text-muted-foreground max-w-2xl">
+              Video tape spine with handwritten labels, VHS logo, and random stickers
+            </p>
+          </div>
+          
+          <div className="space-y-6">
+            <VHSTapeSpine
+              mainText="Mark & Kathy"
+              mainTextColor="#ff6b9d"
+              subtitleText="Wedding 1985"
+            />
+            <VHSTapeSpine
+              mainText="Summer Vacation"
+              mainTextColor="#4ecdc4"
+              subtitleText="Florida '87"
+            />
+            <VHSTapeSpine
+              mainText="Kids Birthday"
+              mainTextColor="#ff9a76"
+              subtitleText="Michael - Age 5"
+            />
+            <VHSTapeSpine
+              mainText="Christmas Special"
+              mainTextColor="#c77dff"
+            />
           </div>
         </section>
 

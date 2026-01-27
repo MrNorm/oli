@@ -2,50 +2,45 @@ import { cn } from "@/lib/utils";
 import { ButtonHTMLAttributes } from "react";
 
 interface RetroButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "accent" | "outline";
+  borderColor?: string;
   size?: "sm" | "md" | "lg";
 }
 
 export function RetroButton({
   children,
   className,
-  variant = "primary",
+  borderColor,
   size = "md",
   ...props
 }: RetroButtonProps) {
   const baseStyles =
-    "relative font-medium transition-all duration-200 overflow-hidden group border-2";
-
-  const variantStyles = {
-    primary:
-      "bg-primary text-primary-foreground border-primary hover:shadow-[0_0_20px_rgba(78,205,196,0.5)]",
-    secondary:
-      "bg-secondary text-secondary-foreground border-secondary hover:shadow-[0_0_20px_rgba(255,154,118,0.5)]",
-    accent:
-      "bg-accent text-accent-foreground border-accent hover:shadow-[0_0_20px_rgba(199,125,255,0.5)]",
-    outline:
-      "bg-transparent text-foreground border-primary hover:bg-primary/10 hover:shadow-[0_0_15px_rgba(78,205,196,0.3)]",
-  };
+    "relative font-bold uppercase text-white text-center transition-all duration-150 font-mono " +
+    "rounded-2xl " +
+    "bg-gradient-to-b from-[#3d3d3d] to-[#2a2a2a] " +
+    "shadow-[0_4px_0_0_#0a0a0a,0_5px_10px_rgba(0,0,0,0.5)] " +
+    "hover:shadow-[0_2px_0_0_#0a0a0a,0_3px_8px_rgba(0,0,0,0.5)] " +
+    "active:shadow-[0_0_0_0_#0a0a0a,0_1px_3px_rgba(0,0,0,0.5)] " +
+    "hover:translate-y-[2px] " +
+    "active:translate-y-[4px]";
 
   const sizeStyles = {
-    sm: "px-3 py-1.5 text-sm",
-    md: "px-6 py-2.5 text-base",
-    lg: "px-8 py-3.5 text-lg",
+    sm: "px-4 py-2 text-xs tracking-wide",
+    md: "px-6 py-3 text-sm tracking-wider",
+    lg: "px-8 py-4 text-base tracking-widest",
   };
 
   return (
     <button
       className={cn(
         baseStyles,
-        variantStyles[variant],
         sizeStyles[size],
+        borderColor && `border-[5px]`,
         className
       )}
+      style={borderColor ? { borderColor } : undefined}
       {...props}
     >
-      {/* Scan line effect on hover */}
-      <span className="absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
-      <span className="relative z-10">{children}</span>
+      {children}
     </button>
   );
 }
