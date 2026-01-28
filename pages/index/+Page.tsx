@@ -231,6 +231,12 @@ export default function Page() {
               mainText="Christmas Special"
               mainTextColor="#c77dff"
             />
+            <VHSTapeSpine
+              mainText="Beach Trip '88"
+              mainTextColor="#ff9a76"
+              subtitleText="California"
+              upsideDown={true}
+            />
           </div>
         </section>
 
