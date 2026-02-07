@@ -6,7 +6,6 @@ interface PolaroidProps extends HTMLAttributes<HTMLDivElement> {
   alt?: string;
   caption?: string;
   rotate?: number; // Slight rotation for realism (-5 to 5 degrees)
-  size?: "default" | "small"; // Size variant
   children?: ReactNode;
 }
 
@@ -15,13 +14,11 @@ export function Polaroid({
   alt = "Polaroid photo",
   caption,
   rotate = 0,
-  size = "default",
   className,
   children,
   ...props
 }: PolaroidProps) {
   const rotationStyle = rotate !== 0 ? `rotate(${rotate}deg)` : undefined;
-  const isSmall = size === "small";
 
   return (
     <div
@@ -35,8 +32,8 @@ export function Polaroid({
       {/* Polaroid frame */}
       <div
         className={cn(
-          "relative bg-[#f8f6f0]",
-          isSmall ? "p-2 pb-9" : "p-4 pb-[4.6rem]", // 15% thicker bottom (16 * 1.15 = 18.4, rounded to 4.6rem)
+          "relative bg-[#f8f6f0] w-full",
+          "p-[4%] pb-[18.4%]", // Proportional padding, 18.4% is 15% thicker than 16%
           "shadow-[0_8px_24px_rgba(0,0,0,0.15),0_2px_6px_rgba(0,0,0,0.12)]",
           "transition-all duration-300",
           "hover:shadow-[0_12px_32px_rgba(0,0,0,0.2),0_4px_12px_rgba(0,0,0,0.15)]",
@@ -49,9 +46,6 @@ export function Polaroid({
           "after:shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)]",
           "after:pointer-events-none"
         )}
-        style={{
-          width: isSmall ? "200px" : "auto",
-        }}
       >
         {/* Photo area with subtle imperfections */}
         <div className="relative aspect-square overflow-hidden bg-gray-100">
@@ -76,10 +70,7 @@ export function Polaroid({
         </div>
 
         {/* Bottom white space for caption/handwriting */}
-        <div className={cn(
-          "absolute bottom-0 left-0 right-0 flex items-center justify-center pb-2",
-          isSmall ? "h-7 px-2" : "h-[3.6rem] px-4"
-        )}>
+        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center pb-[2%] h-[14.4%]">
           {caption && (
             <p
               className={cn(
@@ -92,7 +83,7 @@ export function Polaroid({
               )}
               style={{
                 textShadow: "0.5px 0.5px 0px rgba(0,0,0,0.15)",
-                fontSize: isSmall ? "0.625rem" : "1rem",
+                fontSize: "clamp(0.625rem, 2.5vw, 1rem)",
                 fontWeight: 400,
                 lineHeight: 1,
               }}
@@ -102,11 +93,9 @@ export function Polaroid({
           )}
           {children && (
             <div 
-              className={cn(
-                "text-center text-black font-['Permanent_Marker',_cursive]",
-                isSmall ? "text-[0.625rem]" : "text-base"
-              )}
+              className="text-center text-black font-['Permanent_Marker',_cursive]"
               style={{
+                fontSize: "clamp(0.625rem, 2.5vw, 1rem)",
                 lineHeight: 1,
               }}
             >

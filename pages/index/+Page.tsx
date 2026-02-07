@@ -4,6 +4,7 @@ import {
   RetroDivider,
   Logo,
   VHSTapeSpine,
+  Polaroid,
 } from "@/components/retro";
 
 export default function Page() {
@@ -50,7 +51,7 @@ export default function Page() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 space-y-20">
           
-          {/* Writing & Collection Side by Side */}
+          {/* Writing & Project 365 Side by Side */}
           <div className="grid lg:grid-cols-10 gap-12 lg:gap-16">
             {/* Writing */}
             <section className="space-y-6 lg:col-span-4">
@@ -107,39 +108,80 @@ export default function Page() {
                 </div>
               </section>
 
-              {/* Collection */}
+              {/* My Daily Photo */}
               <section className="space-y-6 lg:col-span-6">
-                <h2 className="text-2xl sm:text-3xl font-bold">Project Collection</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold">My Daily Photo</h2>
                 <p className="text-sm text-muted-foreground">
-                  Deep dives into renovation, digital creation, and personal growth.
+                  One photo every day. Capturing moments, big and small.
                 </p>
                 
-                {/* VHS Tape Stack */}
-                <div className="space-y-3">
-                  <div className="transform hover:translate-x-2 transition-transform duration-200" style={{ transform: 'rotate(-1deg)' }}>
-                    <VHSTapeSpine
-                      mainText="Home Renovation"
-                      mainTextColor="#4ecdc4"
-                      subtitleText="Modernizing a 70s house"
-                    />
+                <div className="flex flex-col sm:flex-row gap-8 items-start">
+                  {/* Photo Details */}
+                  <div className="space-y-4 flex-1">
+                    <div>
+                      <h3 className="text-xl font-bold mb-2">Golden Hour Walk</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Caught the perfect light during my evening walk today. The way the sun 
+                        hits the trees at this time of year never gets old. Sometimes the best 
+                        moments are the quiet ones.
+                      </p>
+                    </div>
+                    
+                    <a 
+                      href="/daily-photo" 
+                      className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors font-medium"
+                    >
+                      View all photos →
+                    </a>
                   </div>
-                  <div className="transform hover:translate-x-2 transition-transform duration-200" style={{ transform: 'rotate(0.8deg)' }}>
-                    <VHSTapeSpine
-                      mainText="Digital Projects"
-                      mainTextColor="#ff9a76"
-                      subtitleText="Sites, blogs & events"
-                    />
-                  </div>
-                  <div className="transform hover:translate-x-2 transition-transform duration-200" style={{ transform: 'rotate(-0.5deg)' }}>
-                    <VHSTapeSpine
-                      mainText="My Mind & Me"
-                      mainTextColor="#c77dff"
-                      subtitleText="ADHD discovery"
+                  
+                  {/* Polaroid Photo */}
+                  <div className="flex-shrink-0 w-64">
+                    <Polaroid
+                      image="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=300&h=300&fit=crop"
+                      alt="Today's photo"
+                      caption="Feb 7, 2026"
+                      rotate={-1.5}
                     />
                   </div>
                 </div>
               </section>
             </div>
+
+          <RetroDivider />
+
+          {/* Collection */}
+          <section className="space-y-6">
+            <h2 className="text-2xl sm:text-3xl font-bold">Project Collection</h2>
+            <p className="text-sm text-muted-foreground max-w-2xl">
+              Deep dives into renovation, digital creation, and personal growth.
+            </p>
+            
+            {/* VHS Tape Stack */}
+            <div className="space-y-3 max-w-2xl">
+              <div className="transform hover:translate-x-2 transition-transform duration-200" style={{ transform: 'rotate(-1deg)' }}>
+                <VHSTapeSpine
+                  mainText="Home Renovation"
+                  mainTextColor="#4ecdc4"
+                  subtitleText="Modernizing a 70s house"
+                />
+              </div>
+              <div className="transform hover:translate-x-2 transition-transform duration-200" style={{ transform: 'rotate(0.8deg)' }}>
+                <VHSTapeSpine
+                  mainText="Digital Projects"
+                  mainTextColor="#ff9a76"
+                  subtitleText="Sites, blogs & events"
+                />
+              </div>
+              <div className="transform hover:translate-x-2 transition-transform duration-200" style={{ transform: 'rotate(-0.5deg)' }}>
+                <VHSTapeSpine
+                  mainText="My Mind & Me"
+                  mainTextColor="#c77dff"
+                  subtitleText="ADHD discovery"
+                />
+              </div>
+            </div>
+          </section>
 
           <RetroDivider />
 
