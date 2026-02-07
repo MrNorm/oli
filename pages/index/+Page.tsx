@@ -3,6 +3,7 @@ import {
   RetroBadge,
   RetroDivider,
   Logo,
+  VHSTapeSpine,
 } from "@/components/retro";
 
 export default function Page() {
@@ -48,115 +49,97 @@ export default function Page() {
         </section>
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 space-y-20">
-          {/* Recent Work */}
-          <section className="space-y-8">
-            <div className="flex items-end justify-between">
-              <h2 className="text-2xl sm:text-3xl font-bold">Recent Work</h2>
-              <a href="/demo" className="text-sm text-primary hover:text-primary/80 transition-colors">
-                View all →
-              </a>
-            </div>
-            
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              <RetroCard variant="highlighted">
-                <div className="space-y-3">
-                  <RetroBadge variant="teal">Active</RetroBadge>
-                  <h3 className="text-lg font-bold">Retro Component Library</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    An 80s-inspired UI kit built with React and Tailwind. Features geometric patterns and pastel colors.
-                  </p>
-                  <a href="/demo" className="inline-flex items-center text-sm text-primary hover:text-primary/80 transition-colors pt-1">
-                    Explore →
-                  </a>
-                </div>
-              </RetroCard>
-
-              <RetroCard>
-                <div className="space-y-3">
-                  <RetroBadge variant="orange">Design</RetroBadge>
-                  <h3 className="text-lg font-bold">Generative Art Toolkit</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    SVG-based creative coding tools for algorithmic design and pattern generation.
-                  </p>
-                  <span className="inline-block text-sm text-muted-foreground/60 pt-1">Coming soon</span>
-                </div>
-              </RetroCard>
-
-              <RetroCard>
-                <div className="space-y-3">
-                  <RetroBadge variant="purple">Research</RetroBadge>
-                  <h3 className="text-lg font-bold">Animation Lab</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Experiments with modern animation techniques and interactive micro-interactions.
-                  </p>
-                  <span className="inline-block text-sm text-muted-foreground/60 pt-1">In progress</span>
-                </div>
-              </RetroCard>
-            </div>
-          </section>
-
-          <RetroDivider />
-
-          {/* Writing */}
-          <section className="space-y-8">
-            <h2 className="text-2xl sm:text-3xl font-bold">Recent Writing</h2>
-            
-            <div className="space-y-4">
-              <article className="group">
-                <a href="#" className="block p-5 border-2 border-border/40 rounded-lg hover:border-primary/40 transition-colors">
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <time>Feb 2026</time>
-                      <span>·</span>
-                      <span>5 min</span>
+          
+          {/* Writing & Collection Side by Side */}
+          <div className="grid lg:grid-cols-10 gap-12 lg:gap-16">
+            {/* Writing */}
+            <section className="space-y-6 lg:col-span-4">
+                <h2 className="text-2xl sm:text-3xl font-bold">Recent Writing</h2>
+                
+                <div className="space-y-4">
+                  <RetroCard>
+                    <div className="space-y-0.5">
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                        <time>Feb 2026</time>
+                        <span>·</span>
+                        <span>5 min</span>
+                      </div>
+                      <h3 className="text-base font-bold">
+                        Component Libraries
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Design patterns for scalable UI systems.
+                      </p>
                     </div>
-                    <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
-                      Building Component Libraries with Intention
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      Design decisions and architecture patterns for creating scalable, maintainable UI systems.
-                    </p>
-                  </div>
-                </a>
-              </article>
+                  </RetroCard>
 
-              <article className="group">
-                <a href="#" className="block p-5 border-2 border-border/40 rounded-lg hover:border-primary/40 transition-colors">
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <time>Jan 2026</time>
-                      <span>·</span>
-                      <span>7 min</span>
+                  <RetroCard>
+                    <div className="space-y-0.5">
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                        <time>Jan 2026</time>
+                        <span>·</span>
+                        <span>7 min</span>
+                      </div>
+                      <h3 className="text-base font-bold">
+                        Digital Gardens
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Growing ideas organically.
+                      </p>
                     </div>
-                    <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
-                      Digital Gardens and Learning in Public
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      Why I chose to grow ideas organically rather than publish polished blog posts.
-                    </p>
-                  </div>
-                </a>
-              </article>
+                  </RetroCard>
 
-              <article className="group">
-                <a href="#" className="block p-5 border-2 border-border/40 rounded-lg hover:border-primary/40 transition-colors">
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <time>Dec 2025</time>
-                      <span>·</span>
-                      <span>6 min</span>
+                  <RetroCard>
+                    <div className="space-y-0.5">
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                        <time>Dec 2025</time>
+                        <span>·</span>
+                        <span>6 min</span>
+                      </div>
+                      <h3 className="text-base font-bold">
+                        Modern Web Stack
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Frameworks and tooling.
+                      </p>
                     </div>
-                    <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
-                      The Modern Web Stack in 2026
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      Thoughts on frameworks, tooling, and where web development is headed next.
-                    </p>
+                  </RetroCard>
+                </div>
+              </section>
+
+              {/* Collection */}
+              <section className="space-y-6 lg:col-span-6">
+                <h2 className="text-2xl sm:text-3xl font-bold">Project Collection</h2>
+                <p className="text-sm text-muted-foreground">
+                  Deep dives into renovation, digital creation, and personal growth.
+                </p>
+                
+                {/* VHS Tape Stack */}
+                <div className="space-y-3">
+                  <div className="transform hover:translate-x-2 transition-transform duration-200" style={{ transform: 'rotate(-1deg)' }}>
+                    <VHSTapeSpine
+                      mainText="Home Renovation"
+                      mainTextColor="#4ecdc4"
+                      subtitleText="Modernizing a 70s house"
+                    />
                   </div>
-                </a>
-              </article>
+                  <div className="transform hover:translate-x-2 transition-transform duration-200" style={{ transform: 'rotate(0.8deg)' }}>
+                    <VHSTapeSpine
+                      mainText="Digital Projects"
+                      mainTextColor="#ff9a76"
+                      subtitleText="Sites, blogs & events"
+                    />
+                  </div>
+                  <div className="transform hover:translate-x-2 transition-transform duration-200" style={{ transform: 'rotate(-0.5deg)' }}>
+                    <VHSTapeSpine
+                      mainText="My Mind & Me"
+                      mainTextColor="#c77dff"
+                      subtitleText="ADHD discovery"
+                    />
+                  </div>
+                </div>
+              </section>
             </div>
-          </section>
 
           <RetroDivider />
 

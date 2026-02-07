@@ -53,7 +53,7 @@ export function VHSTapeSpine({
   }), []);
 
   return (
-    <div className={cn("relative inline-block", className)} {...props}>
+    <div className={cn("relative w-full max-w-3xl", className)} {...props}>
       {/* Add Google Fonts */}
       <style>
         {`
@@ -63,7 +63,7 @@ export function VHSTapeSpine({
 
       {/* Main tape body - wide and shallow */}
       <div 
-        className="relative w-[43rem] h-24 bg-[#1a1a1a] overflow-hidden"
+        className="relative w-full h-16 sm:h-20 md:h-24 bg-[#1a1a1a] overflow-hidden"
         style={{
           transform: upsideDown ? "rotate(180deg)" : "none"
         }}
@@ -174,7 +174,7 @@ export function VHSTapeSpine({
           >
             {/* Main handwritten text */}
             <div 
-              className="text-3xl font-bold tracking-wide"
+              className="text-lg sm:text-2xl md:text-3xl font-bold tracking-wide"
               style={{ 
                 fontFamily: "'Permanent Marker', cursive",
                 color: mainTextColor,
@@ -188,7 +188,7 @@ export function VHSTapeSpine({
             {/* Subtitle text */}
             {subtitleText && (
               <div 
-                className="text-sm mt-1"
+                className="text-xs sm:text-sm mt-0.5 sm:mt-1"
                 style={{ 
                   fontFamily: "'Indie Flower', cursive",
                   color: "#1a1a1a",
