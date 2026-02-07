@@ -130,7 +130,27 @@ export function VHSCard({
         </div>
 
         {/* Side tape holes decoration */}
-        <div className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-12 bg-[#0a0a0a] rounded-sm border border-white/10" />
+        <div 
+          className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-30 bg-[#1a1a1a] border border-white/10" 
+          style={{
+            clipPath: "polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 75%, 0% 25%)"
+          }}
+        >
+          {/* Grid texture like VHS tape */}
+          <div className="absolute inset-0 opacity-[0.25]" style={{
+            backgroundImage: `
+              linear-gradient(0deg, transparent 49%, rgba(255,255,255,0.05) 49%, rgba(255,255,255,0.05) 51%, transparent 51%),
+              linear-gradient(90deg, transparent 49%, rgba(255,255,255,0.05) 49%, rgba(255,255,255,0.05) 51%, transparent 51%)
+            `,
+            backgroundSize: "3px 3px"
+          }} />
+          
+          {/* Subtle shadow for depth */}
+          <div className="absolute inset-0 shadow-[inset_0_2px_4px_rgba(0,0,0,0.6),inset_0_-2px_4px_rgba(0,0,0,0.4)]" />
+          
+          {/* Lighter edge on right side to simulate tape edge */}
+          <div className="absolute right-0 top-0 bottom-0 w-[1px] bg-white/20" />
+        </div>
       </div>
 
       {/* Right side depth panel (3D effect) */}
