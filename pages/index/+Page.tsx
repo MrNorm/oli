@@ -48,7 +48,7 @@ export default function Page() {
           </div>
         </section>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 space-y-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 space-y-20">
           
           {/* Writing & Collection Side by Side */}
           <div className="grid lg:grid-cols-10 gap-12 lg:gap-16">
