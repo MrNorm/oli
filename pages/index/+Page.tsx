@@ -61,7 +61,7 @@ export default function Page() {
 
         <RetroDivider />
 
-        {/* RECENT WRITING - Full Width Section */}
+        {/* WHAT I'M SHARING - Full Width Section */}
         <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
           {/* Decorative element */}
           <div className="absolute top-10 right-20 w-20 h-20 opacity-10 pointer-events-none">
@@ -70,22 +70,22 @@ export default function Page() {
           
           <div className="space-y-10">
             <div className="text-center space-y-4">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">Recent Writing</h2>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">What I'm Sharing</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Thoughts on design, development, and everything in between
+                Photos, musings, how-tos, and moments from daily life
               </p>
             </div>
             
             {/* Featured + Recent Grid */}
             <div className="grid lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-              {/* Featured Article - Left Side */}
+              {/* Featured Post - Left Side */}
               <RetroCard className="hover:scale-[1.02] transition-transform lg:row-span-3">
                 <div className="space-y-4 h-full flex flex-col">
-                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <RetroBadge variant="teal" className="text-xs">Featured</RetroBadge>
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground flex-wrap">
+                    <RetroBadge variant="orange" className="text-xs">How-To</RetroBadge>
                     <time>Feb 2026</time>
                     <span>·</span>
-                    <span>5 min</span>
+                    <span>5 min read</span>
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-bold">
                     Building Retro Component Libraries
@@ -96,7 +96,7 @@ export default function Page() {
                     that capture the aesthetic of retro computing while meeting modern web standards.
                   </p>
                   <a 
-                    href="/writing/component-libraries" 
+                    href="/posts/component-libraries" 
                     className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium"
                   >
                     Read more →
@@ -104,51 +104,50 @@ export default function Page() {
                 </div>
               </RetroCard>
 
-              {/* Recent Articles - Right Side */}
+              {/* Recent Posts - Right Side */}
               <RetroCard className="hover:scale-105 transition-transform">
                 <div className="space-y-2">
-                  <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                    <time>Jan 2026</time>
+                  <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap">
+                    <RetroBadge variant="teal" className="text-xs">Activity</RetroBadge>
+                    <time>Feb 5, 2026</time>
+                  </div>
+                  <h3 className="text-lg font-bold">
+                    Mountain Ridge Trail
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    15km hike through misty mountain trails. The views at the summit made every step worth it. 📸
+                  </p>
+                </div>
+              </RetroCard>
+
+              <RetroCard className="hover:scale-105 transition-transform">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap">
+                    <RetroBadge variant="purple" className="text-xs">Musing</RetroBadge>
+                    <time>Feb 3, 2026</time>
                     <span>·</span>
-                    <span>7 min</span>
+                    <span>3 min read</span>
                   </div>
                   <h3 className="text-lg font-bold">
                     Digital Gardens
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Growing ideas organically in public, cultivating knowledge over time.
+                    Growing ideas organically in public, cultivating knowledge over time instead of polished perfection.
                   </p>
                 </div>
               </RetroCard>
 
               <RetroCard className="hover:scale-105 transition-transform">
                 <div className="space-y-2">
-                  <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                    <time>Jan 2026</time>
-                    <span>·</span>
-                    <span>6 min</span>
+                  <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap">
+                    <RetroBadge variant="orange" className="text-xs">Photo</RetroBadge>
+                    <time>Jan 29, 2026</time>
                   </div>
                   <h3 className="text-lg font-bold">
-                    Modern Web Stack
+                    Coffee & Code
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Exploring frameworks and tooling that shape web development today.
-                  </p>
-                </div>
-              </RetroCard>
-
-              <RetroCard className="hover:scale-105 transition-transform">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                    <time>Dec 2025</time>
-                    <span>·</span>
-                    <span>8 min</span>
-                  </div>
-                  <h3 className="text-lg font-bold">
-                    Accessibility First
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Why building inclusive experiences should be a priority from day one.
+                    Early morning setup. There's something peaceful about coding before the world wakes up. ☕
                   </p>
                 </div>
               </RetroCard>
@@ -156,10 +155,10 @@ export default function Page() {
             
             <div className="text-center">
               <a 
-                href="/writing" 
+                href="/posts" 
                 className="inline-flex items-center gap-2 text-lg text-primary hover:text-primary/80 transition-colors font-medium"
               >
-                View all articles →
+                View all posts →
               </a>
             </div>
           </div>
