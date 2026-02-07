@@ -1,14 +1,17 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
+import packageJson from '../../package.json';
 
 interface LogoProps {
   variant?: 'icon' | 'header' | 'footer';
   className?: string;
+  showVersion?: boolean;
 }
 
 export const Logo: React.FC<LogoProps> = ({ 
   variant = 'header',
-  className 
+  className,
+  showVersion = true
 }) => {
   // Horizontal line 'O' logo - dot matrix style
   const OLogo = ({ size = 'default' }: { size?: 'small' | 'default' | 'large' }) => {
@@ -68,15 +71,56 @@ export const Logo: React.FC<LogoProps> = ({
     );
   };
 
+  // Retro version badge component with size variants
+  const VersionBadge = ({ size = 'default' }: { size?: 'small' | 'default' | 'large' }) => {
+    const sizeStyles = {
+      small: { fontSize: '7px', padding: '1.5px 4px', borderWidth: '0px', gap: '2px' },
+      default: { fontSize: '7px', padding: '1.5px 4px', borderWidth: '1px', gap: '3px' },
+      large: { fontSize: '8px', padding: '2px 5px', borderWidth: '1.5px', gap: '4px' }
+    };
+    
+    const style = sizeStyles[size];
+    const hasBorder = size !== 'small';
+    
+    return (
+      <div 
+        className={cn(
+          "flex items-center font-bold tracking-wider rounded-sm whitespace-nowrap",
+          hasBorder && "border"
+        )}
+        style={{
+          fontSize: style.fontSize,
+          padding: style.padding,
+          borderWidth: style.borderWidth,
+          gap: style.gap,
+          backgroundColor: 'rgba(255, 107, 157, 0.15)',
+          color: 'rgba(255, 107, 157, 0.95)',
+          borderColor: 'rgba(255, 107, 157, 0.5)',
+          textShadow: '0 0 3px rgba(255, 107, 157, 0.6)',
+          boxShadow: '0 0 4px rgba(255, 107, 157, 0.2), inset 0 0 2px rgba(255, 107, 157, 0.1)',
+        }}
+      >
+        v{packageJson.version}
+      </div>
+    );
+  };
+
   const renderVariant = () => {
     switch (variant) {
       case 'icon':
         return (
           <div className={cn("flex items-center justify-center", className)}>
-            <div className="relative" style={{ filter: 'drop-shadow(0 0 8px rgba(232, 230, 227, 0.4))' }}>
-              <OLogo size="small" />
-              {/* VHS scan lines overlay */}
-              <div className="absolute inset-0 pointer-events-none bg-[repeating-linear-gradient(0deg,transparent,transparent_1px,rgba(0,0,0,0.15)_1px,rgba(0,0,0,0.15)_2px)]" />
+            <div className="relative inline-flex items-start">
+              <div className="relative" style={{ filter: 'drop-shadow(0 0 8px rgba(232, 230, 227, 0.4))' }}>
+                <OLogo size="small" />
+                {/* VHS scan lines overlay */}
+                <div className="absolute inset-0 pointer-events-none bg-[repeating-linear-gradient(0deg,transparent,transparent_1px,rgba(0,0,0,0.15)_1px,rgba(0,0,0,0.15)_2px)]" />
+              </div>
+              {showVersion && (
+                <div className="absolute -right-1 bottom-0 translate-x-full ml-1.5">
+                  <VersionBadge size="small" />
+                </div>
+              )}
             </div>
           </div>
         );
@@ -84,10 +128,17 @@ export const Logo: React.FC<LogoProps> = ({
       case 'footer':
         return (
           <div className={cn("flex flex-col items-center gap-2", className)}>
-            <div className="relative" style={{ filter: 'drop-shadow(0 0 8px rgba(232, 230, 227, 0.4))' }}>
-              <OLogo size="small" />
-              {/* VHS scan lines overlay */}
-              <div className="absolute inset-0 pointer-events-none bg-[repeating-linear-gradient(0deg,transparent,transparent_1px,rgba(0,0,0,0.15)_1px,rgba(0,0,0,0.15)_2px)]" />
+            <div className="relative inline-flex items-start">
+              <div className="relative" style={{ filter: 'drop-shadow(0 0 8px rgba(232, 230, 227, 0.4))' }}>
+                <OLogo size="small" />
+                {/* VHS scan lines overlay */}
+                <div className="absolute inset-0 pointer-events-none bg-[repeating-linear-gradient(0deg,transparent,transparent_1px,rgba(0,0,0,0.15)_1px,rgba(0,0,0,0.15)_2px)]" />
+              </div>
+              {showVersion && (
+                <div className="absolute -right-1 bottom-0 translate-x-full ml-1.5">
+                  <VersionBadge size="small" />
+                </div>
+              )}
             </div>
             <div className="text-center flex flex-col items-center">
               <div className="text-[#E8E6E3] text-sm font-bold italic tracking-wide mb-0.5" style={{ fontFamily: 'system-ui, -apple-system, sans-serif', textShadow: '0 0 12px rgba(232, 230, 227, 0.6)' }}>
@@ -105,10 +156,17 @@ export const Logo: React.FC<LogoProps> = ({
       default:
         return (
           <div className={cn("flex flex-col items-center gap-2", className)}>
-            <div className="relative" style={{ filter: 'drop-shadow(0 0 15px rgba(232, 230, 227, 0.5))' }}>
-              <OLogo size="large" />
-              {/* VHS scan lines overlay */}
-              <div className="absolute inset-0 pointer-events-none bg-[repeating-linear-gradient(0deg,transparent,transparent_1px,rgba(0,0,0,0.15)_1px,rgba(0,0,0,0.15)_2px)]" />
+            <div className="relative inline-flex items-start">
+              <div className="relative" style={{ filter: 'drop-shadow(0 0 15px rgba(232, 230, 227, 0.5))' }}>
+                <OLogo size="large" />
+                {/* VHS scan lines overlay */}
+                <div className="absolute inset-0 pointer-events-none bg-[repeating-linear-gradient(0deg,transparent,transparent_1px,rgba(0,0,0,0.15)_1px,rgba(0,0,0,0.15)_2px)]" />
+              </div>
+              {showVersion && (
+                <div className="absolute -right-1 bottom-0 translate-x-full ml-2">
+                  <VersionBadge size="large" />
+                </div>
+              )}
             </div>
             <div className="text-center flex flex-col items-center">
               <div className="text-[#E8E6E3] text-4xl font-bold italic tracking-wide mb-1" style={{ fontFamily: 'system-ui, -apple-system, sans-serif', textShadow: '0 0 20px rgba(232, 230, 227, 0.6), 0 0 40px rgba(232, 230, 227, 0.3)' }}>
