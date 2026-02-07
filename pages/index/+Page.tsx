@@ -30,14 +30,13 @@ export default function Page() {
             
             {/* Hero content */}
             <div className="space-y-3 sm:space-y-4 lg:space-y-6 flex-1 min-w-0">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight">
-                Developer, designer,
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl  font-bold tracking-tight leading-tight">
+                Engineer, tinkerer,
                 <br />
-                <span className="text-primary">digital creator</span>
+                <span className="text-primary">forward thinker.</span>
               </h1>
               <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground leading-relaxed">
-                Building web experiences with modern tools and timeless design principles. 
-                Exploring the intersection of code, creativity, and craft.
+                Making software and hardware work for me and having fun while doing it. I explore new ideas, build things, write about them, and share what I learn along the way.
               </p>
               <div className="flex flex-wrap gap-2 pt-1 sm:pt-2">
                 <RetroBadge variant="teal">React</RetroBadge>
