@@ -1,367 +1,201 @@
 import {
-  RetroButton,
   RetroCard,
   RetroBadge,
-  RetroInput,
-  RetroTextarea,
   RetroDivider,
-  VHSCard,
-  VHSTapeSpine,
   Logo,
-  ChevronPattern,
-  GridPattern,
-  ScanLines,
-  GeometricCircle,
-  GeometricTriangle,
-  GeometricSquare,
-  BlueprintLines,
 } from "@/components/retro";
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
-      {/* Background elements */}
-      <div className="fixed inset-0 z-0 opacity-30">
-        <GridPattern />
-      </div>
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <ScanLines />
-      </div>
+    <div className="min-h-screen bg-background text-foreground">
+      {/* Subtle grid background */}
+      <div className="fixed inset-0 z-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 19px, currentColor 19px, currentColor 20px),
+                           repeating-linear-gradient(90deg, transparent, transparent 19px, currentColor 19px, currentColor 20px)`
+        }} 
+      />
 
       {/* Main content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 py-12 space-y-16">
-        {/* Header */}
-        <header className="text-center space-y-6">
-          <div className="relative inline-block">
-            <ChevronPattern className="w-64 h-32 mx-auto opacity-70" />
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-              RETRO COMPONENT LIBRARY
-            </span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A collection of 80s-inspired UI components with pastel colors,
-            geometric shapes, and subtle blueprint aesthetics
-          </p>
-        </header>
-
-        <RetroDivider variant="gradient" />
-
-        {/* VHS Logo Showcase */}
-        <section className="space-y-8">
-          <h2 className="text-3xl font-bold uppercase tracking-wide text-center">
-            VHS Logo Components
-          </h2>
-          
-          {/* Icon Only */}
-          <div className="flex flex-col items-center gap-4 p-8 bg-black/50 rounded-lg border border-primary/30">
-            <h3 className="text-xl font-bold text-primary">Icon Variant</h3>
-            <Logo variant="icon" />
-          </div>
-
-          {/* Header Variant */}
-          <div className="flex flex-col items-center gap-4 p-12 bg-black/50 rounded-lg border border-secondary/30">
-            <h3 className="text-xl font-bold text-secondary">Header Variant</h3>
-            <Logo variant="header" />
-          </div>
-
-          {/* Footer Variant */}
-          <div className="flex flex-col items-center gap-4 p-8 bg-black/50 rounded-lg border border-accent/30">
-            <h3 className="text-xl font-bold text-accent">Footer Variant</h3>
-            <Logo variant="footer" />
-          </div>
-        </section>
-
-        <RetroDivider variant="gradient" />
-
-        {/* Colors Section */}
-        <section className="space-y-6">
-          <h2 className="text-3xl font-bold uppercase tracking-wide">
-            Color Palette
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="space-y-2">
-              <div className="h-32 bg-primary rounded border-2 border-primary shadow-[0_0_20px_rgba(78,205,196,0.4)]" />
-              <p className="text-sm font-mono text-center">Teal</p>
+      <div className="relative z-10">
+        {/* Hero Section */}
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-24">
+            {/* Logo */}
+            <div className="flex-shrink-0 lg:pr-12">
+              <a href="/" className="inline-block hover:opacity-80 transition-opacity">
+                <Logo variant="header" className="scale-110" />
+              </a>
             </div>
-            <div className="space-y-2">
-              <div className="h-32 bg-secondary rounded border-2 border-secondary shadow-[0_0_20px_rgba(255,154,118,0.4)]" />
-              <p className="text-sm font-mono text-center">Orange</p>
-            </div>
-            <div className="space-y-2">
-              <div className="h-32 bg-accent rounded border-2 border-accent shadow-[0_0_20px_rgba(199,125,255,0.4)]" />
-              <p className="text-sm font-mono text-center">Purple</p>
-            </div>
-            <div className="space-y-2">
-              <div className="h-32 bg-[#ff6b9d] rounded border-2 border-[#ff6b9d] shadow-[0_0_20px_rgba(255,107,157,0.4)]" />
-              <p className="text-sm font-mono text-center">Pink</p>
-            </div>
-          </div>
-        </section>
-
-        <RetroDivider />
-
-        {/* Buttons Section */}
-        <section className="space-y-6">
-          <h2 className="text-3xl font-bold uppercase tracking-wide">
-            Buttons
-          </h2>
-          <div className="flex flex-wrap gap-4">
-            <RetroButton>Default</RetroButton>
-            <RetroButton borderColor="#4ECDC4">Teal Border</RetroButton>
-            <RetroButton borderColor="#FF9A76">Orange Border</RetroButton>
-            <RetroButton borderColor="#C77DFF">Purple Border</RetroButton>
-            <RetroButton borderColor="#FF6B9D">Pink Border</RetroButton>
-          </div>
-          <div className="flex flex-wrap gap-4">
-            <RetroButton size="sm">
-              Small
-            </RetroButton>
-            <RetroButton size="md">
-              Medium
-            </RetroButton>
-            <RetroButton size="lg">
-              Large
-            </RetroButton>
-          </div>
-        </section>
-
-        <RetroDivider />
-
-        {/* Cards Section */}
-        <section className="space-y-6">
-          <h2 className="text-3xl font-bold uppercase tracking-wide">Cards</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <RetroCard variant="default">
-              <h3 className="text-xl font-bold mb-2">Default Card</h3>
-              <p className="text-muted-foreground">
-                A standard card with corner accent marks and subtle border.
+            
+            {/* Hero content */}
+            <div className="space-y-6 flex-1">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                Developer, designer,
+                <br />
+                <span className="text-primary">digital creator</span>
+              </h1>
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+                Building web experiences with modern tools and timeless design principles. 
+                Exploring the intersection of code, creativity, and craft.
               </p>
-            </RetroCard>
-            <RetroCard variant="highlighted">
-              <h3 className="text-xl font-bold mb-2 text-primary">
-                Highlighted Card
-              </h3>
-              <p className="text-muted-foreground">
-                Features a glowing teal border for emphasis.
-              </p>
-            </RetroCard>
-            <RetroCard variant="bordered">
-              <h3 className="text-xl font-bold mb-2 text-secondary">
-                Bordered Card
-              </h3>
-              <p className="text-muted-foreground">
-                Styled with an orange glow effect.
-              </p>
-            </RetroCard>
-          </div>
-        </section>
-
-        <RetroDivider />
-
-        {/* Badges Section */}
-        <section className="space-y-6">
-          <h2 className="text-3xl font-bold uppercase tracking-wide">
-            Badges
-          </h2>
-          <div className="flex flex-wrap gap-3">
-            <RetroBadge variant="teal">Teal Badge</RetroBadge>
-            <RetroBadge variant="orange">Orange Badge</RetroBadge>
-            <RetroBadge variant="purple">Purple Badge</RetroBadge>
-            <RetroBadge variant="pink">Pink Badge</RetroBadge>
-          </div>
-        </section>
-
-        <RetroDivider />
-
-        {/* VHS Cards Section */}
-        <section className="space-y-8">
-          <div>
-            <h2 className="text-3xl font-bold uppercase tracking-wide mb-2">
-              VHS Tape Covers
-            </h2>
-            <p className="text-muted-foreground max-w-2xl">
-              Authentic 80s VHS cassette cover design with faded aesthetics
-            </p>
-          </div>
-          
-          <div className="flex flex-wrap gap-8">
-            <VHSCard
-              brand="Scotch"
-              model="EG"
-              format="T-120"
-              footerTitle="EVERYDAY"
-              footerSubtitle="Low noise for improved recording"
-              sphereGradient={{
-                top: "#FFD700",
-                middle: "#FF6B35",
-                bottom: "#6B4FBB"
-              }}
-            />
-            <VHSCard
-              brand="Retro"
-              model="HS"
-              format="E-180"
-              footerTitle="HIGH STANDARD"
-              footerSubtitle="Premium quality extended play"
-              sphereGradient={{
-                top: "#4ecdc4",
-                middle: "#2a9d8f",
-                bottom: "#1a5f5a"
-              }}
-            />
-            <VHSCard
-              brand="Digital"
-              model="VX"
-              format="T-120"
-              footerTitle="ARCHIVE"
-              footerSubtitle="Professional grade recording"
-              sphereGradient={{
-                top: "#c77dff",
-                middle: "#9b59b6",
-                bottom: "#5a189a"
-              }}
-            />
-          </div>
-        </section>
-
-        <RetroDivider />
-
-        {/* VHS Tape Spines Section */}
-        <section className="space-y-8">
-          <div>
-            <h2 className="text-3xl font-bold uppercase tracking-wide mb-2">
-              VHS Tape Spines
-            </h2>
-            <p className="text-muted-foreground max-w-2xl">
-              Video tape spine with handwritten labels, VHS logo, and random stickers
-            </p>
-          </div>
-          
-          <div className="space-y-6">
-            <VHSTapeSpine
-              mainText="Mark & Kathy"
-              mainTextColor="#ff6b9d"
-              subtitleText="Wedding 1985"
-            />
-            <VHSTapeSpine
-              mainText="Summer Vacation"
-              mainTextColor="#4ecdc4"
-              subtitleText="Florida '87"
-            />
-            <VHSTapeSpine
-              mainText="Kids Birthday"
-              mainTextColor="#ff9a76"
-              subtitleText="Michael - Age 5"
-            />
-            <VHSTapeSpine
-              mainText="Christmas Special"
-              mainTextColor="#c77dff"
-            />
-            <VHSTapeSpine
-              mainText="Beach Trip '88"
-              mainTextColor="#ff9a76"
-              subtitleText="California"
-              upsideDown={true}
-            />
-          </div>
-        </section>
-
-        <RetroDivider />
-
-        {/* Form Inputs Section */}
-        <section className="space-y-6">
-          <h2 className="text-3xl font-bold uppercase tracking-wide">
-            Form Inputs
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
-            <RetroInput
-              label="Name"
-              placeholder="Enter your name..."
-              defaultValue=""
-            />
-            <RetroInput
-              label="Email"
-              type="email"
-              placeholder="your@email.com"
-              defaultValue=""
-            />
-          </div>
-          <div className="max-w-3xl">
-            <RetroTextarea
-              label="Message"
-              placeholder="Type your message here..."
-              defaultValue=""
-            />
-          </div>
-        </section>
-
-        <RetroDivider />
-
-        {/* Geometric Shapes Section */}
-        <section className="space-y-6">
-          <h2 className="text-3xl font-bold uppercase tracking-wide">
-            Geometric Elements
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="flex flex-col items-center space-y-2">
-              <GeometricCircle className="w-32 h-32" color="teal" />
-              <p className="text-sm">Circles</p>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <GeometricTriangle className="w-32 h-32" color="orange" />
-              <p className="text-sm">Triangles</p>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <GeometricSquare className="w-32 h-32" color="purple" />
-              <p className="text-sm">Squares</p>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <GeometricCircle className="w-32 h-32" color="pink" />
-              <p className="text-sm">Circles</p>
+              <div className="flex flex-wrap gap-2 pt-2">
+                <RetroBadge variant="teal">React</RetroBadge>
+                <RetroBadge variant="orange">TypeScript</RetroBadge>
+                <RetroBadge variant="purple">Design Systems</RetroBadge>
+              </div>
             </div>
           </div>
         </section>
 
-        <RetroDivider />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 space-y-20">
+          {/* Recent Work */}
+          <section className="space-y-8">
+            <div className="flex items-end justify-between">
+              <h2 className="text-2xl sm:text-3xl font-bold">Recent Work</h2>
+              <a href="/demo" className="text-sm text-primary hover:text-primary/80 transition-colors">
+                View all →
+              </a>
+            </div>
+            
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <RetroCard variant="highlighted">
+                <div className="space-y-3">
+                  <RetroBadge variant="teal">Active</RetroBadge>
+                  <h3 className="text-lg font-bold">Retro Component Library</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    An 80s-inspired UI kit built with React and Tailwind. Features geometric patterns and pastel colors.
+                  </p>
+                  <a href="/demo" className="inline-flex items-center text-sm text-primary hover:text-primary/80 transition-colors pt-1">
+                    Explore →
+                  </a>
+                </div>
+              </RetroCard>
 
-        {/* Blueprint Lines Section */}
-        <section className="space-y-6">
-          <h2 className="text-3xl font-bold uppercase tracking-wide">
-            Blueprint Style
-          </h2>
-          <RetroCard>
-            <BlueprintLines className="w-full h-48 opacity-70" />
-          </RetroCard>
-        </section>
+              <RetroCard>
+                <div className="space-y-3">
+                  <RetroBadge variant="orange">Design</RetroBadge>
+                  <h3 className="text-lg font-bold">Generative Art Toolkit</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    SVG-based creative coding tools for algorithmic design and pattern generation.
+                  </p>
+                  <span className="inline-block text-sm text-muted-foreground/60 pt-1">Coming soon</span>
+                </div>
+              </RetroCard>
 
-        <RetroDivider />
+              <RetroCard>
+                <div className="space-y-3">
+                  <RetroBadge variant="purple">Research</RetroBadge>
+                  <h3 className="text-lg font-bold">Animation Lab</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Experiments with modern animation techniques and interactive micro-interactions.
+                  </p>
+                  <span className="inline-block text-sm text-muted-foreground/60 pt-1">In progress</span>
+                </div>
+              </RetroCard>
+            </div>
+          </section>
 
-        {/* Chevron Pattern Showcase */}
-        <section className="space-y-6">
-          <h2 className="text-3xl font-bold uppercase tracking-wide">
-            Chevron Pattern
-          </h2>
-          <RetroCard className="overflow-hidden">
-            <ChevronPattern className="w-full h-64" />
-          </RetroCard>
-        </section>
+          <RetroDivider />
 
-        {/* Footer */}
-        <footer className="text-center py-12 space-y-4">
-          <RetroDivider variant="gradient" />
-          <p className="text-muted-foreground">
-            Built with Vite + Vike + React + Tailwind CSS
-          </p>
-          <div className="flex justify-center gap-2">
-            <RetroBadge variant="teal">80s Inspired</RetroBadge>
-            <RetroBadge variant="orange">Pastel Colors</RetroBadge>
-            <RetroBadge variant="purple">SVG Graphics</RetroBadge>
-          </div>
-        </footer>
+          {/* Writing */}
+          <section className="space-y-8">
+            <h2 className="text-2xl sm:text-3xl font-bold">Recent Writing</h2>
+            
+            <div className="space-y-4">
+              <article className="group">
+                <a href="#" className="block p-5 border-2 border-border/40 rounded-lg hover:border-primary/40 transition-colors">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <time>Feb 2026</time>
+                      <span>·</span>
+                      <span>5 min</span>
+                    </div>
+                    <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
+                      Building Component Libraries with Intention
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Design decisions and architecture patterns for creating scalable, maintainable UI systems.
+                    </p>
+                  </div>
+                </a>
+              </article>
+
+              <article className="group">
+                <a href="#" className="block p-5 border-2 border-border/40 rounded-lg hover:border-primary/40 transition-colors">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <time>Jan 2026</time>
+                      <span>·</span>
+                      <span>7 min</span>
+                    </div>
+                    <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
+                      Digital Gardens and Learning in Public
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Why I chose to grow ideas organically rather than publish polished blog posts.
+                    </p>
+                  </div>
+                </a>
+              </article>
+
+              <article className="group">
+                <a href="#" className="block p-5 border-2 border-border/40 rounded-lg hover:border-primary/40 transition-colors">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <time>Dec 2025</time>
+                      <span>·</span>
+                      <span>6 min</span>
+                    </div>
+                    <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
+                      The Modern Web Stack in 2026
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Thoughts on frameworks, tooling, and where web development is headed next.
+                    </p>
+                  </div>
+                </a>
+              </article>
+            </div>
+          </section>
+
+          <RetroDivider />
+
+          {/* Connect */}
+          <section className="space-y-6">
+            <h2 className="text-2xl sm:text-3xl font-bold">Let's Connect</h2>
+            
+            <div className="grid sm:grid-cols-2 gap-5 max-w-3xl">
+              <RetroCard variant="bordered">
+                <div className="space-y-3">
+                  <h3 className="text-lg font-bold">About Me</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    I'm passionate about creating beautiful, accessible web experiences. 
+                    Always learning, always building.
+                  </p>
+                </div>
+              </RetroCard>
+
+              <RetroCard>
+                <div className="space-y-3">
+                  <h3 className="text-lg font-bold">Find Me Online</h3>
+                  <div className="flex flex-col gap-2 text-sm">
+                    <a href="https://github.com" className="text-primary hover:text-primary/80 transition-colors">
+                      GitHub
+                    </a>
+                    <a href="https://twitter.com" className="text-primary hover:text-primary/80 transition-colors">
+                      Twitter
+                    </a>
+                    <a href="mailto:hello@example.com" className="text-primary hover:text-primary/80 transition-colors">
+                      Email
+                    </a>
+                  </div>
+                </div>
+              </RetroCard>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   );
 }
-

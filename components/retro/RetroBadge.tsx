@@ -13,16 +13,16 @@ export function RetroBadge({
   ...props
 }: RetroBadgeProps) {
   const variantStyles = {
-    teal: "bg-primary/20 text-primary border-primary",
-    orange: "bg-secondary/20 text-secondary border-secondary",
-    purple: "bg-accent/20 text-accent border-accent",
-    pink: "bg-[#ff6b9d]/20 text-[#ff6b9d] border-[#ff6b9d]",
+    teal: "bg-primary/15 text-primary/90 border-primary/40",
+    orange: "bg-secondary/15 text-secondary/90 border-secondary/40",
+    purple: "bg-accent/15 text-accent/90 border-accent/40",
+    pink: "bg-[#ff6b9d]/15 text-[#ff6b9d]/90 border-[#ff6b9d]/40",
   };
 
   return (
     <span
       className={cn(
-        "inline-flex items-center px-3 py-1 text-sm font-medium border rounded uppercase tracking-wider",
+        "inline-flex items-center px-3 py-1.5 text-xs font-semibold border-2 rounded-md uppercase tracking-wide",
         variantStyles[variant],
         className
       )}

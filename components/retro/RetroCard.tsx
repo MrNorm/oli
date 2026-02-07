@@ -13,23 +13,23 @@ export function RetroCard({
   ...props
 }: RetroCardProps) {
   const baseStyles =
-    "relative bg-card rounded-lg p-6 overflow-hidden transition-all duration-300";
+    "relative bg-card rounded-lg p-6 overflow-hidden transition-all duration-200 hover:translate-y-[-2px]";
 
   const variantStyles = {
-    default: "border border-border",
+    default: "border-2 border-border/60",
     highlighted:
-      "border-2 border-primary shadow-[0_0_20px_rgba(78,205,196,0.2)]",
+      "border-2 border-primary/60 shadow-lg",
     bordered:
-      "border-2 border-secondary shadow-[0_0_20px_rgba(255,154,118,0.2)]",
+      "border-2 border-secondary/60 shadow-lg",
   };
 
   return (
     <div className={cn(baseStyles, variantStyles[variant], className)} {...props}>
-      {/* Corner accent marks */}
-      <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-primary opacity-50" />
-      <div className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-secondary opacity-50" />
-      <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-accent opacity-50" />
-      <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-primary opacity-50" />
+      {/* Minimal corner accent - top left only */}
+      {variant !== "default" && (
+        <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 opacity-40"
+          style={{ borderColor: variant === "highlighted" ? "var(--primary)" : "var(--secondary)" }} />
+      )}
 
       <div className="relative z-10">{children}</div>
     </div>
