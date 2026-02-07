@@ -15,3 +15,4 @@ export {
   GeometricSquare,
   BlueprintLines,
 } from "./GeometricShapes";
+export { Polaroid } from "./Polaroid";

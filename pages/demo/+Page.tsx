@@ -15,6 +15,7 @@ import {
   GeometricTriangle,
   GeometricSquare,
   BlueprintLines,
+  Polaroid,
 } from "@/components/retro";
 
 export default function Page() {
@@ -294,6 +295,75 @@ export default function Page() {
               placeholder="Type your message here..."
               defaultValue=""
             />
+          </div>
+        </section>
+
+        <RetroDivider />
+
+        {/* Polaroid Photos Section */}
+        <section className="space-y-8">
+          <div>
+            <h2 className="text-3xl font-bold uppercase tracking-wide mb-2">
+              Polaroid Photos
+            </h2>
+            <p className="text-muted-foreground max-w-2xl">
+              Realistic Polaroid-style photos with aged effects, slight rotations, and handwritten captions
+            </p>
+          </div>
+          
+          <div className="flex flex-wrap gap-12 justify-center items-end">
+            <Polaroid
+              image="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=400&h=400&fit=crop"
+              alt="Sunset landscape"
+              caption="Summer '85"
+              rotate={-2}
+            />
+            <Polaroid
+              image="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&h=400&fit=crop"
+              alt="Ocean waves"
+              caption="Beach Day - July 12"
+              rotate={1.5}
+            />
+            <Polaroid
+              image="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop"
+              alt="Mountain view"
+              caption="Mountain Trip"
+              rotate={-1}
+            />
+            <Polaroid
+              image="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=400&h=400&fit=crop"
+              alt="Desert landscape"
+              caption="Road Trip"
+              rotate={2}
+            />
+          </div>
+
+          {/* Small variants */}
+          <div className="mt-12">
+            <h3 className="text-xl font-bold mb-6 text-center">Small Size Variant</h3>
+            <div className="flex flex-wrap gap-8 justify-center items-end">
+              <Polaroid
+                image="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=200&h=200&fit=crop"
+                alt="Sunset"
+                caption="Summer"
+                rotate={-3}
+                size="small"
+              />
+              <Polaroid
+                image="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=200&h=200&fit=crop"
+                alt="Ocean"
+                caption="July 12"
+                rotate={2}
+                size="small"
+              />
+              <Polaroid
+                image="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=200&h=200&fit=crop"
+                alt="Mountains"
+                caption="Aug '86"
+                rotate={-1.5}
+                size="small"
+              />
+            </div>
           </div>
         </section>
 
