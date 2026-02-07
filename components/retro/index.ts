@@ -5,6 +5,7 @@ export { RetroInput, RetroTextarea } from "./RetroInput";
 export { RetroDivider } from "./RetroDivider";
 export { VHSCard } from "./VHSCard";
 export { VHSTapeSpine } from "./VHSTapeSpine";
+export { Logo } from "./Logo";
 export { ChevronPattern } from "./ChevronPattern";
 export { GridPattern } from "./GridPattern";
 export { ScanLines } from "./ScanLines";

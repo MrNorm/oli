@@ -7,6 +7,7 @@ import {
   RetroDivider,
   VHSCard,
   VHSTapeSpine,
+  Logo,
   ChevronPattern,
   GridPattern,
   ScanLines,
@@ -44,6 +45,33 @@ export default function Page() {
             geometric shapes, and subtle blueprint aesthetics
           </p>
         </header>
+
+        <RetroDivider variant="gradient" />
+
+        {/* VHS Logo Showcase */}
+        <section className="space-y-8">
+          <h2 className="text-3xl font-bold uppercase tracking-wide text-center">
+            VHS Logo Components
+          </h2>
+          
+          {/* Icon Only */}
+          <div className="flex flex-col items-center gap-4 p-8 bg-black/50 rounded-lg border border-primary/30">
+            <h3 className="text-xl font-bold text-primary">Icon Variant</h3>
+            <Logo variant="icon" />
+          </div>
+
+          {/* Header Variant */}
+          <div className="flex flex-col items-center gap-4 p-12 bg-black/50 rounded-lg border border-secondary/30">
+            <h3 className="text-xl font-bold text-secondary">Header Variant</h3>
+            <Logo variant="header" />
+          </div>
+
+          {/* Footer Variant */}
+          <div className="flex flex-col items-center gap-4 p-8 bg-black/50 rounded-lg border border-accent/30">
+            <h3 className="text-xl font-bold text-accent">Footer Variant</h3>
+            <Logo variant="footer" />
+          </div>
+        </section>
 
         <RetroDivider variant="gradient" />
 
