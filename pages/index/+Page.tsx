@@ -20,26 +20,26 @@ export default function Page() {
       <div className="relative z-10">
         {/* Hero Section */}
         <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-24">
+          <div className="flex flex-row items-center justify-between gap-6 sm:gap-8 lg:gap-24">
             {/* Logo */}
-            <div className="flex-shrink-0 lg:pr-12">
+            <div className="flex-shrink-0 pr-4 sm:pr-6 lg:pr-12">
               <a href="/" className="inline-block hover:opacity-80 transition-opacity">
-                <Logo variant="header" className="scale-110" />
+                <Logo variant="header" className="scale-75 sm:scale-90 lg:scale-110" />
               </a>
             </div>
             
             {/* Hero content */}
-            <div className="space-y-6 flex-1">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+            <div className="space-y-3 sm:space-y-4 lg:space-y-6 flex-1 min-w-0">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight">
                 Developer, designer,
                 <br />
                 <span className="text-primary">digital creator</span>
               </h1>
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground leading-relaxed">
                 Building web experiences with modern tools and timeless design principles. 
                 Exploring the intersection of code, creativity, and craft.
               </p>
-              <div className="flex flex-wrap gap-2 pt-2">
+              <div className="flex flex-wrap gap-2 pt-1 sm:pt-2">
                 <RetroBadge variant="teal">React</RetroBadge>
                 <RetroBadge variant="orange">TypeScript</RetroBadge>
                 <RetroBadge variant="purple">Design Systems</RetroBadge>

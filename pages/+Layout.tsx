@@ -12,25 +12,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Toggle Button - more prominent */}
-      <button
-        onClick={() => setIsHeaderVisible(!isHeaderVisible)}
-        className="fixed top-4 right-4 z-[60] p-3 rounded-lg bg-card border-2 border-primary/60 hover:border-primary transition-all hover:scale-105 shadow-xl"
-        aria-label={isHeaderVisible ? "Hide navigation" : "Show navigation"}
-        title={isHeaderVisible ? "Hide navigation" : "Show navigation"}
-      >
-        <svg 
-          className="w-6 h-6 text-primary transition-transform duration-300"
-          style={{ transform: isHeaderVisible ? 'rotate(180deg)' : 'rotate(0deg)' }}
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-          strokeWidth={2.5}
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-
       {/* Header with slide animation */}
       <div 
         className="transition-all duration-300 ease-in-out overflow-hidden"
@@ -39,8 +20,28 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           opacity: isHeaderVisible ? 1 : 0
         }}
       >
-        <Header />
+        <Header onToggle={() => setIsHeaderVisible(!isHeaderVisible)} />
       </div>
+      
+      {/* Show toggle when header is hidden */}
+      {!isHeaderVisible && (
+        <button
+          onClick={() => setIsHeaderVisible(true)}
+          className="fixed top-4 right-4 z-50 p-2.5 rounded-lg bg-card border-2 border-primary/60 hover:border-primary transition-all hover:scale-105 shadow-xl"
+          aria-label="Show navigation"
+          title="Show navigation"
+        >
+          <svg 
+            className="w-5 h-5 text-primary"
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+            strokeWidth={2.5}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      )}
       
       <main className="flex-1 w-full">
         <div id="page-container" className="w-full">
@@ -53,7 +54,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Header() {
+function Header({ onToggle }: { onToggle: () => void }) {
   return (
     <header className="w-full border-b border-border/40 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,6 +69,22 @@ function Header() {
             <Link href="/demo" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Components
             </Link>
+            <button
+              onClick={onToggle}
+              className="ml-2 p-2 rounded-lg hover:bg-card/50 border border-border/40 hover:border-primary/60 transition-all"
+              aria-label="Hide navigation"
+              title="Hide navigation"
+            >
+              <svg 
+                className="w-5 h-5 text-foreground/60 hover:text-primary transition-colors"
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+              </svg>
+            </button>
           </nav>
         </div>
       </div>
