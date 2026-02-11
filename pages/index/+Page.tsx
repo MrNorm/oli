@@ -50,11 +50,6 @@ export default function Page() {
               <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-muted-foreground leading-relaxed">
                 Making software and hardware work for me and having fun while doing it. I explore new ideas, build things, write about them, and share what I learn along the way.
               </p>
-              <div className="flex flex-wrap gap-3 pt-2 sm:pt-4 justify-center lg:justify-start">
-                <RetroBadge variant="teal">React</RetroBadge>
-                <RetroBadge variant="orange">TypeScript</RetroBadge>
-                <RetroBadge variant="purple">Design Systems</RetroBadge>
-              </div>
             </div>
           </div>
         </section>
