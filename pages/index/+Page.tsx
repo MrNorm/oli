@@ -5,6 +5,7 @@ import {
   Logo,
   VHSTapeSpine,
   Polaroid,
+  RetroTV,
   ChevronPattern,
   GeometricCircle,
   GeometricTriangle,
@@ -278,21 +279,19 @@ export default function Page() {
             </div>
             
             <div className="max-w-6xl mx-auto">
-              <div className="grid lg:grid-cols-3 gap-8 lg:gap-10 items-start">
+              <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
                 {/* Headshot - Left side on desktop */}
-                <div className="flex justify-center lg:justify-start">
-                  <div className="w-72 sm:w-80">
-                    <Polaroid
-                      image="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
-                      alt="Oliver's headshot"
-                      caption="That's me! 👋"
-                      rotate={-3}
-                    />
-                  </div>
+                <div className="flex-shrink-0 mx-auto lg:mx-0">
+                  <RetroTV
+                    screenImage="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
+                    size="sm"
+                    angled={true}
+                    scanlineIntensity={0.3}
+                  />
                 </div>
                 
-                {/* Stats & Info - Center and Right side on desktop */}
-                <div className="lg:col-span-2 space-y-8">
+                {/* Stats & Info - Right side on desktop */}
+                <div className="flex-1 max-w-2xl space-y-8">
                   {/* Personal Stats Grid */}
                   <div className="grid sm:grid-cols-2 gap-4">
                     <RetroCard variant="bordered" className="hover:scale-105 transition-transform">

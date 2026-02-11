@@ -417,7 +417,8 @@ export default function Page() {
 
             {/* Smaller TV */}
             <div className="flex flex-col items-center gap-4">
-              <h3 className="text-xl font-bold text-accent">Small Size</h3>
+              <h3 className="text-xl font-bold text-accent">Smallest Size (Min Scale)</h3>
+              <p className="text-sm text-muted-foreground">Components maintain proportions at minimum size</p>
               <RetroTV
                 screenImage="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=400&fit=crop"
                 angled={true}

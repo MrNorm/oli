@@ -24,9 +24,16 @@ export function RetroTV({
   ...props
 }: RetroTVProps) {
   const sizeClasses = {
-    sm: "w-64 h-48",
-    md: "w-96 h-72",
-    lg: "w-[32rem] h-96",
+    sm: "w-64 h-48 min-w-[400px] min-h-[300px]",
+    md: "w-96 h-72 min-w-[600px] min-h-[450px]",
+    lg: "w-[32rem] h-96 min-w-[800px] min-h-[600px]",
+  };
+
+  // Side panel depths scale with size
+  const sidePanelDepth = {
+    sm: 100,
+    md: 150,
+    lg: 200,
   };
 
   return (
@@ -61,9 +68,9 @@ export function RetroTV({
             <div
               className="absolute h-full pointer-events-none"
               style={{
-                right: "-150px",
+                right: `-${sidePanelDepth[size]}px`,
                 top: "0",
-                width: "150px",
+                width: `${sidePanelDepth[size]}px`,
                 transformStyle: "preserve-3d",
                 transform: "rotateY(72deg) translateX(-1px)",
                 transformOrigin: "left center",
@@ -118,79 +125,6 @@ export function RetroTV({
                   backgroundImage: `
                     repeating-linear-gradient(
                       0deg,
-                      transparent 0px,
-                      transparent 15px,
-                      rgba(0, 0, 0, 0.3) 15px,
-                      rgba(0, 0, 0, 0.3) 17px
-                    )
-                  `,
-                }}
-              />
-            </div>
-          )}
-
-          {/* Top side depth panel */}
-          {angled && (
-            <div
-              className="absolute w-full pointer-events-none"
-              style={{
-                top: "-120px",
-                left: "0",
-                height: "120px",
-                transformStyle: "preserve-3d",
-                transform: "rotateX(72deg) translateY(1px)",
-                transformOrigin: "center bottom",
-                borderTopLeftRadius: "0.5rem",
-                borderTopRightRadius: "0.5rem",
-                background: `
-                  linear-gradient(to top, 
-                    #4a2c1f 0%, 
-                    #3d2a1c 35%,
-                    #251a12 65%,
-                    #15100b 80%,
-                    #0a0603 90%,
-                    #000000 100%
-                  )
-                `,
-                boxShadow: "inset 0 -10px 30px rgba(0, 0, 0, 0.95), 0 0 40px rgba(0, 0, 0, 0.7)",
-              }}
-            >
-              {/* Wood grain on top side */}
-              <div
-                className="absolute inset-0 opacity-70"
-                style={{
-                  borderTopLeftRadius: "0.5rem",
-                  borderTopRightRadius: "0.5rem",
-                  backgroundImage: `
-                    repeating-linear-gradient(
-                      90deg,
-                      transparent 0px,
-                      transparent 2px,
-                      rgba(0, 0, 0, 0.6) 2px,
-                      rgba(0, 0, 0, 0.6) 3px
-                    )
-                  `,
-                }}
-              />
-              {/* Extra depth shading */}
-              <div
-                className="absolute inset-0 opacity-60"
-                style={{
-                  background: `
-                    linear-gradient(to bottom,
-                      transparent 0%,
-                      rgba(0, 0, 0, 0.7) 100%
-                    )
-                  `,
-                }}
-              />
-              {/* Vertical wood bands for extra realism */}
-              <div
-                className="absolute inset-0 opacity-30"
-                style={{
-                  backgroundImage: `
-                    repeating-linear-gradient(
-                      90deg,
                       transparent 0px,
                       transparent 15px,
                       rgba(0, 0, 0, 0.3) 15px,
