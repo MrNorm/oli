@@ -16,3 +16,4 @@ export {
   BlueprintLines,
 } from "./GeometricShapes";
 export { Polaroid } from "./Polaroid";
+export { RetroTV } from "./RetroTV";

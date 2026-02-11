@@ -16,6 +16,7 @@ import {
   GeometricSquare,
   BlueprintLines,
   Polaroid,
+  RetroTV,
 } from "@/components/retro";
 
 export default function Page() {
@@ -374,6 +375,66 @@ export default function Page() {
                   rotate={-1.5}
                 />
               </div>
+            </div>
+          </div>
+        </section>
+
+        <RetroDivider />
+
+        {/* Retro TV Section */}
+        <section className="space-y-8">
+          <div>
+            <h2 className="text-3xl font-bold uppercase tracking-wide mb-2">
+              Retro Television
+            </h2>
+            <p className="text-muted-foreground max-w-2xl">
+              Ferguson Colorstar-inspired wood grain TV with 3D perspective, CRT screen effects, and scanlines
+            </p>
+          </div>
+          
+          <div className="flex flex-col gap-12 items-center">
+            {/* TV with image */}
+            <div className="flex flex-col items-center gap-4">
+              <h3 className="text-xl font-bold text-primary">With Custom Image</h3>
+              <RetroTV
+                screenImage="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&h=600&fit=crop"
+                angled={true}
+                size="lg"
+                scanlineIntensity={0.6}
+              />
+            </div>
+
+            {/* TV with different image */}
+            <div className="flex flex-col items-center gap-4">
+              <h3 className="text-xl font-bold text-secondary">Beach Scene</h3>
+              <RetroTV
+                screenImage="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=600&fit=crop"
+                angled={true}
+                size="md"
+                scanlineIntensity={0.7}
+              />
+            </div>
+
+            {/* Smaller TV */}
+            <div className="flex flex-col items-center gap-4">
+              <h3 className="text-xl font-bold text-accent">Small Size</h3>
+              <RetroTV
+                screenImage="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=400&fit=crop"
+                angled={true}
+                size="sm"
+                scanlineIntensity={0.5}
+              />
+            </div>
+
+            {/* TV without angle */}
+            <div className="flex flex-col items-center gap-4">
+              <h3 className="text-xl font-bold" style={{ color: "#ff6b9d" }}>No Angle View</h3>
+              <RetroTV
+                screenImage="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&h=600&fit=crop"
+                angled={false}
+                size="md"
+                scanlineIntensity={0.4}
+              />
             </div>
           </div>
         </section>
