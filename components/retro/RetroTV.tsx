@@ -218,15 +218,15 @@ export function RetroTV({
           </div>
 
           {/* Chrome/metal trim around TV - at the very edge */}
-          <div className="absolute inset-0 rounded-lg border-4 border-slate-600 shadow-inner pointer-events-none">
+          <div className="absolute inset-0 rounded-lg border-2 border-slate-600 shadow-inner pointer-events-none">
             <div className="absolute inset-0 rounded-lg border border-slate-400 opacity-50" />
           </div>
 
           {/* Screen area - left 70% */}
-          <div className="absolute left-4 top-4 bottom-4 w-[65%] p-2">
+          <div className="absolute left-2 top-2 bottom-2 w-[65%] p-1">
             {/* CRT Screen bezel - 3D effect */}
             <div 
-              className="relative w-full h-full rounded-lg p-3 shadow-2xl"
+              className="relative w-full h-full rounded-lg p-2 shadow-2xl"
               style={{
                 background: `
                   linear-gradient(135deg, 
@@ -348,9 +348,9 @@ export function RetroTV({
           </div>
 
           {/* Control panel - right 30% */}
-          <div className="absolute right-4 top-4 bottom-4 left-[70%] flex flex-col">
+          <div className="absolute right-2 top-2 bottom-2 left-[70%] flex flex-col">
             {/* Top 30% - Black section with buttons (increased from 25% to allow more spacing) */}
-            <div className="h-[30%] bg-black rounded-t-lg mx-3 mt-3 px-3 pt-3 pb-2 flex flex-col justify-between items-center">
+            <div className="h-[30%] bg-black rounded-t-lg mx-2 mt-2 px-3 pt-3 pb-2 flex flex-col justify-between items-center">
               {/* 10 vertical buttons in a single row */}
               <div className="flex gap-1 w-full justify-center">
                 {[...Array(10)].map((_, i) => (
@@ -398,7 +398,7 @@ export function RetroTV({
             </div>
 
             {/* Bottom 70% - Walnut wood speaker grille section (decreased from 75%) */}
-            <div className="flex-1 relative overflow-hidden mx-3 mb-3 rounded-b-lg">
+            <div className="flex-1 relative overflow-hidden mx-2 mb-2 rounded-b-lg">
               {/* Walnut wood background - HORIZONTAL GRAIN with warmer orange tones */}
               <div
                 className="absolute inset-0"
