@@ -72,11 +72,11 @@ export function RetroTV({
                 background: `
                   linear-gradient(to left, 
                     #000000 0%,
-                    #050301 10%,
-                    #0d0805 20%,
-                    #1a120f 35%, 
-                    #2d1f1a 65%, 
-                    #3e2723 100%
+                    #0a0603 10%,
+                    #15100b 20%,
+                    #251a12 35%, 
+                    #3d2a1c 65%, 
+                    #4a2c1f 100%
                   )
                 `,
                 boxShadow: "inset 10px 0 30px rgba(0, 0, 0, 0.95), 0 0 40px rgba(0, 0, 0, 0.7)",
@@ -144,11 +144,11 @@ export function RetroTV({
                 borderTopRightRadius: "0.5rem",
                 background: `
                   linear-gradient(to top, 
-                    #3e2723 0%, 
-                    #2d1f1a 35%,
-                    #1a120f 65%,
-                    #0d0805 80%,
-                    #050301 90%,
+                    #4a2c1f 0%, 
+                    #3d2a1c 35%,
+                    #251a12 65%,
+                    #15100b 80%,
+                    #0a0603 90%,
                     #000000 100%
                   )
                 `,
@@ -204,39 +204,39 @@ export function RetroTV({
 
           {/* Main wooden body */}
           <div className="relative w-full h-full rounded-lg overflow-hidden shadow-2xl">
-          {/* Walnut wood grain effect - HORIZONTAL */}
+          {/* Walnut wood grain effect - HORIZONTAL with warmer orange tones */}
           <div
             className="absolute inset-0"
             style={{
               background: `
                 linear-gradient(180deg, 
-                  #3e2723 0%, 
-                  #4e342e 2%, 
-                  #5d4037 4%, 
-                  #4e342e 6%, 
-                  #3e2723 8%, 
-                  #6d4c41 12%, 
-                  #5d4037 15%, 
-                  #4e342e 18%, 
-                  #3e2723 20%, 
-                  #4e342e 23%, 
-                  #5d4037 26%, 
-                  #6d4c41 30%, 
-                  #5d4037 35%, 
-                  #4e342e 40%, 
-                  #3e2723 45%, 
-                  #4e342e 50%, 
-                  #6d4c41 55%, 
-                  #5d4037 60%, 
-                  #4e342e 65%, 
-                  #3e2723 68%, 
-                  #5d4037 72%, 
-                  #6d4c41 76%, 
-                  #5d4037 80%, 
-                  #4e342e 85%, 
-                  #3e2723 90%, 
-                  #4e342e 95%, 
-                  #3e2723 100%
+                  #4a2c1f 0%, 
+                  #5d3a2a 2%, 
+                  #6d4534 4%, 
+                  #5d3a2a 6%, 
+                  #4a2c1f 8%, 
+                  #7d5540 12%, 
+                  #6d4534 15%, 
+                  #5d3a2a 18%, 
+                  #4a2c1f 20%, 
+                  #5d3a2a 23%, 
+                  #6d4534 26%, 
+                  #7d5540 30%, 
+                  #6d4534 35%, 
+                  #5d3a2a 40%, 
+                  #4a2c1f 45%, 
+                  #5d3a2a 50%, 
+                  #7d5540 55%, 
+                  #6d4534 60%, 
+                  #5d3a2a 65%, 
+                  #4a2c1f 68%, 
+                  #6d4534 72%, 
+                  #7d5540 76%, 
+                  #6d4534 80%, 
+                  #5d3a2a 85%, 
+                  #4a2c1f 90%, 
+                  #5d3a2a 95%, 
+                  #4a2c1f 100%
                 )
               `,
             }}
@@ -283,18 +283,34 @@ export function RetroTV({
             />
           </div>
 
-          {/* Chrome/metal trim around TV */}
-          <div className="absolute inset-2 rounded border-4 border-slate-600 shadow-inner">
-            <div className="absolute inset-0 rounded border border-slate-400 opacity-50" />
+          {/* Chrome/metal trim around TV - at the very edge */}
+          <div className="absolute inset-0 rounded-lg border-4 border-slate-600 shadow-inner pointer-events-none">
+            <div className="absolute inset-0 rounded-lg border border-slate-400 opacity-50" />
           </div>
 
           {/* Screen area - left 70% */}
           <div className="absolute left-4 top-4 bottom-4 w-[65%] p-2">
-            {/* CRT Screen bezel */}
-            <div className="relative w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 rounded-lg p-3 shadow-2xl">
+            {/* CRT Screen bezel - 3D effect */}
+            <div 
+              className="relative w-full h-full rounded-lg p-3 shadow-2xl"
+              style={{
+                background: `
+                  linear-gradient(135deg, 
+                    #1a1a1a 0%,
+                    #0a0a0a 50%,
+                    #000000 100%
+                  )
+                `,
+                boxShadow: `
+                  inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+                  inset -2px -2px 4px rgba(0, 0, 0, 0.8),
+                  0 8px 24px rgba(0, 0, 0, 0.6)
+                `
+              }}
+            >
               {/* Inner screen frame */}
               <div className="relative w-full h-full rounded overflow-hidden bg-black">
-                {/* Screen content */}
+                {/* Screen content - image and custom content with vintage filter */}
                 <div className="absolute inset-0 bg-slate-900">
                   {screenImage && (
                     <img
@@ -307,17 +323,17 @@ export function RetroTV({
                       }}
                     />
                   )}
-                  {screenContent}
+                  {screenContent && (
+                    <div
+                      style={{
+                        filter: "contrast(0.7) saturate(0.6) brightness(0.85) sepia(0.15)",
+                        opacity: 0.85,
+                      }}
+                    >
+                      {screenContent}
+                    </div>
+                  )}
                 </div>
-
-                {/* Vintage color wash overlay */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: "rgba(245, 235, 220, 0.12)",
-                    mixBlendMode: "overlay",
-                  }}
-                />
 
                 {/* CRT curve glass effect */}
                 <div
@@ -449,23 +465,23 @@ export function RetroTV({
 
             {/* Bottom 70% - Walnut wood speaker grille section (decreased from 75%) */}
             <div className="flex-1 relative overflow-hidden mx-3 mb-3 rounded-b-lg">
-              {/* Walnut wood background - HORIZONTAL GRAIN */}
+              {/* Walnut wood background - HORIZONTAL GRAIN with warmer orange tones */}
               <div
                 className="absolute inset-0"
                 style={{
                   background: `
                     linear-gradient(180deg, 
-                      #3e2723 0%, 
-                      #4e342e 10%, 
-                      #5d4037 20%, 
-                      #4e342e 30%, 
-                      #6d4c41 40%, 
-                      #5d4037 50%, 
-                      #4e342e 60%, 
-                      #5d4037 70%, 
-                      #6d4c41 80%, 
-                      #5d4037 90%, 
-                      #4e342e 100%
+                      #4a2c1f 0%, 
+                      #5d3a2a 10%, 
+                      #6d4534 20%, 
+                      #5d3a2a 30%, 
+                      #7d5540 40%, 
+                      #6d4534 50%, 
+                      #5d3a2a 60%, 
+                      #6d4534 70%, 
+                      #7d5540 80%, 
+                      #6d4534 90%, 
+                      #5d3a2a 100%
                     )
                   `,
                 }}
