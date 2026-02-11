@@ -279,49 +279,49 @@ export default function Page() {
             </div>
             
             <div className="max-w-6xl mx-auto">
-              <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
-                {/* Headshot - Left side on desktop */}
-                <div className="flex-shrink-0 mx-auto lg:mx-0">
-                  <RetroTV
-                    screenImage="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
-                    size="sm"
-                    angled={true}
-                    scanlineIntensity={0.3}
-                  />
+              <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+                {/* Headshot - Left side on desktop - 40% width */}
+                <div className="lg:col-span-2 flex flex-col items-center lg:items-start justify-between h-full space-y-8">
+                  <div className="w-full">
+                    <RetroTV
+                      screenImage="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
+                      size="md"
+                      angled={true}
+                      scanlineIntensity={0.3}
+                    />
+                  </div>
+                  
+                  {/* Stats Table */}
+                  <RetroCard variant="bordered" className="w-full mt-8">
+                    <div className="space-y-3">
+                      <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-wide">Quick Stats</h4>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex justify-between items-center py-1 border-b border-border/50">
+                          <span className="text-muted-foreground">Location</span>
+                          <span className="font-medium">Earth 🌍</span>
+                        </div>
+                        <div className="flex justify-between items-center py-1 border-b border-border/50">
+                          <span className="text-muted-foreground">Current Focus</span>
+                          <span className="font-medium">Building Things</span>
+                        </div>
+                        <div className="flex justify-between items-center py-1 border-b border-border/50">
+                          <span className="text-muted-foreground">Favorite Tool</span>
+                          <span className="font-medium">VS Code</span>
+                        </div>
+                        <div className="flex justify-between items-center py-1">
+                          <span className="text-muted-foreground">Status</span>
+                          <span className="font-medium flex items-center gap-1">
+                            <span className="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                            Available
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </RetroCard>
                 </div>
                 
-                {/* Stats & Info - Right side on desktop */}
-                <div className="flex-1 max-w-2xl space-y-8">
-                  {/* Personal Stats Grid */}
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <RetroCard variant="bordered" className="hover:scale-105 transition-transform">
-                      <div className="space-y-2">
-                        <div className="text-3xl font-bold text-primary">12+</div>
-                        <div className="text-sm text-muted-foreground">Years of DIY Projects</div>
-                      </div>
-                    </RetroCard>
-                    
-                    <RetroCard variant="bordered" className="hover:scale-105 transition-transform">
-                      <div className="space-y-2">
-                        <div className="text-3xl font-bold text-primary">365</div>
-                        <div className="text-sm text-muted-foreground">Daily Photo Streak</div>
-                      </div>
-                    </RetroCard>
-                    
-                    <RetroCard variant="bordered" className="hover:scale-105 transition-transform">
-                      <div className="space-y-2">
-                        <div className="text-3xl font-bold text-primary">∞</div>
-                        <div className="text-sm text-muted-foreground">Coffee Cups Consumed</div>
-                      </div>
-                    </RetroCard>
-                    
-                    <RetroCard variant="bordered" className="hover:scale-105 transition-transform">
-                      <div className="space-y-2">
-                        <div className="text-3xl font-bold text-primary">1970s</div>
-                        <div className="text-sm text-muted-foreground">House I'm Renovating</div>
-                      </div>
-                    </RetroCard>
-                  </div>
+                {/* Stats & Info - Right side on desktop - 60% width */}
+                <div className="lg:col-span-3 space-y-8">
                   
                   {/* Personal Description */}
                   <RetroCard className="hover:scale-[1.02] transition-transform">
@@ -334,12 +334,20 @@ export default function Page() {
                         learning by doing, sharing the journey, and embracing the messy middle of 
                         any project.
                       </p>
-                      <div className="flex flex-wrap gap-2 pt-2">
-                        <RetroBadge variant="teal" className="text-xs">Hiking Enthusiast</RetroBadge>
-                        <RetroBadge variant="orange" className="text-xs">DIY Renovator</RetroBadge>
-                        <RetroBadge variant="purple" className="text-xs">Daily Photographer</RetroBadge>
-                        <RetroBadge variant="pink" className="text-xs">ADHD Advocate</RetroBadge>
-                      </div>
+                      <p className="text-base text-muted-foreground leading-relaxed">
+                        When I'm not building digital experiences, you'll find me hiking mountain 
+                        trails with my camera, elbow-deep in home renovation projects, or exploring 
+                        how my ADHD brain shapes the way I create and problem-solve. I believe in 
+                        learning by doing, sharing the journey, and embracing the messy middle of 
+                        any project.
+                      </p>
+                      <p className="text-base text-muted-foreground leading-relaxed">
+                        When I'm not building digital experiences, you'll find me hiking mountain 
+                        trails with my camera, elbow-deep in home renovation projects, or exploring 
+                        how my ADHD brain shapes the way I create and problem-solve. I believe in 
+                        learning by doing, sharing the journey, and embracing the messy middle of 
+                        any project.
+                      </p>
                     </div>
                   </RetroCard>
                   

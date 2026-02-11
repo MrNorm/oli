@@ -24,15 +24,15 @@ export function RetroTV({
   ...props
 }: RetroTVProps) {
   const sizeClasses = {
-    sm: "w-64 h-48 min-w-[400px] min-h-[300px]",
-    md: "w-96 h-72 min-w-[600px] min-h-[450px]",
+    sm: "w-64 h-48 min-w-[256px] min-h-[192px]",
+    md: "w-[380px] h-[285px] min-w-[380px] min-h-[285px]",
     lg: "w-[32rem] h-96 min-w-[800px] min-h-[600px]",
   };
 
   // Side panel depths scale with size
   const sidePanelDepth = {
     sm: 100,
-    md: 150,
+    md: 115,
     lg: 200,
   };
 
