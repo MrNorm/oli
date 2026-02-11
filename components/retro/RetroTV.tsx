@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { HTMLAttributes, ReactNode } from "react";
-import { ScanLines } from "./ScanLines";
 
 interface RetroTVProps extends HTMLAttributes<HTMLDivElement> {
   /** Content to display on the TV screen (typically an image) */
@@ -38,20 +37,173 @@ export function RetroTV({
       }}
       {...props}
     >
-      {/* TV Cabinet */}
+      {/* TV Cabinet Container */}
       <div
-        className={cn(
-          "relative",
-          sizeClasses[size],
-          "transform-gpu transition-transform duration-300"
-        )}
+        className="relative"
         style={{
           transformStyle: "preserve-3d",
-          transform: angled ? "rotateY(-12deg) rotateX(5deg)" : "none",
         }}
       >
-        {/* Main wooden body */}
-        <div className="relative w-full h-full rounded-lg overflow-hidden shadow-2xl">
+        {/* Wrapper for the angled TV with depth sides */}
+        <div
+          className={cn(
+            "relative",
+            sizeClasses[size],
+            "transform-gpu transition-transform duration-300"
+          )}
+          style={{
+            transformStyle: "preserve-3d",
+            transform: angled ? "rotateY(-12deg) rotateX(5deg)" : "none",
+          }}
+        >
+          {/* Right side depth panel */}
+          {angled && (
+            <div
+              className="absolute h-full pointer-events-none"
+              style={{
+                right: "-150px",
+                top: "0",
+                width: "150px",
+                transformStyle: "preserve-3d",
+                transform: "rotateY(72deg) translateX(-1px)",
+                transformOrigin: "left center",
+                borderTopRightRadius: "0.5rem",
+                borderBottomRightRadius: "0.5rem",
+                background: `
+                  linear-gradient(to left, 
+                    #000000 0%,
+                    #050301 10%,
+                    #0d0805 20%,
+                    #1a120f 35%, 
+                    #2d1f1a 65%, 
+                    #3e2723 100%
+                  )
+                `,
+                boxShadow: "inset 10px 0 30px rgba(0, 0, 0, 0.95), 0 0 40px rgba(0, 0, 0, 0.7)",
+              }}
+            >
+              {/* Wood grain on right side */}
+              <div
+                className="absolute inset-0 opacity-70"
+                style={{
+                  borderTopRightRadius: "0.5rem",
+                  borderBottomRightRadius: "0.5rem",
+                  backgroundImage: `
+                    repeating-linear-gradient(
+                      0deg,
+                      transparent 0px,
+                      transparent 2px,
+                      rgba(0, 0, 0, 0.6) 2px,
+                      rgba(0, 0, 0, 0.6) 3px
+                    )
+                  `,
+                }}
+              />
+              {/* Extra depth shading */}
+              <div
+                className="absolute inset-0 opacity-60"
+                style={{
+                  background: `
+                    linear-gradient(to right,
+                      transparent 0%,
+                      rgba(0, 0, 0, 0.7) 100%
+                    )
+                  `,
+                }}
+              />
+              {/* Horizontal wood bands for extra realism */}
+              <div
+                className="absolute inset-0 opacity-30"
+                style={{
+                  backgroundImage: `
+                    repeating-linear-gradient(
+                      0deg,
+                      transparent 0px,
+                      transparent 15px,
+                      rgba(0, 0, 0, 0.3) 15px,
+                      rgba(0, 0, 0, 0.3) 17px
+                    )
+                  `,
+                }}
+              />
+            </div>
+          )}
+
+          {/* Top side depth panel */}
+          {angled && (
+            <div
+              className="absolute w-full pointer-events-none"
+              style={{
+                top: "-120px",
+                left: "0",
+                height: "120px",
+                transformStyle: "preserve-3d",
+                transform: "rotateX(72deg) translateY(1px)",
+                transformOrigin: "center bottom",
+                borderTopLeftRadius: "0.5rem",
+                borderTopRightRadius: "0.5rem",
+                background: `
+                  linear-gradient(to top, 
+                    #3e2723 0%, 
+                    #2d1f1a 35%,
+                    #1a120f 65%,
+                    #0d0805 80%,
+                    #050301 90%,
+                    #000000 100%
+                  )
+                `,
+                boxShadow: "inset 0 -10px 30px rgba(0, 0, 0, 0.95), 0 0 40px rgba(0, 0, 0, 0.7)",
+              }}
+            >
+              {/* Wood grain on top side */}
+              <div
+                className="absolute inset-0 opacity-70"
+                style={{
+                  borderTopLeftRadius: "0.5rem",
+                  borderTopRightRadius: "0.5rem",
+                  backgroundImage: `
+                    repeating-linear-gradient(
+                      90deg,
+                      transparent 0px,
+                      transparent 2px,
+                      rgba(0, 0, 0, 0.6) 2px,
+                      rgba(0, 0, 0, 0.6) 3px
+                    )
+                  `,
+                }}
+              />
+              {/* Extra depth shading */}
+              <div
+                className="absolute inset-0 opacity-60"
+                style={{
+                  background: `
+                    linear-gradient(to bottom,
+                      transparent 0%,
+                      rgba(0, 0, 0, 0.7) 100%
+                    )
+                  `,
+                }}
+              />
+              {/* Vertical wood bands for extra realism */}
+              <div
+                className="absolute inset-0 opacity-30"
+                style={{
+                  backgroundImage: `
+                    repeating-linear-gradient(
+                      90deg,
+                      transparent 0px,
+                      transparent 15px,
+                      rgba(0, 0, 0, 0.3) 15px,
+                      rgba(0, 0, 0, 0.3) 17px
+                    )
+                  `,
+                }}
+              />
+            </div>
+          )}
+
+          {/* Main wooden body */}
+          <div className="relative w-full h-full rounded-lg overflow-hidden shadow-2xl">
           {/* Walnut wood grain effect - HORIZONTAL */}
           <div
             className="absolute inset-0"
@@ -149,10 +301,23 @@ export function RetroTV({
                       src={screenImage}
                       alt="TV Screen"
                       className="w-full h-full object-cover"
+                      style={{
+                        filter: "contrast(0.7) saturate(0.6) brightness(0.85) sepia(0.15)",
+                        opacity: 0.85,
+                      }}
                     />
                   )}
                   {screenContent}
                 </div>
+
+                {/* Vintage color wash overlay */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: "rgba(245, 235, 220, 0.12)",
+                    mixBlendMode: "overlay",
+                  }}
+                />
 
                 {/* CRT curve glass effect */}
                 <div
@@ -185,38 +350,47 @@ export function RetroTV({
                   }}
                 />
 
-                {/* Scanlines overlay */}
+                {/* Scanlines overlay - CSS-based for better performance */}
                 <div
                   className="absolute inset-0 pointer-events-none"
-                  style={{ opacity: scanlineIntensity }}
+                  style={{ 
+                    opacity: scanlineIntensity,
+                    backgroundImage: `
+                      repeating-linear-gradient(
+                        0deg,
+                        transparent,
+                        transparent 2px,
+                        rgba(0, 0, 0, 0.3) 2px,
+                        rgba(0, 0, 0, 0.3) 3px
+                      )
+                    `,
+                  }}
                 >
-                  <ScanLines />
-                  {/* Horizontal scan animation */}
+                  {/* Horizontal scan animation - optimized */}
                   <div
-                    className="absolute inset-0 animate-scan"
+                    className="absolute inset-0"
                     style={{
                       background: `
                         linear-gradient(
                           to bottom,
                           transparent 0%,
-                          rgba(255, 255, 255, 0.05) 50%,
+                          rgba(255, 255, 255, 0.1) 50%,
                           transparent 100%
                         )
                       `,
-                      backgroundSize: "100% 200%",
-                      animation: "scan 8s linear infinite",
+                      height: "150%",
+                      animation: "scan 4s ease-in-out infinite",
+                      willChange: "transform",
                     }}
                   />
                 </div>
 
-                {/* CRT flicker effect */}
+                {/* CRT flicker effect - much slower for better performance */}
                 <div
-                  className="absolute inset-0 pointer-events-none animate-pulse"
+                  className="absolute inset-0 pointer-events-none"
                   style={{
-                    background: "rgba(255, 255, 255, 0.01)",
-                    animationDuration: "0.1s",
-                    animationIterationCount: "infinite",
-                    animationDirection: "alternate",
+                    background: "rgba(255, 255, 255, 0.02)",
+                    animation: "flicker 3s ease-in-out infinite alternate",
                   }}
                 />
               </div>
@@ -360,15 +534,25 @@ export function RetroTV({
           }}
         />
       </div>
+      </div>
 
-      {/* CSS Animation for scan effect */}
+      {/* CSS Animations - optimized for performance */}
       <style>{`
         @keyframes scan {
           0% {
-            background-position: 0% 0%;
+            transform: translateY(-100%);
           }
           100% {
-            background-position: 0% 100%;
+            transform: translateY(100%);
+          }
+        }
+        
+        @keyframes flicker {
+          0%, 100% {
+            opacity: 0.015;
+          }
+          50% {
+            opacity: 0.03;
           }
         }
       `}</style>
