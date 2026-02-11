@@ -262,63 +262,107 @@ export default function Page() {
 
         <RetroDivider />
 
-        {/* CONNECT - Full Width Section */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
+        {/* ABOUT ME - Full Width Section */}
+        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
+          {/* Decorative elements */}
+          <div className="absolute top-10 left-10 w-20 h-20 opacity-10 pointer-events-none">
+            <GeometricCircle color="teal" />
+          </div>
+          
           <div className="space-y-12">
             <div className="text-center space-y-4">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">Let's Connect</h2>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">About Me</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                I'm always excited to chat about projects, ideas, and opportunities
+                A glimpse into who I am, beyond the code
               </p>
             </div>
             
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              <RetroCard variant="bordered" className="hover:scale-105 transition-transform">
-                <div className="space-y-4">
-                  <h3 className="text-xl font-bold">About Me</h3>
-                  <p className="text-base text-muted-foreground leading-relaxed">
-                    I'm passionate about creating beautiful, accessible web experiences. 
-                    Always learning, always building, always curious.
-                  </p>
-                </div>
-              </RetroCard>
-
-              <RetroCard className="hover:scale-105 transition-transform">
-                <div className="space-y-4">
-                  <h3 className="text-xl font-bold">Find Me Online</h3>
-                  <div className="flex flex-col gap-3 text-base">
-                    <a href="https://github.com" className="text-primary hover:text-primary/80 transition-colors flex items-center gap-2">
-                      <span>→</span> GitHub
-                    </a>
-                    <a href="https://twitter.com" className="text-primary hover:text-primary/80 transition-colors flex items-center gap-2">
-                      <span>→</span> Twitter
-                    </a>
-                    <a href="mailto:hello@example.com" className="text-primary hover:text-primary/80 transition-colors flex items-center gap-2">
-                      <span>→</span> Email
-                    </a>
+            <div className="max-w-6xl mx-auto">
+              <div className="grid lg:grid-cols-3 gap-8 lg:gap-10 items-start">
+                {/* Headshot - Left side on desktop */}
+                <div className="flex justify-center lg:justify-start">
+                  <div className="w-72 sm:w-80">
+                    <Polaroid
+                      image="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
+                      alt="Oliver's headshot"
+                      caption="That's me! 👋"
+                      rotate={-3}
+                    />
                   </div>
                 </div>
-              </RetroCard>
-
-              <RetroCard variant="bordered" className="hover:scale-105 transition-transform sm:col-span-2 lg:col-span-1">
-                <div className="space-y-4">
-                  <h3 className="text-xl font-bold">Currently</h3>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex items-center gap-2">
-                      <span className="text-primary">▸</span>
-                      <span className="text-muted-foreground">Building retro UI components</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-primary">▸</span>
-                      <span className="text-muted-foreground">Renovating a 1970s home</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-primary">▸</span>
-                      <span className="text-muted-foreground">Learning about ADHD</span>
-                    </div>
+                
+                {/* Stats & Info - Center and Right side on desktop */}
+                <div className="lg:col-span-2 space-y-8">
+                  {/* Personal Stats Grid */}
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <RetroCard variant="bordered" className="hover:scale-105 transition-transform">
+                      <div className="space-y-2">
+                        <div className="text-3xl font-bold text-primary">12+</div>
+                        <div className="text-sm text-muted-foreground">Years of DIY Projects</div>
+                      </div>
+                    </RetroCard>
+                    
+                    <RetroCard variant="bordered" className="hover:scale-105 transition-transform">
+                      <div className="space-y-2">
+                        <div className="text-3xl font-bold text-primary">365</div>
+                        <div className="text-sm text-muted-foreground">Daily Photo Streak</div>
+                      </div>
+                    </RetroCard>
+                    
+                    <RetroCard variant="bordered" className="hover:scale-105 transition-transform">
+                      <div className="space-y-2">
+                        <div className="text-3xl font-bold text-primary">∞</div>
+                        <div className="text-sm text-muted-foreground">Coffee Cups Consumed</div>
+                      </div>
+                    </RetroCard>
+                    
+                    <RetroCard variant="bordered" className="hover:scale-105 transition-transform">
+                      <div className="space-y-2">
+                        <div className="text-3xl font-bold text-primary">1970s</div>
+                        <div className="text-sm text-muted-foreground">House I'm Renovating</div>
+                      </div>
+                    </RetroCard>
                   </div>
+                  
+                  {/* Personal Description */}
+                  <RetroCard className="hover:scale-[1.02] transition-transform">
+                    <div className="space-y-4">
+                      <h3 className="text-xl font-bold">Beyond the Keyboard</h3>
+                      <p className="text-base text-muted-foreground leading-relaxed">
+                        When I'm not building digital experiences, you'll find me hiking mountain 
+                        trails with my camera, elbow-deep in home renovation projects, or exploring 
+                        how my ADHD brain shapes the way I create and problem-solve. I believe in 
+                        learning by doing, sharing the journey, and embracing the messy middle of 
+                        any project.
+                      </p>
+                      <div className="flex flex-wrap gap-2 pt-2">
+                        <RetroBadge variant="teal" className="text-xs">Hiking Enthusiast</RetroBadge>
+                        <RetroBadge variant="orange" className="text-xs">DIY Renovator</RetroBadge>
+                        <RetroBadge variant="purple" className="text-xs">Daily Photographer</RetroBadge>
+                        <RetroBadge variant="pink" className="text-xs">ADHD Advocate</RetroBadge>
+                      </div>
+                    </div>
+                  </RetroCard>
+                  
+                  {/* Professional Career Link */}
+                  <RetroCard variant="bordered" className="hover:scale-[1.02] transition-transform bg-primary/5">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                      <div className="space-y-2">
+                        <h3 className="text-xl font-bold">My Professional Journey</h3>
+                        <p className="text-sm text-muted-foreground">
+                          Explore my career timeline, skills, and professional achievements
+                        </p>
+                      </div>
+                      <a 
+                        href="/career" 
+                        className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium rounded-sm border-2 border-foreground shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] whitespace-nowrap"
+                      >
+                        View Career Details →
+                      </a>
+                    </div>
+                  </RetroCard>
                 </div>
-              </RetroCard>
+              </div>
             </div>
           </div>
         </section>
