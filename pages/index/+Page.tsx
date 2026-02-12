@@ -204,7 +204,7 @@ export default function Page() {
                   </div>
                   
                   <a 
-                    href="/daily-photo" 
+                    href="/photos" 
                     className="inline-flex items-center gap-2 text-lg text-primary hover:text-primary/80 transition-colors font-medium"
                   >
                     View all photos →
