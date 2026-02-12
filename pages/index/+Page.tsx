@@ -151,7 +151,7 @@ export default function Page() {
             
             <div className="text-center">
               <a 
-                href="/posts" 
+                href="/articles" 
                 className="inline-flex items-center gap-2 text-lg text-primary hover:text-primary/80 transition-colors font-medium"
               >
                 View all posts →
