@@ -235,27 +235,39 @@ export default function Page() {
             {/* VHS Tape Stack - Centered and more prominent */}
             <div className="flex justify-center">
               <div className="space-y-4 w-full max-w-3xl">
-                <div className="transform hover:translate-x-4 transition-transform duration-200" style={{ transform: 'rotate(-1deg)' }}>
+                <a 
+                  href="/projects/home-renovation"
+                  className="block transform hover:translate-x-4 transition-transform duration-200" 
+                  style={{ transform: 'rotate(-1deg)' }}
+                >
                   <VHSTapeSpine
                     mainText="Home Renovation"
                     mainTextColor="#4ecdc4"
                     subtitleText="Modernizing a 70s house"
                   />
-                </div>
-                <div className="transform hover:translate-x-4 transition-transform duration-200" style={{ transform: 'rotate(0.8deg)' }}>
+                </a>
+                <a 
+                  href="/projects/digital-projects"
+                  className="block transform hover:translate-x-4 transition-transform duration-200" 
+                  style={{ transform: 'rotate(0.8deg)' }}
+                >
                   <VHSTapeSpine
                     mainText="Digital Projects"
                     mainTextColor="#ff9a76"
                     subtitleText="Sites, blogs & events"
                   />
-                </div>
-                <div className="transform hover:translate-x-4 transition-transform duration-200" style={{ transform: 'rotate(-0.5deg)' }}>
+                </a>
+                <a 
+                  href="/projects/my-mind-and-me"
+                  className="block transform hover:translate-x-4 transition-transform duration-200" 
+                  style={{ transform: 'rotate(-0.5deg)' }}
+                >
                   <VHSTapeSpine
                     mainText="My Mind & Me"
                     mainTextColor="#c77dff"
                     subtitleText="ADHD discovery"
                   />
-                </div>
+                </a>
               </div>
             </div>
           </div>
