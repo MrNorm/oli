@@ -4,6 +4,8 @@ import { Logo } from "../components/retro";
 import { Link } from "../components/Link";
 import { usePageContext } from "vike-react/usePageContext";
 import { useState } from "react";
+import { ApolloProvider } from "@apollo/client/react";
+import { apolloClient } from "../lib/apollo-client";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const pageContext = usePageContext();
@@ -11,48 +13,50 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [isHeaderVisible, setIsHeaderVisible] = useState(!isIndexPage);
   
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Header with slide animation */}
-      <div 
-        className="transition-all duration-300 ease-in-out overflow-hidden"
-        style={{ 
-          maxHeight: isHeaderVisible ? '200px' : '0px',
-          opacity: isHeaderVisible ? 1 : 0
-        }}
-      >
-        <Header onToggle={() => setIsHeaderVisible(!isHeaderVisible)} />
-      </div>
-      
-      {/* Show toggle when header is hidden */}
-      {!isHeaderVisible && (
-        <button
-          onClick={() => setIsHeaderVisible(true)}
-          className="fixed top-4 right-4 z-50 p-2.5 rounded-lg bg-card border-2 border-primary/60 hover:border-primary transition-all hover:scale-105 shadow-xl"
-          aria-label="Show navigation"
-          title="Show navigation"
+    <ApolloProvider client={apolloClient}>
+      <div className="min-h-screen flex flex-col">
+        {/* Header with slide animation */}
+        <div 
+          className="transition-all duration-300 ease-in-out overflow-hidden"
+          style={{ 
+            maxHeight: isHeaderVisible ? '200px' : '0px',
+            opacity: isHeaderVisible ? 1 : 0
+          }}
         >
-          <svg 
-            className="w-5 h-5 text-primary"
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-            strokeWidth={2.5}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-      )}
-      
-      <main className="flex-1 w-full">
-        <div id="page-container" className="w-full">
-          <div id="page-content">
-            {children}
-          </div>
+          <Header onToggle={() => setIsHeaderVisible(!isHeaderVisible)} />
         </div>
-      </main>
-      
-      <Footer />
-    </div>
+        
+        {/* Show toggle when header is hidden */}
+        {!isHeaderVisible && (
+          <button
+            onClick={() => setIsHeaderVisible(true)}
+            className="fixed top-4 right-4 z-50 p-2.5 rounded-lg bg-card border-2 border-primary/60 hover:border-primary transition-all hover:scale-105 shadow-xl"
+            aria-label="Show navigation"
+            title="Show navigation"
+          >
+            <svg 
+              className="w-5 h-5 text-primary"
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+              strokeWidth={2.5}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        )}
+        
+        <main className="flex-1 w-full">
+          <div id="page-container" className="w-full">
+            <div id="page-content">
+              {children}
+            </div>
+          </div>
+        </main>
+        
+        <Footer />
+      </div>
+    </ApolloProvider>
   );
 }
 

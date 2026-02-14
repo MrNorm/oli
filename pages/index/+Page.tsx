@@ -11,8 +11,32 @@ import {
   GeometricTriangle,
   GeometricSquare,
 } from "@/components/retro";
+import { useData } from "vike-react/useData";
+import type { Data } from "./+data";
 
 export default function Page() {
+  const { homepage } = useData<Data>();
+  
+  // Extract data with fallbacks
+  const featuredMegabyte = homepage?.featuredMegabyte?.docs?.[0];
+  const recentBytes = homepage?.recentBytes?.docs || [];
+  const todayPhoto = homepage?.todayPhoto?.docs?.[0];
+  const aboutMe = homepage?.aboutMe;
+  
+  // Simple helper to extract text from Payload's rich text JSON
+  const extractTextFromRichText = (content: any): string => {
+    if (!content || !content.root) return '';
+    
+    const extractFromNode = (node: any): string => {
+      if (node.type === 'text') return node.text || '';
+      if (node.children) {
+        return node.children.map((child: any) => extractFromNode(child)).join(' ');
+      }
+      return '';
+    };
+    
+    return extractFromNode(content.root);
+  };
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Subtle grid background */}
@@ -75,78 +99,68 @@ export default function Page() {
             {/* Featured + Recent Grid */}
             <div className="grid lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
               {/* Featured Post - Left Side */}
-              <RetroCard className="hover:scale-[1.02] transition-transform lg:row-span-3">
-                <div className="space-y-4 h-full flex flex-col">
-                  <div className="flex items-center gap-3 text-sm text-muted-foreground flex-wrap">
-                    <RetroBadge variant="orange" className="text-xs">How-To</RetroBadge>
-                    <time>Feb 2026</time>
-                    <span>·</span>
-                    <span>5 min read</span>
+              {featuredMegabyte && (
+                <RetroCard className="hover:scale-[1.02] transition-transform lg:row-span-3">
+                  <div className="space-y-4 h-full flex flex-col">
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground flex-wrap">
+                      <RetroBadge variant="orange" className="text-xs">Megabyte</RetroBadge>
+                      <time>{new Date(featuredMegabyte.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</time>
+                      {featuredMegabyte.tags && featuredMegabyte.tags.length > 0 && (
+                        <>
+                          <span>·</span>
+                          <span>{featuredMegabyte.tags[0]}</span>
+                        </>
+                      )}
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-bold">
+                      {featuredMegabyte.title}
+                    </h3>
+                    {featuredMegabyte.featuredImage && (
+                      <img 
+                        src={featuredMegabyte.featuredImage.url || ''} 
+                        alt={featuredMegabyte.featuredImage.alt}
+                        className="w-full h-48 object-cover rounded"
+                      />
+                    )}
+                    <div className="flex-1" />
+                    <a 
+                      href={`/articles/${featuredMegabyte.id}`}
+                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium"
+                    >
+                      Read more →
+                    </a>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold">
-                    Building Retro Component Libraries
-                  </h3>
-                  <p className="text-base text-muted-foreground leading-relaxed flex-1">
-                    Design patterns for scalable UI systems that grow with your application. 
-                    Exploring how to create reusable, accessible, and maintainable components 
-                    that capture the aesthetic of retro computing while meeting modern web standards.
-                  </p>
-                  <a 
-                    href="/posts/component-libraries" 
-                    className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium"
-                  >
-                    Read more →
-                  </a>
-                </div>
-              </RetroCard>
+                </RetroCard>
+              )}
 
               {/* Recent Posts - Right Side */}
-              <RetroCard className="hover:scale-105 transition-transform">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap">
-                    <RetroBadge variant="teal" className="text-xs">Activity</RetroBadge>
-                    <time>Feb 5, 2026</time>
-                  </div>
-                  <h3 className="text-lg font-bold">
-                    Mountain Ridge Trail
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    15km hike through misty mountain trails. The views at the summit made every step worth it. 📸
-                  </p>
-                </div>
-              </RetroCard>
-
-              <RetroCard className="hover:scale-105 transition-transform">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap">
-                    <RetroBadge variant="purple" className="text-xs">Musing</RetroBadge>
-                    <time>Feb 3, 2026</time>
-                    <span>·</span>
-                    <span>3 min read</span>
-                  </div>
-                  <h3 className="text-lg font-bold">
-                    Digital Gardens
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Growing ideas organically in public, cultivating knowledge over time instead of polished perfection.
-                  </p>
-                </div>
-              </RetroCard>
-
-              <RetroCard className="hover:scale-105 transition-transform">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap">
-                    <RetroBadge variant="orange" className="text-xs">Photo</RetroBadge>
-                    <time>Jan 29, 2026</time>
-                  </div>
-                  <h3 className="text-lg font-bold">
-                    Coffee & Code
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Early morning setup. There's something peaceful about coding before the world wakes up. ☕
-                  </p>
-                </div>
-              </RetroCard>
+              {recentBytes.slice(0, 3).map((byte) => {
+                const tagColors: Record<number, 'teal' | 'purple' | 'orange'> = { 0: 'teal', 1: 'purple', 2: 'orange' };
+                const index = recentBytes.indexOf(byte);
+                
+                return (
+                  <RetroCard key={byte.id} className="hover:scale-105 transition-transform">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap">
+                        <RetroBadge variant={tagColors[index] || 'teal'} className="text-xs">
+                          {byte.tags?.[0] || 'Byte'}
+                        </RetroBadge>
+                        <time>{new Date(byte.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
+                      </div>
+                      <div className="text-sm text-foreground leading-relaxed">
+                        {byte.content.substring(0, 150)}{byte.content.length > 150 ? '...' : ''}
+                      </div>
+                      {byte.attachedMedia && (
+                        <img 
+                          src={byte.attachedMedia.url || ''} 
+                          alt={byte.attachedMedia.alt}
+                          className="w-full h-32 object-cover rounded mt-2"
+                        />
+                      )}
+                    </div>
+                  </RetroCard>
+                );
+              })}
             </div>
             
             <div className="text-center">
@@ -182,26 +196,34 @@ export default function Page() {
                 {/* Polaroid Photo - Left side on desktop */}
                 <div className="flex justify-center lg:justify-end order-2 lg:order-1">
                   <div className="w-80 sm:w-96">
-                    <Polaroid
-                      image="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=400&h=400&fit=crop"
-                      alt="Today's photo"
-                      caption="Feb 7, 2026"
-                      rotate={-2}
-                    />
+                    {todayPhoto && todayPhoto.photo && (
+                      <Polaroid
+                        image={todayPhoto.photo.url || ''}
+                        alt={todayPhoto.photo.alt}
+                        caption={new Date(todayPhoto.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                        rotate={-2}
+                      />
+                    )}
                   </div>
                 </div>
                 
                 {/* Photo Details - Right side on desktop */}
                 <div className="space-y-6 order-1 lg:order-2">
-                  <div>
-                    <h3 className="text-2xl lg:text-3xl font-bold mb-4">Golden Hour Walk</h3>
-                    <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
-                      Caught the perfect light during my evening walk today. The way the sun 
-                      hits the trees at this time of year never gets old. Sometimes the best 
-                      moments are the quiet ones. There's something magical about how ordinary 
-                      scenes transform in the golden hour.
-                    </p>
-                  </div>
+                  {todayPhoto && (
+                    <div>
+                      <h3 className="text-2xl lg:text-3xl font-bold mb-4">{todayPhoto.title}</h3>
+                      {todayPhoto.caption && (
+                        <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
+                          {todayPhoto.caption}
+                        </p>
+                      )}
+                      {todayPhoto.location && (
+                        <p className="text-sm text-muted-foreground mt-2">
+                          📍 {todayPhoto.location}
+                        </p>
+                      )}
+                    </div>
+                  )}
                   
                   <a 
                     href="/photos" 
@@ -295,73 +317,53 @@ export default function Page() {
                 {/* Headshot - Left side on desktop - 40% width */}
                 <div className="lg:col-span-2 flex flex-col items-center lg:items-start justify-between h-full space-y-8">
                   <div className="w-full">
-                    <RetroTV
-                      screenImage="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
-                      size="md"
-                      angled={true}
-                      scanlineIntensity={0.3}
-                    />
+                    {aboutMe && aboutMe.photo && (
+                      <RetroTV
+                        screenImage={aboutMe.photo.url || ''}
+                        size="md"
+                        angled={true}
+                        scanlineIntensity={0.3}
+                      />
+                    )}
                   </div>
                   
                   {/* Stats Table */}
-                  <RetroCard variant="bordered" className="w-full mt-8">
-                    <div className="space-y-3">
-                      <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-wide">Quick Stats</h4>
-                      <div className="space-y-2 text-sm">
-                        <div className="flex justify-between items-center py-1 border-b border-border/50">
-                          <span className="text-muted-foreground">Location</span>
-                          <span className="font-medium">Earth 🌍</span>
-                        </div>
-                        <div className="flex justify-between items-center py-1 border-b border-border/50">
-                          <span className="text-muted-foreground">Current Focus</span>
-                          <span className="font-medium">Building Things</span>
-                        </div>
-                        <div className="flex justify-between items-center py-1 border-b border-border/50">
-                          <span className="text-muted-foreground">Favorite Tool</span>
-                          <span className="font-medium">VS Code</span>
-                        </div>
-                        <div className="flex justify-between items-center py-1">
-                          <span className="text-muted-foreground">Status</span>
-                          <span className="font-medium flex items-center gap-1">
-                            <span className="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                            Available
-                          </span>
+                  {aboutMe && aboutMe.quickStats && aboutMe.quickStats.length > 0 && (
+                    <RetroCard variant="bordered" className="w-full mt-8">
+                      <div className="space-y-3">
+                        <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-wide">Quick Stats</h4>
+                        <div className="space-y-2 text-sm">
+                          {aboutMe.quickStats.map((stat, index) => (
+                            <div 
+                              key={stat.id || index} 
+                              className={`flex justify-between items-center py-1 ${
+                                index < aboutMe.quickStats!.length - 1 ? 'border-b border-border/50' : ''
+                              }`}
+                            >
+                              <span className="text-muted-foreground">{stat.key}</span>
+                              <span className="font-medium">{stat.value}</span>
+                            </div>
+                          ))}
                         </div>
                       </div>
-                    </div>
-                  </RetroCard>
+                    </RetroCard>
+                  )}
                 </div>
                 
                 {/* Stats & Info - Right side on desktop - 60% width */}
                 <div className="lg:col-span-3 space-y-8">
                   
                   {/* Personal Description */}
-                  <RetroCard className="hover:scale-[1.02] transition-transform">
-                    <div className="space-y-4">
-                      <h3 className="text-xl font-bold">Beyond the Keyboard</h3>
-                      <p className="text-base text-muted-foreground leading-relaxed">
-                        When I'm not building digital experiences, you'll find me hiking mountain 
-                        trails with my camera, elbow-deep in home renovation projects, or exploring 
-                        how my ADHD brain shapes the way I create and problem-solve. I believe in 
-                        learning by doing, sharing the journey, and embracing the messy middle of 
-                        any project.
-                      </p>
-                      <p className="text-base text-muted-foreground leading-relaxed">
-                        When I'm not building digital experiences, you'll find me hiking mountain 
-                        trails with my camera, elbow-deep in home renovation projects, or exploring 
-                        how my ADHD brain shapes the way I create and problem-solve. I believe in 
-                        learning by doing, sharing the journey, and embracing the messy middle of 
-                        any project.
-                      </p>
-                      <p className="text-base text-muted-foreground leading-relaxed">
-                        When I'm not building digital experiences, you'll find me hiking mountain 
-                        trails with my camera, elbow-deep in home renovation projects, or exploring 
-                        how my ADHD brain shapes the way I create and problem-solve. I believe in 
-                        learning by doing, sharing the journey, and embracing the messy middle of 
-                        any project.
-                      </p>
-                    </div>
-                  </RetroCard>
+                  {aboutMe && aboutMe.content && (
+                    <RetroCard className="hover:scale-[1.02] transition-transform">
+                      <div className="space-y-4">
+                        <h3 className="text-xl font-bold">{aboutMe.title}</h3>
+                        <div className="text-base text-muted-foreground leading-relaxed">
+                          {extractTextFromRichText(aboutMe.content)}
+                        </div>
+                      </div>
+                    </RetroCard>
+                  )}
                   
                   {/* Professional Career Link */}
                   <RetroCard variant="bordered" className="hover:scale-[1.02] transition-transform bg-primary/5">
