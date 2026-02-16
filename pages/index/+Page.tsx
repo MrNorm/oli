@@ -11,6 +11,7 @@ import {
 import { MegabyteItem, ByteItem, DailyPhotoItem } from "@/components/timeline";
 import { useData } from "vike-react/useData";
 import type { Data } from "./+data";
+import { renderLexicalContent } from "@/lib/lexical-renderer";
 
 export default function Page() {
   const { homepage } = useData<Data>();
@@ -20,21 +21,6 @@ export default function Page() {
   const recentBytes = homepage?.recentBytes?.docs || [];
   const todayPhoto = homepage?.todayPhoto?.docs?.[0];
   const aboutMe = homepage?.aboutMe;
-  
-  // Simple helper to extract text from Payload's rich text JSON
-  const extractTextFromRichText = (content: any): string => {
-    if (!content || !content.root) return '';
-    
-    const extractFromNode = (node: any): string => {
-      if (node.type === 'text') return node.text || '';
-      if (node.children) {
-        return node.children.map((child: any) => extractFromNode(child)).join(' ');
-      }
-      return '';
-    };
-    
-    return extractFromNode(content.root);
-  };
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Subtle grid background */}
@@ -236,7 +222,7 @@ export default function Page() {
               <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
                 {/* Headshot - Left side on desktop - 40% width */}
                 <div className="lg:col-span-2 flex flex-col items-center lg:items-start justify-between h-full space-y-8">
-                  <div className="w-full">
+                  <div className="w-full flex justify-center lg:justify-start">
                     {aboutMe && aboutMe.photo && (
                       <RetroTV
                         screenImage={aboutMe.photo.url || ''}
@@ -278,8 +264,8 @@ export default function Page() {
                     <RetroCard className="hover:scale-[1.02] transition-transform">
                       <div className="space-y-4">
                         <h3 className="text-xl font-bold">{aboutMe.title}</h3>
-                        <div className="text-base text-muted-foreground leading-relaxed">
-                          {extractTextFromRichText(aboutMe.content)}
+                        <div className="text-muted-foreground">
+                          {renderLexicalContent(aboutMe.content)}
                         </div>
                       </div>
                     </RetroCard>

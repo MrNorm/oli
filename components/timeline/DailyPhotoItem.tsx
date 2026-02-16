@@ -40,7 +40,7 @@ export function DailyPhotoItem({ title, date, photo, caption, location }: DailyP
         </div>
         
         {/* Polaroid photo */}
-        <div className="flex-shrink-0 w-64 sm:w-72 order-1 sm:order-2" style={{ transform: 'rotate(3deg)' }}>
+        <div className="flex-shrink-0 w-64 sm:w-72 order-1 sm:order-2 mt-4 sm:mt-0 mx-auto sm:mx-0" style={{ transform: 'rotate(3deg)' }}>
           <Polaroid
             image={photo.url || ''}
             alt={photo.alt}
