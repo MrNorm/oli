@@ -5,8 +5,14 @@ import {
   GeometricCircle,
   GeometricSquare,
 } from "@/components/retro";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 export default function CareerPage() {
+  // Calculate years of experience from March 2009
+  const startDate = new Date('2009-03-01');
+  const now = new Date();
+  const yearsOfExperience = Math.floor((now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25));
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Subtle grid background */}
@@ -33,9 +39,6 @@ export default function CareerPage() {
             {/* Left side - Title and intro - 60% */}
             <div className="lg:col-span-3 space-y-6">
               <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-sm">
-                  <span className="text-sm font-medium text-primary">Head of Engineering</span>
-                </div>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
                   Building Teams,<br/>
                   Scaling Impact
@@ -55,7 +58,7 @@ export default function CareerPage() {
                   <h3 className="text-sm font-bold text-muted-foreground uppercase tracking-wide">Experience</h3>
                   <div className="space-y-4">
                     <div className="space-y-1">
-                      <div className="text-3xl font-bold text-primary">10+</div>
+                      <div className="text-3xl font-bold text-primary">{yearsOfExperience}+</div>
                       <div className="text-sm text-muted-foreground">Years in Software Development</div>
                     </div>
                     <div className="h-px bg-border/50"></div>
@@ -63,10 +66,6 @@ export default function CareerPage() {
                       <div className="flex items-start gap-2">
                         <span className="text-primary mt-0.5">▸</span>
                         <span className="text-sm">Engineering Leadership</span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <span className="text-primary mt-0.5">▸</span>
-                        <span className="text-sm">Organizational Design</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-primary mt-0.5">▸</span>
@@ -84,6 +83,43 @@ export default function CareerPage() {
           </div>
         </section>
 
+
+        {/* Current Position */}
+        <section className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+          <div className="space-y-8">
+            <h2 className="text-3xl sm:text-4xl font-bold">Current Position</h2>
+            
+            <RetroCard variant="bordered" className="bg-gradient-to-br from-primary/5 to-secondary/5">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                {/* Company Logo - Square variation */}
+                <div className="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 bg-background border-2 border-border rounded-lg flex items-center justify-center overflow-hidden">
+                  {/* For square logos (current): w-20 h-20 sm:w-24 sm:h-24 */}
+                  {/* For portrait logos: w-20 h-24 sm:w-24 sm:h-32 */}
+                  {/* For landscape logos: w-32 h-20 sm:w-40 sm:h-24 */}
+                  <OptimizedImage
+                    src="/assets/evolution_funding_ltd_logo.jpg"
+                    alt="Evolution Funding Logo"
+                    width={96}
+                    height={96}
+                    className="w-full h-full object-contain p-2"
+                  />
+                </div>
+                
+                {/* Company Info */}
+                <div className="flex-1 space-y-2">
+                  <div className="space-y-1">
+                    <h3 className="text-2xl font-bold">Head of Engineering</h3>
+                    <p className="text-xl text-muted-foreground">Evolution Funding</p>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <span>📍 Chesterfield, UK</span>
+                  </div>
+                </div>
+              </div>
+            </RetroCard>
+          </div>
+        </section>
+
         <RetroDivider />
 
         {/* What Drives Me */}
@@ -94,9 +130,6 @@ export default function CareerPage() {
             <div className="grid md:grid-cols-2 gap-6">
               <RetroCard className="hover:scale-[1.02] transition-transform">
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <RetroBadge variant="teal">Core Value</RetroBadge>
-                  </div>
                   <h3 className="text-xl font-bold">Empathy-First Leadership</h3>
                   <p className="text-muted-foreground leading-relaxed">
                     Great engineering isn&apos;t just about technical excellence—it&apos;s about 
@@ -108,9 +141,6 @@ export default function CareerPage() {
 
               <RetroCard className="hover:scale-[1.02] transition-transform">
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <RetroBadge variant="purple">Core Value</RetroBadge>
-                  </div>
                   <h3 className="text-xl font-bold">Continuous Learning</h3>
                   <p className="text-muted-foreground leading-relaxed">
                     Technology evolves, and so should we. I&apos;m committed to staying curious, 
@@ -122,9 +152,6 @@ export default function CareerPage() {
 
               <RetroCard className="hover:scale-[1.02] transition-transform">
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <RetroBadge variant="orange">Core Value</RetroBadge>
-                  </div>
                   <h3 className="text-xl font-bold">High-Leverage Impact</h3>
                   <p className="text-muted-foreground leading-relaxed">
                     I focus on work that multiplies: building systems that scale, making 
@@ -136,9 +163,6 @@ export default function CareerPage() {
 
               <RetroCard className="hover:scale-[1.02] transition-transform">
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <RetroBadge variant="pink">Core Value</RetroBadge>
-                  </div>
                   <h3 className="text-xl font-bold">Strategic Execution</h3>
                   <p className="text-muted-foreground leading-relaxed">
                     Vision without execution is just planning. I bridge product, engineering, 
@@ -338,24 +362,10 @@ export default function CareerPage() {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
-              <a
-                href="mailto:your.email@example.com"
-                className="group"
-              >
-                <RetroCard className="hover:scale-105 transition-transform text-center">
-                  <div className="space-y-2">
-                    <div className="text-2xl">✉️</div>
-                    <div className="font-medium">Email</div>
-                    <div className="text-xs text-muted-foreground group-hover:text-primary transition-colors">
-                      Get in touch
-                    </div>
-                  </div>
-                </RetroCard>
-              </a>
+            <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
 
               <a
-                href="https://linkedin.com/in/yourprofile"
+                href="https://linkedin.com/in/olivernortham"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group"
@@ -372,24 +382,7 @@ export default function CareerPage() {
               </a>
 
               <a
-                href="https://twitter.com/yourhandle"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group"
-              >
-                <RetroCard className="hover:scale-105 transition-transform text-center">
-                  <div className="space-y-2">
-                    <div className="text-2xl">🐦</div>
-                    <div className="font-medium">Twitter</div>
-                    <div className="text-xs text-muted-foreground group-hover:text-primary transition-colors">
-                      Thoughts & threads
-                    </div>
-                  </div>
-                </RetroCard>
-              </a>
-
-              <a
-                href="https://github.com/yourhandle"
+                href="https://github.com/mrnorm"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group"
