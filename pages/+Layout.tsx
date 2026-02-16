@@ -52,12 +52,6 @@ function Header({ isIndexPage }: { isIndexPage: boolean }) {
             <Link href="/career" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Career
             </Link>
-            <Link href="/photos" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Photos
-            </Link>
-            <Link href="/demo" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Components
-            </Link>
           </nav>
         </div>
       </div>

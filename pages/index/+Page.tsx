@@ -20,7 +20,17 @@ export default function Page() {
   const featuredMegabyte = homepage?.featuredMegabyte?.docs?.[0];
   const recentBytes = homepage?.recentBytes?.docs || [];
   const todayPhoto = homepage?.todayPhoto?.docs?.[0];
+  const projects = homepage?.projects?.docs || [];
   const aboutMe = homepage?.aboutMe;
+  
+  // Colors for VHS tapes - rotate through retro colors
+  const tapeColors = ["#4ecdc4", "#ff9a76", "#c77dff", "#ffd93d", "#ff6b9d", "#95e1d3"];
+  
+  // Random rotation for VHS tapes
+  const getRotation = (index: number) => {
+    const rotations = [-1, 0.8, -0.5, 0.6, -0.8, 0.4];
+    return rotations[index % rotations.length];
+  };
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Subtle grid background */}
@@ -94,6 +104,7 @@ export default function Page() {
                 {featuredMegabyte && (
                   <MegabyteItem
                     id={featuredMegabyte.id}
+                    slug={featuredMegabyte.slug}
                     title={featuredMegabyte.title}
                     date={featuredMegabyte.date}
                     excerpt={featuredMegabyte.excerpt}
@@ -163,39 +174,20 @@ export default function Page() {
             {/* VHS Tape Stack - Centered and more prominent */}
             <div className="flex justify-center">
               <div className="space-y-4 w-full max-w-3xl">
-                <a 
-                  href="/projects/home-renovation"
-                  className="block transform hover:translate-x-4 transition-transform duration-200" 
-                  style={{ transform: 'rotate(-1deg)' }}
-                >
-                  <VHSTapeSpine
-                    mainText="Home Renovation"
-                    mainTextColor="#4ecdc4"
-                    subtitleText="Modernizing a 70s house"
-                  />
-                </a>
-                <a 
-                  href="/projects/digital-projects"
-                  className="block transform hover:translate-x-4 transition-transform duration-200" 
-                  style={{ transform: 'rotate(0.8deg)' }}
-                >
-                  <VHSTapeSpine
-                    mainText="Digital Projects"
-                    mainTextColor="#ff9a76"
-                    subtitleText="Sites, blogs & events"
-                  />
-                </a>
-                <a 
-                  href="/projects/my-mind-and-me"
-                  className="block transform hover:translate-x-4 transition-transform duration-200" 
-                  style={{ transform: 'rotate(-0.5deg)' }}
-                >
-                  <VHSTapeSpine
-                    mainText="My Mind & Me"
-                    mainTextColor="#c77dff"
-                    subtitleText="ADHD discovery"
-                  />
-                </a>
+                {projects.map((project, index) => (
+                  <a 
+                    key={project.id}
+                    href={`/projects/${project.slug}`}
+                    className="block transform hover:translate-x-4 transition-transform duration-200" 
+                    style={{ transform: `rotate(${getRotation(index)}deg)` }}
+                  >
+                    <VHSTapeSpine
+                      mainText={project.projectName}
+                      mainTextColor={tapeColors[index % tapeColors.length]}
+                      subtitleText={project.caption}
+                    />
+                  </a>
+                ))}
               </div>
             </div>
           </div>

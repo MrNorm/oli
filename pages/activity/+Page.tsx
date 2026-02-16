@@ -284,6 +284,7 @@ export default function ActivityPage() {
                         <MegabyteItem
                           key={item.id}
                           id={item.data.id}
+                          slug={item.data.slug}
                           title={item.data.title}
                           date={item.data.date}
                           excerpt={item.data.excerpt}

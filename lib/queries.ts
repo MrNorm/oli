@@ -7,6 +7,7 @@ export const GET_HOMEPAGE_DATA = gql`
     featuredMegabyte: Megabytes(limit: 1, sort: "-date") {
       docs {
         id
+        slug
         title
         date
         excerpt
@@ -51,6 +52,16 @@ export const GET_HOMEPAGE_DATA = gql`
       }
     }
     
+    # Projects for VHS tape collection
+    projects: Projects(sort: "-createdAt") {
+      docs {
+        id
+        slug
+        projectName
+        caption
+      }
+    }
+    
     # About Me section data
     aboutMe: AboutMe {
       photo {
@@ -75,6 +86,7 @@ export const GET_MEGABYTES = gql`
     Megabytes(limit: $limit, page: $page, sort: "-date") {
       docs {
         id
+        slug
         title
         date
         excerpt
@@ -94,21 +106,24 @@ export const GET_MEGABYTES = gql`
 `;
 
 export const GET_MEGABYTE = gql`
-  query GetMegabyte($id: Int!) {
-    Megabyte(id: $id) {
-      id
-      title
-      date
-      excerpt
-      featuredImage {
+  query GetMegabyte($slug: String!) {
+    Megabytes(where: { slug: { equals: $slug } }, limit: 1) {
+      docs {
         id
-        url
-        alt
-        width
-        height
+        slug
+        title
+        date
+        excerpt
+        featuredImage {
+          id
+          url
+          alt
+          width
+          height
+        }
+        content
+        tags
       }
-      content
-      tags
     }
   }
 `;

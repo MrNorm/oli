@@ -52,16 +52,16 @@ export async function fetchMegabytes(limit = 10, page = 1) {
 }
 
 /**
- * Fetch a single Megabyte by ID
+ * Fetch a single Megabyte by slug
  */
-export async function fetchMegabyteById(id: number) {
+export async function fetchMegabyteBySlug(slug: string) {
   try {
     const { data } = await apolloClient.query({
       query: GET_MEGABYTE,
-      variables: { id },
+      variables: { slug },
     });
     // @ts-expect-error - Types will be available after running `pnpm codegen`
-    return data.Megabyte;
+    return data.Megabytes?.docs?.[0] || null;
   } catch (error) {
     console.error('Error fetching megabyte:', error);
     return null;

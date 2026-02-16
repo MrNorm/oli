@@ -4,6 +4,7 @@ import { TimelineItem } from './TimelineItem';
 
 interface MegabyteItemProps {
   id: number;
+  slug: string;
   title: string;
   date: string;
   excerpt?: string;
@@ -14,7 +15,7 @@ interface MegabyteItemProps {
   tags?: string[];
 }
 
-export function MegabyteItem({ id, title, date, excerpt, featuredImage, tags }: MegabyteItemProps) {
+export function MegabyteItem({ id, slug, title, date, excerpt, featuredImage, tags }: MegabyteItemProps) {
   return (
     <TimelineItem
       dotColor="bg-orange-500"
@@ -54,7 +55,7 @@ export function MegabyteItem({ id, title, date, excerpt, featuredImage, tags }: 
             </div>
           )}
           <a 
-            href={`/megabytes/${id}`}
+            href={`/megabytes/${slug}`}
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium"
           >
             Read the full story →
