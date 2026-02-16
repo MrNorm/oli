@@ -4,5 +4,9 @@
   "name": "oli",
   "main": "virtual:photon:cloudflare:server-entry",
   // Only required if your app (or one of your libraries) uses a Node.js API
-  "compatibility_flags": ["nodejs_compat"]
+  "compatibility_flags": ["nodejs_compat"],
+  // Cloudflare Images binding for image optimization
+  "images": {
+    "binding": "IMAGES"
+  }
 }

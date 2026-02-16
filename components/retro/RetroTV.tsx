@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { OptimizedImage } from "@/components/OptimizedImage";
 import { HTMLAttributes, ReactNode } from "react";
 
 interface RetroTVProps extends HTMLAttributes<HTMLDivElement> {
@@ -247,9 +248,12 @@ export function RetroTV({
                 {/* Screen content - image and custom content with vintage filter */}
                 <div className="absolute inset-0 bg-slate-900">
                   {screenImage && (
-                    <img
+                    <OptimizedImage
                       src={screenImage}
                       alt="TV Screen"
+                      width={600}
+                      responsive="medium"
+                      sizes="(min-width: 1024px) 400px, 350px"
                       className="w-full h-full object-cover"
                       style={{
                         filter: "contrast(0.7) saturate(0.6) brightness(0.85) sepia(0.15)",

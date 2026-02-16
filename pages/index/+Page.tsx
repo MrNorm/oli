@@ -11,6 +11,7 @@ import {
   GeometricTriangle,
   GeometricSquare,
 } from "@/components/retro";
+import { OptimizedImage } from "@/components/OptimizedImage";
 import { useData } from "vike-react/useData";
 import type { Data } from "./+data";
 
@@ -116,9 +117,12 @@ export default function Page() {
                       {featuredMegabyte.title}
                     </h3>
                     {featuredMegabyte.featuredImage && (
-                      <img 
+                      <OptimizedImage 
                         src={featuredMegabyte.featuredImage.url || ''} 
                         alt={featuredMegabyte.featuredImage.alt}
+                        width={800}
+                        responsive="medium"
+                        sizes="(min-width: 1024px) 50vw, 100vw"
                         className="w-full h-48 object-cover rounded"
                       />
                     )}
@@ -151,9 +155,12 @@ export default function Page() {
                         {byte.content.substring(0, 150)}{byte.content.length > 150 ? '...' : ''}
                       </div>
                       {byte.attachedMedia && (
-                        <img 
+                        <OptimizedImage 
                           src={byte.attachedMedia.url || ''} 
                           alt={byte.attachedMedia.alt}
+                          width={600}
+                          responsive="small"
+                          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                           className="w-full h-32 object-cover rounded mt-2"
                         />
                       )}

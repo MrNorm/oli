@@ -4,6 +4,7 @@ import {
   RetroBadge,
   RetroDivider,
 } from "@/components/retro";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 // Types
 interface ArticleBase {
@@ -654,9 +655,12 @@ function SocialPostLayout({ article }: { article: SocialArticle }) {
           {/* Image if present */}
           {article.image && (
             <div className="w-full aspect-video bg-muted">
-              <img 
+              <OptimizedImage 
                 src={article.image}
                 alt={article.title}
+                width={1200}
+                responsive="large"
+                sizes="100vw"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -698,9 +702,13 @@ function HowToLayout({ article }: { article: HowToArticle }) {
       <div className="relative z-10">
         {/* Hero Image */}
         <div className="w-full h-[50vh] bg-muted relative">
-          <img 
+          <OptimizedImage 
             src={article.coverImage}
             alt={article.title}
+            width={1920}
+            responsive="xlarge"
+            sizes="100vw"
+            priority
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
@@ -935,9 +943,12 @@ function PhotoLayout({ article }: { article: PhotoArticle }) {
           {/* Large Photo - Left side */}
           <div className="lg:sticky lg:top-8">
             <div className="w-full aspect-square bg-muted rounded-lg overflow-hidden shadow-2xl">
-              <img 
+              <OptimizedImage 
                 src={article.image}
                 alt={article.title}
+                width={1200}
+                responsive="large"
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="w-full h-full object-cover"
               />
             </div>

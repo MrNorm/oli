@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { OptimizedImage } from "@/components/OptimizedImage";
 import { HTMLAttributes, ReactNode } from "react";
 
 interface PolaroidProps extends HTMLAttributes<HTMLDivElement> {
@@ -49,9 +50,12 @@ export function Polaroid({
       >
         {/* Photo area with subtle imperfections */}
         <div className="relative aspect-square overflow-hidden bg-gray-100">
-          <img
+          <OptimizedImage
             src={image}
             alt={alt}
+            width={800}
+            responsive="medium"
+            sizes="(min-width: 1536px) 400px, (min-width: 1024px) 350px, (min-width: 640px) 384px, 320px"
             className={cn(
               "w-full h-full object-cover",
               // Slight fading effect for realism
