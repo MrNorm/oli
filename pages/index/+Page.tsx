@@ -88,9 +88,6 @@ export default function Page() {
           <div className="space-y-12">
             <div className="text-center space-y-4">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">What I&apos;m Sharing</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                A timeline of stories, photos, and moments worth sharing
-              </p>
             </div>
             
             {/* Timeline Container */}
@@ -166,9 +163,6 @@ export default function Page() {
           <div className="space-y-12">
             <div className="text-center space-y-4">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">Project Collection</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Deep dives into renovation, digital creation, and personal growth
-              </p>
             </div>
             
             {/* VHS Tape Stack - Centered and more prominent */}
@@ -205,9 +199,6 @@ export default function Page() {
           <div className="space-y-12">
             <div className="text-center space-y-4">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">About Me</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                A glimpse into who I am, beyond the code
-              </p>
             </div>
             
             <div className="max-w-6xl mx-auto">

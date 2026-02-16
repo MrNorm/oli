@@ -153,13 +153,8 @@ export default function ActivityPage() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
               Activity Feed
             </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-              A complete chronicle of articles, thoughts, and daily moments - all in one place
-            </p>
           </div>
         </section>
-
-        <RetroDivider />
 
         {/* Year and Type Filters */}
         <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6 space-y-6">
