@@ -140,7 +140,7 @@ export default function ActivityPage() {
       {/* Main content */}
       <div className="relative z-10">
         {/* Hero Section */}
-        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16">
+        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-14 lg:pt-16 pb-6 sm:pb-8">
           {/* Decorative geometric shapes */}
           <div className="absolute top-20 right-10 w-32 h-32 opacity-10 pointer-events-none">
             <GeometricCircle color="teal" />
@@ -150,19 +150,11 @@ export default function ActivityPage() {
           </div>
           
           <div className="text-center space-y-6 max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-sm">
-              <span className="text-sm font-medium text-primary">📼 Full Timeline</span>
-            </div>
-            
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
               Activity Feed
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
               A complete chronicle of articles, thoughts, and daily moments - all in one place
-            </p>
-            <p className="text-base text-muted-foreground">
-              <span className="font-semibold text-foreground">{allItems.length}</span> items shared
-              {selectedYear !== 'all' && ` in ${selectedYear}`}
             </p>
           </div>
         </section>
@@ -170,7 +162,7 @@ export default function ActivityPage() {
         <RetroDivider />
 
         {/* Year and Type Filters */}
-        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6 space-y-6">
+        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6 space-y-6">
           {/* Year Filter */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
