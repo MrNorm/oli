@@ -6,12 +6,10 @@ import {
   GeometricSquare,
 } from "@/components/retro";
 import { OptimizedImage } from "@/components/OptimizedImage";
+import { calculateYearsSince } from "@/lib/utils";
 
 export default function CareerPage() {
-  // Calculate years of experience from March 2009
-  const startDate = new Date('2009-03-01');
-  const now = new Date();
-  const yearsOfExperience = Math.floor((now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25));
+  const yearsOfExperience = calculateYearsSince('2009-03-01');
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -120,60 +118,6 @@ export default function CareerPage() {
           </div>
         </section>
 
-        <RetroDivider />
-
-        {/* What Drives Me */}
-        <section className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
-          <div className="space-y-10">
-            <h2 className="text-3xl sm:text-4xl font-bold">What Drives Me</h2>
-            
-            <div className="grid md:grid-cols-2 gap-6">
-              <RetroCard className="hover:scale-[1.02] transition-transform">
-                <div className="space-y-3">
-                  <h3 className="text-xl font-bold">Empathy-First Leadership</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Great engineering isn&apos;t just about technical excellence—it&apos;s about 
-                    understanding people. I build cultures where engineers feel heard, 
-                    challenged, and supported to do their best work.
-                  </p>
-                </div>
-              </RetroCard>
-
-              <RetroCard className="hover:scale-[1.02] transition-transform">
-                <div className="space-y-3">
-                  <h3 className="text-xl font-bold">Continuous Learning</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Technology evolves, and so should we. I&apos;m committed to staying curious, 
-                    questioning assumptions, and creating environments where learning is 
-                    built into the work itself.
-                  </p>
-                </div>
-              </RetroCard>
-
-              <RetroCard className="hover:scale-[1.02] transition-transform">
-                <div className="space-y-3">
-                  <h3 className="text-xl font-bold">High-Leverage Impact</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    I focus on work that multiplies: building systems that scale, making 
-                    decisions that unlock teams, and investing time where it creates the 
-                    most meaningful change.
-                  </p>
-                </div>
-              </RetroCard>
-
-              <RetroCard className="hover:scale-[1.02] transition-transform">
-                <div className="space-y-3">
-                  <h3 className="text-xl font-bold">Strategic Execution</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Vision without execution is just planning. I bridge product, engineering, 
-                    and business goals by turning strategy into reality through clear 
-                    roadmaps and cross-functional collaboration.
-                  </p>
-                </div>
-              </RetroCard>
-            </div>
-          </div>
-        </section>
 
         <RetroDivider />
 
@@ -188,7 +132,7 @@ export default function CareerPage() {
               <h2 className="text-3xl sm:text-4xl font-bold">My Focus Areas</h2>
               <p className="text-lg text-muted-foreground max-w-3xl">
                 Over the past decade, I&apos;ve moved from individual contributor to leading 
-                engineering organizations. Here&apos;s where I create the most impact today:
+                engineering organisations. Here&apos;s where I create the most impact today:
               </p>
             </div>
             
@@ -207,24 +151,12 @@ export default function CareerPage() {
 
               <RetroCard variant="bordered" className="bg-primary/5">
                 <div className="space-y-3">
-                  <h3 className="text-2xl font-bold">🏗️ Organizational Design</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Building team structures that enable autonomy, ownership, and speed. I think 
-                    deeply about how teams are organized, how work flows between them, and how 
-                    to design systems that reduce friction and increase delivery. Conway&apos;s Law 
-                    is real—let&apos;s make it work for us.
-                  </p>
-                </div>
-              </RetroCard>
-
-              <RetroCard variant="bordered" className="bg-primary/5">
-                <div className="space-y-3">
                   <h3 className="text-2xl font-bold">📈 Team Scaling</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    Growing teams from 5 to 50+ without losing culture, quality, or velocity. 
-                    I&apos;ve navigated the challenges of hiring at scale, onboarding effectively, 
+                    Growing teams from 5 to 50+ without losing culture or quality. 
+                    I have experience in hiring at scale, onboarding effectively, 
                     and maintaining excellence as complexity grows. Scaling isn&apos;t just about 
-                    headcount—it&apos;s about processes, culture, and communication.
+                    headcount, it&apos;s about processes, culture, and communication.
                   </p>
                 </div>
               </RetroCard>
@@ -233,10 +165,10 @@ export default function CareerPage() {
                 <div className="space-y-3">
                   <h3 className="text-2xl font-bold">🌱 Mentoring & Development</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    Investing in people is the highest-leverage work I do. I mentor engineers 
-                    transitioning into leadership, help senior ICs level up their impact, and 
+                    Investing in people is the most important work I do. I mentor people 
+                    transitioning into leadership, help engineers level up their impact, and 
                     build frameworks that support continuous growth. Great teams are built on 
-                    great people—and great people need support to grow.
+                    great people, and great people need support to grow.
                   </p>
                 </div>
               </RetroCard>
@@ -246,9 +178,8 @@ export default function CareerPage() {
                   <h3 className="text-2xl font-bold">🎯 Cross-Functional Strategy</h3>
                   <p className="text-muted-foreground leading-relaxed">
                     Aligning engineering, product, design, and business stakeholders around 
-                    shared goals. I translate between technical and business contexts, build 
-                    roadmaps that reflect real priorities, and ensure engineering has a seat 
-                    at the strategic table—not just execution.
+                    shared goals. I translate between technical and business contexts and ensure engineering has a seat 
+                    at a strategic level, not just execution.
                   </p>
                 </div>
               </RetroCard>
@@ -269,7 +200,7 @@ export default function CareerPage() {
               <h2 className="text-3xl sm:text-4xl font-bold">How I Think About Leadership</h2>
               <p className="text-lg text-muted-foreground max-w-3xl">
                 Some of the mental models and frameworks that guide how I approach 
-                building teams, scaling organizations, and creating lasting impact.
+                building teams, scaling organisations, and creating lasting impact.
               </p>
             </div>
             
@@ -280,12 +211,9 @@ export default function CareerPage() {
                   <div className="flex items-start gap-3">
                     <div className="text-3xl">⚡</div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold mb-2">Leverage Over Hours</h3>
+                      <h3 className="text-xl font-bold mb-2">Focusing on Leverage, Not Long Hours</h3>
                       <p className="text-muted-foreground leading-relaxed">
-                        The best engineering leaders multiply impact rather than just working harder. 
-                        This means investing time in systems, processes, and people development—the 
-                        things that create compounding returns. A great hire, a well-designed process, 
-                        or a cultural norm can create value long after the initial investment.
+                        I don’t believe great engineering comes from people working longer hours. It comes from building the right environment around them. I invest in things that compound over time: thoughtful hiring, clear standards, strong delivery practices, and tooling that removes friction. When expectations are clear and boundaries are sensible, teams move faster with less stress. My role is to create the conditions where good engineering is the default, not something that relies on individual heroics.
                       </p>
                     </div>
                   </div>
@@ -298,12 +226,9 @@ export default function CareerPage() {
                   <div className="flex items-start gap-3">
                     <div className="text-3xl">🏗️</div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold mb-2">Organizational Design as Strategy</h3>
+                      <h3 className="text-xl font-bold mb-2">Designing Teams on Purpose</h3>
                       <p className="text-muted-foreground leading-relaxed">
-                        Conway&apos;s Law isn&apos;t just a fun observation—it&apos;s a design tool. How you structure 
-                        teams directly impacts what they can build. I think deeply about team boundaries, 
-                        communication patterns, and ownership models because getting the structure right 
-                        unlocks autonomy, speed, and quality at scale.
+                        The way teams are structured shapes the systems they produce. I think carefully about ownership, boundaries, and how work flows. Clear accountability reduces confusion and increases confidence. I prefer organising around meaningful domains so teams feel responsible for outcomes, not just tasks. Good organisational design isn’t about hierarchy, it’s about reducing friction, improving collaboration, and enabling autonomy without losing alignment.
                       </p>
                     </div>
                   </div>
@@ -316,12 +241,9 @@ export default function CareerPage() {
                   <div className="flex items-start gap-3">
                     <div className="text-3xl">🌟</div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold mb-2">Culture Eats Strategy for Breakfast</h3>
+                      <h3 className="text-xl font-bold mb-2">Building a Healthy, Accountable Culture</h3>
                       <p className="text-muted-foreground leading-relaxed">
-                        You can have the best roadmap and the smartest engineers, but without psychological 
-                        safety, trust, and shared values, execution suffers. Culture isn&apos;t ping pong tables—
-                        it&apos;s how decisions get made, how feedback flows, and whether people feel empowered 
-                        to take risks and learn from failure.
+                        Culture shows up in everyday behaviour: how we handle incidents, how we disagree, and whether people feel safe speaking up. I care about psychological safety, but also about accountability. Teams should be comfortable raising risks, challenging assumptions, and admitting mistakes early. A strong culture balances learning with discipline and creating space to improve while treating reliability, security, and quality as non-negotiable.
                       </p>
                     </div>
                   </div>
@@ -332,14 +254,11 @@ export default function CareerPage() {
               <RetroCard variant="bordered" className="bg-gradient-to-br from-pink-500/5 to-pink-500/10 hover:scale-[1.02] transition-transform">
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="text-3xl">💚</div>
+                    <div className="text-3xl">💻</div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold mb-2">People First, Always</h3>
+                      <h3 className="text-xl font-bold mb-2">Choosing Technology with Intent</h3>
                       <p className="text-muted-foreground leading-relaxed">
-                        Great products are built by great teams. Great teams are built by investing in people—
-                        their growth, their autonomy, their sense of purpose. Mentoring, career development, 
-                        and creating paths for people to do their best work isn&apos;t just &ldquo;nice to have&rdquo;—
-                        it&apos;s the foundation of sustainable excellence.
+                        I’m pragmatic about technology. I care less about trends and more about fit, longevity, and clarity of purpose. Good decisions reduce complexity and create options for the future; poor ones create constraints. I encourage thoughtful trade-offs, modernising where it matters, keeping things simple where it works, and investing in automation and platforms that reduce manual effort and fragility over time.
                       </p>
                     </div>
                   </div>
@@ -358,7 +277,7 @@ export default function CareerPage() {
               <h2 className="text-3xl sm:text-4xl font-bold">Get in Touch</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 I&apos;m always interested in conversations about engineering leadership, 
-                organizational design, and the challenges of scaling teams. Feel free to reach out.
+                organisational design, and the challenges of scaling teams. Feel free to reach out.
               </p>
             </div>
 
