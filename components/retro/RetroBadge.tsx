@@ -22,7 +22,7 @@ export function RetroBadge({
   return (
     <span
       className={cn(
-        "inline-flex items-center px-3 py-1.5 text-xs font-semibold border-2 rounded-md uppercase tracking-wide",
+        "inline-flex items-center px-3 py-1.5 text-xs font-semibold border-2 uppercase tracking-wide",
         variantStyles[variant],
         className
       )}

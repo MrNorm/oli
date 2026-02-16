@@ -72,8 +72,8 @@ function Header({ onToggle }: { onToggle: () => void }) {
             <Link href="/" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Home
             </Link>
-            <Link href="/articles" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Articles
+            <Link href="/activity" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+              Activity
             </Link>
             <Link href="/career" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Career

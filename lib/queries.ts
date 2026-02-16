@@ -9,6 +9,7 @@ export const GET_HOMEPAGE_DATA = gql`
         id
         title
         date
+        excerpt
         featuredImage {
           id
           url
@@ -19,7 +20,7 @@ export const GET_HOMEPAGE_DATA = gql`
     }
     
     # Recent Bytes (short posts/musings)
-    recentBytes: Bytes(limit: 3, sort: "-date") {
+    recentBytes: Bytes(limit: 1, sort: "-date") {
       docs {
         id
         date
@@ -76,6 +77,7 @@ export const GET_MEGABYTES = gql`
         id
         title
         date
+        excerpt
         featuredImage {
           id
           url
@@ -97,10 +99,13 @@ export const GET_MEGABYTE = gql`
       id
       title
       date
+      excerpt
       featuredImage {
         id
         url
         alt
+        width
+        height
       }
       content
       tags

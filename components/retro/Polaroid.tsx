@@ -22,14 +22,20 @@ export function Polaroid({
   const rotationStyle = rotate !== 0 ? `rotate(${rotate}deg)` : undefined;
 
   return (
-    <div
-      className={cn(
-        "relative inline-block group cursor-pointer",
-        className
-      )}
-      style={{ transform: rotationStyle }}
-      {...props}
-    >
+    <>
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+        `}
+      </style>
+      <div
+        className={cn(
+          "relative inline-block group cursor-pointer",
+          className
+        )}
+        style={{ transform: rotationStyle }}
+        {...props}
+      >
       {/* Polaroid frame */}
       <div
         className={cn(
@@ -130,5 +136,6 @@ export function Polaroid({
         style={{ transform: rotationStyle }}
       />
     </div>
+    </>
   );
 }

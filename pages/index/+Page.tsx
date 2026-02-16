@@ -1,17 +1,14 @@
 import {
   RetroCard,
-  RetroBadge,
   RetroDivider,
   Logo,
   VHSTapeSpine,
-  Polaroid,
   RetroTV,
-  ChevronPattern,
   GeometricCircle,
   GeometricTriangle,
   GeometricSquare,
 } from "@/components/retro";
-import { OptimizedImage } from "@/components/OptimizedImage";
+import { MegabyteItem, ByteItem, DailyPhotoItem } from "@/components/timeline";
 import { useData } from "vike-react/useData";
 import type { Data } from "./+data";
 
@@ -82,164 +79,80 @@ export default function Page() {
 
         <RetroDivider />
 
-        {/* WHAT I'M SHARING - Full Width Section */}
+        {/* LIFE REEL - Timeline Style Section */}
         <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
-          {/* Decorative element */}
+          {/* Decorative elements */}
           <div className="absolute top-10 right-20 w-20 h-20 opacity-10 pointer-events-none">
             <GeometricSquare color="purple" />
           </div>
-          
-          <div className="space-y-10">
-            <div className="text-center space-y-4">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">What I'm Sharing</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Photos, musings, how-tos, and moments from daily life
-              </p>
-            </div>
-            
-            {/* Featured + Recent Grid */}
-            <div className="grid lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-              {/* Featured Post - Left Side */}
-              {featuredMegabyte && (
-                <RetroCard className="hover:scale-[1.02] transition-transform lg:row-span-3">
-                  <div className="space-y-4 h-full flex flex-col">
-                    <div className="flex items-center gap-3 text-sm text-muted-foreground flex-wrap">
-                      <RetroBadge variant="orange" className="text-xs">Megabyte</RetroBadge>
-                      <time>{new Date(featuredMegabyte.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</time>
-                      {featuredMegabyte.tags && featuredMegabyte.tags.length > 0 && (
-                        <>
-                          <span>·</span>
-                          <span>{featuredMegabyte.tags[0]}</span>
-                        </>
-                      )}
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold">
-                      {featuredMegabyte.title}
-                    </h3>
-                    {featuredMegabyte.featuredImage && (
-                      <OptimizedImage 
-                        src={featuredMegabyte.featuredImage.url || ''} 
-                        alt={featuredMegabyte.featuredImage.alt}
-                        width={800}
-                        responsive="medium"
-                        sizes="(min-width: 1024px) 50vw, 100vw"
-                        className="w-full h-48 object-cover rounded"
-                      />
-                    )}
-                    <div className="flex-1" />
-                    <a 
-                      href={`/articles/${featuredMegabyte.id}`}
-                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium"
-                    >
-                      Read more →
-                    </a>
-                  </div>
-                </RetroCard>
-              )}
-
-              {/* Recent Posts - Right Side */}
-              {recentBytes.slice(0, 3).map((byte) => {
-                const tagColors: Record<number, 'teal' | 'purple' | 'orange'> = { 0: 'teal', 1: 'purple', 2: 'orange' };
-                const index = recentBytes.indexOf(byte);
-                
-                return (
-                  <RetroCard key={byte.id} className="hover:scale-105 transition-transform">
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap">
-                        <RetroBadge variant={tagColors[index] || 'teal'} className="text-xs">
-                          {byte.tags?.[0] || 'Byte'}
-                        </RetroBadge>
-                        <time>{new Date(byte.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
-                      </div>
-                      <div className="text-sm text-foreground leading-relaxed">
-                        {byte.content.substring(0, 150)}{byte.content.length > 150 ? '...' : ''}
-                      </div>
-                      {byte.attachedMedia && (
-                        <OptimizedImage 
-                          src={byte.attachedMedia.url || ''} 
-                          alt={byte.attachedMedia.alt}
-                          width={600}
-                          responsive="small"
-                          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-                          className="w-full h-32 object-cover rounded mt-2"
-                        />
-                      )}
-                    </div>
-                  </RetroCard>
-                );
-              })}
-            </div>
-            
-            <div className="text-center">
-              <a 
-                href="/articles" 
-                className="inline-flex items-center gap-2 text-lg text-primary hover:text-primary/80 transition-colors font-medium"
-              >
-                View all posts →
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <RetroDivider />
-
-        {/* MY DAILY PHOTO - Full Width Section */}
-        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
-          {/* Decorative elements */}
           <div className="absolute bottom-20 left-10 w-28 h-28 opacity-10 pointer-events-none">
             <GeometricCircle color="orange" />
           </div>
           
           <div className="space-y-12">
             <div className="text-center space-y-4">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">My Daily Photo</h2>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">What I&apos;m Sharing</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                One photo every day. Capturing moments, big and small.
+                A timeline of stories, photos, and moments worth sharing
               </p>
             </div>
             
-            <div className="max-w-5xl mx-auto">
-              <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                {/* Polaroid Photo - Left side on desktop */}
-                <div className="flex justify-center lg:justify-end order-2 lg:order-1">
-                  <div className="w-80 sm:w-96">
-                    {todayPhoto && todayPhoto.photo && (
-                      <Polaroid
-                        image={todayPhoto.photo.url || ''}
-                        alt={todayPhoto.photo.alt}
-                        caption={new Date(todayPhoto.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                        rotate={-2}
-                      />
-                    )}
-                  </div>
-                </div>
-                
-                {/* Photo Details - Right side on desktop */}
-                <div className="space-y-6 order-1 lg:order-2">
-                  {todayPhoto && (
-                    <div>
-                      <h3 className="text-2xl lg:text-3xl font-bold mb-4">{todayPhoto.title}</h3>
-                      {todayPhoto.caption && (
-                        <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
-                          {todayPhoto.caption}
-                        </p>
-                      )}
-                      {todayPhoto.location && (
-                        <p className="text-sm text-muted-foreground mt-2">
-                          📍 {todayPhoto.location}
-                        </p>
-                      )}
-                    </div>
-                  )}
-                  
-                  <a 
-                    href="/photos" 
-                    className="inline-flex items-center gap-2 text-lg text-primary hover:text-primary/80 transition-colors font-medium"
-                  >
-                    View all photos →
-                  </a>
-                </div>
+            {/* Timeline Container */}
+            <div className="relative max-w-5xl mx-auto">
+              {/* Vertical Timeline Line - VHS tape style */}
+              <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/30 via-primary/50 to-primary/30 hidden md:block" />
+              
+              {/* Timeline Items */}
+              <div className="space-y-12 relative">
+                {/* Featured Article - Timeline Item */}
+                {featuredMegabyte && (
+                  <MegabyteItem
+                    id={featuredMegabyte.id}
+                    title={featuredMegabyte.title}
+                    date={featuredMegabyte.date}
+                    excerpt={featuredMegabyte.excerpt}
+                    featuredImage={featuredMegabyte.featuredImage}
+                    tags={featuredMegabyte.tags}
+                  />
+                )}
+
+                {/* Daily Photo - Timeline Item with Polaroid */}
+                {todayPhoto && todayPhoto.photo && (
+                  <DailyPhotoItem
+                    id={todayPhoto.id}
+                    title={todayPhoto.title}
+                    date={todayPhoto.date}
+                    photo={todayPhoto.photo}
+                    caption={todayPhoto.caption}
+                    location={todayPhoto.location}
+                  />
+                )}
+
+                {/* Recent Bytes - Compact Timeline Items */}
+                {recentBytes.slice(0, 2).map((byte, index) => (
+                  <ByteItem
+                    key={byte.id}
+                    id={byte.id}
+                    date={byte.date}
+                    content={byte.content}
+                    attachedMedia={byte.attachedMedia}
+                    tags={byte.tags}
+                    colorIndex={index}
+                  />
+                ))}
               </div>
+            </div>
+            
+            {/* View Full Timeline CTA */}
+            <div className="text-center pt-8">
+              <a 
+                href="/activity" 
+                className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-bold text-lg rounded-sm border-2 border-foreground shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px]"
+              >
+                <span>📼</span>
+                <span>View Full Timeline</span>
+                <span>→</span>
+              </a>
             </div>
           </div>
         </section>
