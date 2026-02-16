@@ -16,8 +16,8 @@ export interface ImageLoaderProps {
 }
 
 /**
- * Normalize CMS media URLs
- * Transforms URLs from the CMS (/api/media/file/) to CDN URLs
+ * Normalize CMS media URLs and assets
+ * Transforms URLs from the CMS (/api/media/file/) and local assets (/assets/) to CDN URLs
  */
 const normalizeCMSUrl = (src: string): string => {
   const CDN_URL = import.meta.env.VITE_CDN_URL || '';
@@ -26,6 +26,16 @@ const normalizeCMSUrl = (src: string): string => {
   if (src.includes('/api/media/file/')) {
     // Extract the filename from the URL
     const filename = src.split('/api/media/file/')[1]?.split('?')[0];
+    if (filename && CDN_URL) {
+      // Return CDN URL with filename at root
+      return `${CDN_URL}/${filename}`;
+    }
+  }
+  
+  // Check if this is an assets URL
+  if (src.startsWith('/assets/')) {
+    // Extract the filename from the assets path
+    const filename = src.replace('/assets/', '');
     if (filename && CDN_URL) {
       // Return CDN URL with filename at root
       return `${CDN_URL}/${filename}`;
@@ -54,7 +64,8 @@ const normalizeSrc = (src: string): string => {
  * In development, returns the original image with query parameters.
  * In production, uses the /cdn-cgi/image/ endpoint for optimization.
  * 
- * Also handles CMS media URLs, transforming /api/media/file/ paths to CDN URLs.
+ * Also handles CMS media URLs and local assets, transforming /api/media/file/ 
+ * and /assets/ paths to CDN URLs.
  * 
  * @example
  * ```typescript
@@ -72,6 +83,13 @@ const normalizeSrc = (src: string): string => {
  *   width: 800
  * });
  * // Transforms to: /cdn-cgi/image/width=800/https://cdn-domain.com/photo.jpg
+ * 
+ * // Assets URL
+ * const assetUrl = cloudflareLoader({
+ *   src: '/assets/logo.jpg',
+ *   width: 200
+ * });
+ * // Transforms to: /cdn-cgi/image/width=200/https://cdn-domain.com/logo.jpg
  * ```
  */
 export function cloudflareLoader({ 
