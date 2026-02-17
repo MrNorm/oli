@@ -1,10 +1,41 @@
 import { useData } from "vike-react/useData";
-import { VHSCard, RetroCard, GeometricCircle, GeometricTriangle, ScanLines } from "@/components/retro";
+import { VHSCard, RetroCard, GeometricCircle, GeometricTriangle, ScanLines, Logo } from "@/components/retro";
+import { Link } from "@/components/Link";
 import { renderLexicalContent } from "@/lib/lexical-renderer";
 import type { Data } from "./+data";
 
 export default function ProjectComingSoonPage() {
   const { project } = useData<Data>();
+
+  if (!project) {
+    return (
+      <div className="min-h-[calc(100vh-10rem)] flex items-center justify-center px-4">
+        <div className="flex flex-col items-center text-center space-y-8 max-w-md">
+          {/* Animated Logo */}
+          <div className="mb-4">
+            <Logo variant="logo" animated="electrocuted" />
+          </div>
+          
+          {/* Error Message */}
+          <div className="space-y-4">
+            <h1 className="text-6xl font-bold text-foreground">404</h1>
+            <h2 className="text-2xl font-semibold text-foreground/90">Project Not Found</h2>
+            <p className="text-foreground/70 text-lg">
+              This project doesn't exist or has been removed.
+            </p>
+          </div>
+          
+          {/* Action Button */}
+          <Link 
+            href="/" 
+            className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-foreground bg-foreground/5 hover:bg-foreground/10 border border-foreground/20 rounded-lg transition-colors duration-200"
+          >
+            ← Back to Home
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground relative overflow-hidden">

@@ -24,6 +24,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </main>
         
         <Footer />
+        
+        {/* Loading overlay during page transitions */}
+        <div id="page-loading-overlay">
+          <Logo variant="logo" animated="electrocuted" />
+        </div>
       </div>
     </ApolloProvider>
   );

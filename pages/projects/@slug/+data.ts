@@ -16,7 +16,9 @@ export async function data(pageContext: PageContext) {
   const project = data?.Projects?.docs?.[0];
 
   if (!project) {
-    throw new Error(`Project not found: ${slug}`);
+    return {
+      project: null,
+    };
   }
 
   return {

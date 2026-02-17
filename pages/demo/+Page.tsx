@@ -62,6 +62,18 @@ export default function Page() {
             <Logo variant="icon" />
           </div>
 
+          {/* Logo Only (Large without text) */}
+          <div className="flex flex-col items-center gap-4 p-8 bg-black/50 rounded-lg border border-primary/30">
+            <h3 className="text-xl font-bold text-primary">Logo Variant (Large)</h3>
+            <Logo variant="logo" />
+          </div>
+
+          {/* Logo Animated */}
+          <div className="flex flex-col items-center gap-4 p-8 bg-black/70 rounded-lg border-2 border-yellow-400/50 shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+            <h3 className="text-xl font-bold text-yellow-300">Logo + Electrocuted</h3>
+            <Logo variant="logo" animated="electrocuted" />
+          </div>
+
           {/* Header Variant */}
           <div className="flex flex-col items-center gap-4 p-12 bg-black/50 rounded-lg border border-secondary/30">
             <h3 className="text-xl font-bold text-secondary">Header Variant</h3>
@@ -72,6 +84,36 @@ export default function Page() {
           <div className="flex flex-col items-center gap-4 p-8 bg-black/50 rounded-lg border border-accent/30">
             <h3 className="text-xl font-bold text-accent">Footer Variant</h3>
             <Logo variant="footer" />
+          </div>
+
+          {/* Electrocuted Animation Variants */}
+          <div className="mt-8 space-y-6">
+            <h3 className="text-2xl font-bold text-center text-yellow-400">
+              ⚡ Electrocuted Animation Effect ⚡
+            </h3>
+            <p className="text-center text-muted-foreground max-w-2xl mx-auto">
+              TV static distortion with RGB split, glitch effects, and electric sparks flying off
+            </p>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Icon Electrocuted */}
+              <div className="flex flex-col items-center gap-4 p-8 bg-black/70 rounded-lg border-2 border-yellow-400/50 shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+                <h4 className="text-lg font-bold text-yellow-300">Icon + Electrocuted</h4>
+                <Logo variant="icon" animated="electrocuted" />
+              </div>
+
+              {/* Header Electrocuted */}
+              <div className="flex flex-col items-center gap-4 p-12 bg-black/70 rounded-lg border-2 border-yellow-400/50 shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+                <h4 className="text-lg font-bold text-yellow-300">Header + Electrocuted</h4>
+                <Logo variant="header" animated="electrocuted" />
+              </div>
+
+              {/* Footer Electrocuted */}
+              <div className="flex flex-col items-center gap-4 p-8 bg-black/70 rounded-lg border-2 border-yellow-400/50 shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+                <h4 className="text-lg font-bold text-yellow-300">Footer + Electrocuted</h4>
+                <Logo variant="footer" animated="electrocuted" />
+              </div>
+            </div>
           </div>
         </section>
 
