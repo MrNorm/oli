@@ -6,6 +6,7 @@ import {
   GeometricSquare,
 } from '@/components/retro';
 import { MegabyteItem, ByteItem, DailyPhotoItem } from '@/components/timeline';
+import { FileText, MessageSquare, Camera } from 'lucide-react';
 
 type TimelineItem = 
   | { id: string; date: string; type: 'megabyte'; data: MegabyteDoc }
@@ -202,33 +203,36 @@ export default function ActivityPage() {
                 </button>
                 <button
                   onClick={() => setSelectedType('megabyte')}
-                  className={`px-3 py-1 border-2 font-mono text-sm transition-colors ${
+                  className={`px-3 py-1 border-2 font-mono text-sm transition-colors flex items-center gap-1.5 ${
                     selectedType === 'megabyte'
                       ? 'bg-orange-500 text-white border-orange-600'
                       : 'bg-background text-foreground border-border hover:border-foreground'
                   }`}
                 >
-                  📝 MEGABYTES
+                  <FileText className="w-4 h-4" />
+                  MEGABYTES
                 </button>
                 <button
                   onClick={() => setSelectedType('byte')}
-                  className={`px-3 py-1 border-2 font-mono text-sm transition-colors ${
+                  className={`px-3 py-1 border-2 font-mono text-sm transition-colors flex items-center gap-1.5 ${
                     selectedType === 'byte'
                       ? 'bg-purple-500 text-white border-purple-600'
                       : 'bg-background text-foreground border-border hover:border-foreground'
                   }`}
                 >
-                  💬 BYTES
+                  <MessageSquare className="w-4 h-4" />
+                  BYTES
                 </button>
                 <button
                   onClick={() => setSelectedType('photo')}
-                  className={`px-3 py-1 border-2 font-mono text-sm transition-colors ${
+                  className={`px-3 py-1 border-2 font-mono text-sm transition-colors flex items-center gap-1.5 ${
                     selectedType === 'photo'
                       ? 'bg-teal-500 text-white border-teal-600'
                       : 'bg-background text-foreground border-border hover:border-foreground'
                   }`}
                 >
-                  📸 PHOTOS
+                  <Camera className="w-4 h-4" />
+                  PHOTOS
                 </button>
               </div>
             </div>

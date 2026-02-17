@@ -6,7 +6,7 @@ interface TimelineItemProps {
   ringColor: string;
   dateStampColor: string;
   badgeVariant: 'orange' | 'teal' | 'purple';
-  badgeLabel: string;
+  badgeLabel: ReactNode;
   date: string;
   children: ReactNode;
 }

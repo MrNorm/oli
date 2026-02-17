@@ -9,6 +9,7 @@ import {
   GeometricTriangle,
   GeometricSquare,
 } from "@/components/retro";
+import { Target, Mountain, Check } from "lucide-react";
 
 interface Photo {
   url: string;
@@ -172,7 +173,8 @@ export default function ProjectPage() {
               <RetroCard>
                 <div className="space-y-4">
                   <h3 className="text-xl font-bold flex items-center gap-2">
-                    🎯 Goals
+                    <Target className="w-5 h-5 text-primary" />
+                    Goals
                   </h3>
                   <ul className="space-y-3">
                     {project.goals.map((goal, idx) => (
@@ -189,7 +191,8 @@ export default function ProjectPage() {
               <RetroCard>
                 <div className="space-y-4">
                   <h3 className="text-xl font-bold flex items-center gap-2">
-                    🧗 Challenges
+                    <Mountain className="w-5 h-5 text-orange-500" />
+                    Challenges
                   </h3>
                   <ul className="space-y-3">
                     {project.challenges.map((challenge, idx) => (
@@ -257,7 +260,7 @@ export default function ProjectPage() {
                               key={actIdx}
                               className="flex items-center gap-2 text-sm text-muted-foreground"
                             >
-                              <span className="text-primary">✓</span>
+                              <Check className="w-4 h-4 text-primary" />
                               <span>{activity}</span>
                             </div>
                           ))}

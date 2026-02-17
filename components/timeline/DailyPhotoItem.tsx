@@ -1,5 +1,6 @@
 import { Polaroid } from '@/components/retro';
 import { TimelineItem } from './TimelineItem';
+import { Camera, MapPin } from 'lucide-react';
 
 interface DailyPhotoItemProps {
   id: number;
@@ -20,7 +21,12 @@ export function DailyPhotoItem({ title, date, photo, caption, location }: DailyP
       ringColor="ring-teal-500/20"
       dateStampColor="bg-teal-500/10 border-teal-500/30 text-teal-600 dark:text-teal-400"
       badgeVariant="teal"
-      badgeLabel="📸 Daily Snapshot"
+      badgeLabel={
+        <span className="flex items-center gap-1.5">
+          <Camera className="w-3.5 h-3.5" />
+          Daily Snapshot
+        </span>
+      }
       date={date}
     >
       <div className="flex flex-col sm:flex-row gap-6 items-start">
@@ -33,8 +39,9 @@ export function DailyPhotoItem({ title, date, photo, caption, location }: DailyP
             </p>
           )}
           {location && (
-            <p className="text-sm text-muted-foreground">
-              📍 {location}
+            <p className="text-sm text-muted-foreground flex items-center gap-1.5">
+              <MapPin className="w-4 h-4" />
+              {location}
             </p>
           )}
         </div>
