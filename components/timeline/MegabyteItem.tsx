@@ -9,10 +9,10 @@ interface MegabyteItemProps {
   date: string;
   excerpt?: string;
   featuredImage?: {
-    url: string;
+    url?: string | null;
     alt: string;
-  };
-  tags?: string[];
+  } | null;
+  tags?: string[] | null;
 }
 
 export function MegabyteItem({ slug, title, date, excerpt, featuredImage, tags }: MegabyteItemProps) {

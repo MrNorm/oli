@@ -1,20 +1,16 @@
 import { useState, useMemo } from 'react';
 import { useData } from 'vike-react/useData';
-import type { Data } from './+data';
+import type { Data, MegabyteDoc, ByteDoc, DailyPhotoDoc } from './+data';
 import {
   GeometricCircle,
   GeometricSquare,
 } from '@/components/retro';
 import { MegabyteItem, ByteItem, DailyPhotoItem } from '@/components/timeline';
 
-// Combined timeline item type
-type TimelineItem = {
-  id: string;
-  date: string;
-  type: 'megabyte' | 'byte' | 'photo';
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data: any;
-};
+type TimelineItem = 
+  | { id: string; date: string; type: 'megabyte'; data: MegabyteDoc }
+  | { id: string; date: string; type: 'byte'; data: ByteDoc }
+  | { id: string; date: string; type: 'photo'; data: DailyPhotoDoc };
 
 export default function ActivityPage() {
   const { megabytes, bytes, dailyPhotos, selectedYear: initialYear } = useData<Data>();

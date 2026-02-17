@@ -6,11 +6,11 @@ interface DailyPhotoItemProps {
   title: string;
   date: string;
   photo: {
-    url: string;
+    url?: string | null;
     alt: string;
   };
-  caption?: string;
-  location?: string;
+  caption?: string | null;
+  location?: string | null;
 }
 
 export function DailyPhotoItem({ title, date, photo, caption, location }: DailyPhotoItemProps) {

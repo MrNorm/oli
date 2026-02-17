@@ -7,10 +7,10 @@ interface ByteItemProps {
   date: string;
   content: string;
   attachedMedia?: {
-    url: string;
+    url?: string | null;
     alt: string;
-  };
-  tags?: string[];
+  } | null;
+  tags?: string[] | null;
   colorIndex?: number;
 }
 

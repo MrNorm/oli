@@ -4,7 +4,7 @@ import { HTMLAttributes, useMemo } from "react";
 interface VHSTapeSpineProps extends HTMLAttributes<HTMLDivElement> {
   mainText: string;
   mainTextColor?: string;
-  subtitleText?: string;
+  subtitleText?: string | null;
   upsideDown?: boolean;
 }
 

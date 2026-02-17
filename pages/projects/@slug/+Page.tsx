@@ -1,16 +1,10 @@
 import { useData } from "vike-react/useData";
 import { VHSCard, RetroCard, GeometricCircle, GeometricTriangle, ScanLines } from "@/components/retro";
 import { renderLexicalContent } from "@/lib/lexical-renderer";
+import type { Data } from "./+data";
 
 export default function ProjectComingSoonPage() {
-  const { project } = useData<{
-    project: {
-      slug: string;
-      projectName: string;
-      caption: string;
-      projectOverview: unknown;
-    };
-  }>();
+  const { project } = useData<Data>();
 
   return (
     <div className="min-h-screen bg-background text-foreground relative overflow-hidden">

@@ -5,8 +5,8 @@ import { useConfig } from "vike-react/useConfig";
 
 export function Head() {
   const config = useConfig();
-  const title = config.title || "Oliver Northam";
-  const description = config.description || "Developer, designer, and builder of digital experiences. Explore my projects, writings, and creative experiments.";
+  const title = (config as { title?: string }).title || "Oliver Northam";
+  const description = (config as { description?: string }).description || "Engineer, tinkerer, and builder of digital experiences. Explore my projects, thoughts, and experiments.";
 
   return (
     <>
