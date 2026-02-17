@@ -230,3 +230,17 @@ export const GET_ABOUT_ME = gql`
     }
   }
 `;
+
+export const GET_PROJECT = gql`
+  query GetProject($slug: String!) {
+    Projects(where: { slug: { equals: $slug } }, limit: 1) {
+      docs {
+        id
+        slug
+        projectName
+        caption
+        projectOverview
+      }
+    }
+  }
+`;

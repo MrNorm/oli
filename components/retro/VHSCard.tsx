@@ -166,7 +166,7 @@ export function VHSCard({
             )}
             <div className="pt-3 flex items-center justify-between text-[10px]">
               <span className="text-white/60 font-semibold">VHS</span>
-              <span className="text-white/40">Made in USA</span>
+              <span className="text-white/40">Made in the UK</span>
             </div>
           </div>
         </div>
