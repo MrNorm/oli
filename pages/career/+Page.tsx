@@ -183,8 +183,7 @@ export default function CareerPage() {
                   <p className="text-muted-foreground leading-relaxed">
                     Growing teams from 5 to 50+ without losing culture or quality. 
                     I have experience in hiring at scale, onboarding effectively, 
-                    and maintaining excellence as complexity grows. Scaling isn&apos;t just about 
-                    headcount, it&apos;s about processes, culture, and communication.
+                    and maintaining excellence as complexity grows.
                   </p>
                 </div>
               </RetroCard>
@@ -195,8 +194,7 @@ export default function CareerPage() {
                   <p className="text-muted-foreground leading-relaxed">
                     Investing in people is the most important work I do. I mentor people 
                     transitioning into leadership, help engineers level up their impact, and 
-                    build frameworks that support continuous growth. Great teams are built on 
-                    great people, and great people need support to grow.
+                    build frameworks that support continuous growth. 
                   </p>
                 </div>
               </RetroCard>
@@ -241,7 +239,7 @@ export default function CareerPage() {
                     <div className="flex-1">
                       <h3 className="text-xl font-bold mb-2">Focusing on Leverage, Not Long Hours</h3>
                       <p className="text-muted-foreground leading-relaxed">
-                        I don’t believe great engineering comes from people working longer hours. It comes from building the right environment around them. I invest in things that compound over time: thoughtful hiring, clear standards, strong delivery practices, and tooling that removes friction. When expectations are clear and boundaries are sensible, teams move faster with less stress. My role is to create the conditions where good engineering is the default, not something that relies on individual heroics.
+                        I don’t believe great engineering comes from people working longer hours. It comes from building the right environment around them. I invest in clever hiring, clear standards, strong delivery practices, and tooling that removes friction. When expectations and boundaries are clear, teams move faster with less stress.
                       </p>
                     </div>
                   </div>
@@ -256,7 +254,7 @@ export default function CareerPage() {
                     <div className="flex-1">
                       <h3 className="text-xl font-bold mb-2">Designing Teams on Purpose</h3>
                       <p className="text-muted-foreground leading-relaxed">
-                        The way teams are structured shapes the systems they produce. I think carefully about ownership, boundaries, and how work flows. Clear accountability reduces confusion and increases confidence. I prefer organising around meaningful domains so teams feel responsible for outcomes, not just tasks. Good organisational design isn’t about hierarchy, it’s about reducing friction, improving collaboration, and enabling autonomy without losing alignment.
+                        The way teams are structured shapes the systems they produce. I think carefully about ownership, boundaries, and how work flows. Clear accountability reduces confusion and increases confidence. I prefer organising around meaningful domains so teams feel responsible for outcomes, not just tasks. I prioritise reducing friction, improving collaboration, and enabling autonomy without losing alignment.
                       </p>
                     </div>
                   </div>
@@ -271,7 +269,7 @@ export default function CareerPage() {
                     <div className="flex-1">
                       <h3 className="text-xl font-bold mb-2">Building a Healthy, Accountable Culture</h3>
                       <p className="text-muted-foreground leading-relaxed">
-                        Culture shows up in everyday behaviour: how we handle incidents, how we disagree, and whether people feel safe speaking up. I care about psychological safety, but also about accountability. Teams should be comfortable raising risks, challenging assumptions, and admitting mistakes early. A strong culture balances learning with discipline and creating space to improve while treating reliability, security, and quality as non-negotiable.
+                        Culture shows up in everyday behaviour: how we handle incidents, how we disagree, and whether people feel safe speaking up. I care about psychological safety, but also about accountability. Teams should be comfortable raising risks, challenging assumptions, and admitting mistakes early.
                       </p>
                     </div>
                   </div>
@@ -286,7 +284,7 @@ export default function CareerPage() {
                     <div className="flex-1">
                       <h3 className="text-xl font-bold mb-2">Choosing Technology with Intent</h3>
                       <p className="text-muted-foreground leading-relaxed">
-                        I’m pragmatic about technology. I care less about trends and more about fit, longevity, and clarity of purpose. Good decisions reduce complexity and create options for the future; poor ones create constraints. I encourage thoughtful trade-offs, modernising where it matters, keeping things simple where it works, and investing in automation and platforms that reduce manual effort and fragility over time.
+                        I’m pragmatic about technology. I care less about trends and more about fit, longevity, and clarity of purpose. I encourage thoughtful trade-offs, modernising where it matters, keeping things simple where it works, and investing in automation and platforms that reduce manual effort and fragility over time.
                       </p>
                     </div>
                   </div>
