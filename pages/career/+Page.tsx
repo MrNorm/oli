@@ -237,9 +237,14 @@ export default function CareerPage() {
                     <div className="text-3xl">⚡</div>
                     <div className="flex-1">
                       <h3 className="text-xl font-bold mb-2">Focusing on Leverage, Not Long Hours</h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        I don’t believe great engineering comes from people working longer hours. It comes from building the right environment around them. I invest in clever hiring, clear standards, strong delivery practices, and tooling that removes friction. When expectations and boundaries are clear, teams move faster with less stress.
-                      </p>
+                      <div className="text-muted-foreground leading-relaxed space-y-3">
+                        <p>
+                          I don’t believe great engineering comes from people working longer hours. It comes from building the right environment around them.
+                        </p>
+                        <p>
+                          I invest in clever hiring, clear standards, strong delivery practices, and tooling that removes friction. When expectations and boundaries are clear, teams move faster with less stress.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -252,9 +257,14 @@ export default function CareerPage() {
                     <div className="text-3xl">🏗️</div>
                     <div className="flex-1">
                       <h3 className="text-xl font-bold mb-2">Designing Teams on Purpose</h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        The way teams are structured shapes the systems they produce. I think carefully about ownership, boundaries, and how work flows. Clear accountability reduces confusion and increases confidence. I prefer organising around meaningful domains so teams feel responsible for outcomes, not just tasks. I prioritise reducing friction, improving collaboration, and enabling autonomy without losing alignment.
-                      </p>
+                      <div className="text-muted-foreground leading-relaxed space-y-3">
+                        <p>
+                          The way teams are structured shapes the systems they produce. I think carefully about ownership, boundaries, and how work flows. Clear accountability reduces confusion and increases confidence.
+                        </p>
+                        <p>
+                          I prefer organising around meaningful domains so teams feel responsible for outcomes, not just tasks. I prioritise reducing friction, improving collaboration, and enabling autonomy without losing alignment.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -267,9 +277,14 @@ export default function CareerPage() {
                     <div className="text-3xl">🌟</div>
                     <div className="flex-1">
                       <h3 className="text-xl font-bold mb-2">Building a Healthy, Accountable Culture</h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        Culture shows up in everyday behaviour: how we handle incidents, how we disagree, and whether people feel safe speaking up. I care about psychological safety, but also about accountability. Teams should be comfortable raising risks, challenging assumptions, and admitting mistakes early.
-                      </p>
+                      <div className="text-muted-foreground leading-relaxed space-y-3">
+                        <p>
+                          Culture shows up in everyday behaviour: how we handle incidents, how we disagree, and whether people feel safe speaking up. 
+                        </p>
+                        <p>
+                          I care about psychological safety, but also about accountability. Teams should be comfortable raising risks, challenging assumptions, and admitting mistakes early.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -282,9 +297,14 @@ export default function CareerPage() {
                     <div className="text-3xl">💻</div>
                     <div className="flex-1">
                       <h3 className="text-xl font-bold mb-2">Choosing Technology with Intent</h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        I’m pragmatic about technology. I care less about trends and more about fit, longevity, and clarity of purpose. I encourage thoughtful trade-offs, modernising where it matters, keeping things simple where it works, and investing in automation and platforms that reduce manual effort and fragility over time.
-                      </p>
+                      <div className="text-muted-foreground leading-relaxed space-y-3">
+                        <p>
+                          I’m pragmatic about technology. I care less about trends and more about fit, longevity, and clarity of purpose. 
+                        </p>
+                        <p>
+                          I encourage thoughtful trade-offs, modernising where it matters, keeping things simple where it works, and investing in automation and platforms that reduce manual effort and fragility over time.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
