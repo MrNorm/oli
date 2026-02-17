@@ -1,5 +1,5 @@
 import { useData } from "vike-react/useData";
-import { VHSCard, RetroCard, GeometricCircle, GeometricTriangle, RetroBadge, ScanLines } from "@/components/retro";
+import { VHSCard, RetroCard, GeometricCircle, GeometricTriangle, ScanLines } from "@/components/retro";
 import { renderLexicalContent } from "@/lib/lexical-renderer";
 
 export default function ProjectComingSoonPage() {
@@ -8,7 +8,7 @@ export default function ProjectComingSoonPage() {
       slug: string;
       projectName: string;
       caption: string;
-      projectOverview: any;
+      projectOverview: unknown;
     };
   }>();
 

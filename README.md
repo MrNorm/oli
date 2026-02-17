@@ -1,72 +1,94 @@
-Generated with [vike.dev/new](https://vike.dev/new) ([version 568](https://www.npmjs.com/package/create-vike/v/0.0.568)) using this command:
+# oli
 
-```sh
-pnpm create vike@latest --react --tailwindcss --shadcn-ui --eslint --shadcnUi
+Personal website and blog built with Vike, React, and Tailwind CSS. Deployed on Cloudflare Pages.
+
+## Prerequisites
+
+- Node.js 18+
+- pnpm
+- PayloadCMS backend with GraphQL API
+
+## Getting Started
+
+### Environment Setup
+
+Copy `.env.example` to `.env` and configure:
+
+```bash
+cp .env.example .env
 ```
 
-## Contents
+Required variables:
+- `VITE_CMS_API_URL` - PayloadCMS GraphQL endpoint
+- `VITE_CDN_URL` - CDN domain for media assets
+- `VITE_USE_CDN_OPTIMIZATION` - Enable Cloudflare image optimization (production)
 
-- [Vike](#vike)
-  - [Plus files](#plus-files)
-  - [Routing](#routing)
-  - [SSR](#ssr)
-  - [HTML Streaming](#html-streaming)
-- [shadcn/ui](#shadcnui)
-  - [Configuration](#configuration)
-  - [Add Components to Your Project](#add-components-to-your-project)
+### Installation
 
-## Vike
+```bash
+pnpm install
+```
 
-This app is ready to start. It's powered by [Vike](https://vike.dev) and [React](https://react.dev/learn).
+### Development
 
-### Plus files
+Generate GraphQL types and start dev server:
 
-[The + files are the interface](https://vike.dev/config) between Vike and your code.
+```bash
+pnpm codegen
+pnpm dev
+```
 
-- [`+config.ts`](https://vike.dev/settings) — Settings (e.g. `<title>`)
-- [`+Page.tsx`](https://vike.dev/Page) — The `<Page>` component
-- [`+data.ts`](https://vike.dev/data) — Fetching data (for your `<Page>` component)
-- [`+Layout.tsx`](https://vike.dev/Layout) — The `<Layout>` component (wraps your `<Page>` components)
-- [`+Head.tsx`](https://vike.dev/Head) - Sets `<head>` tags
-- [`/pages/_error/+Page.tsx`](https://vike.dev/error-page) — The error page (rendered when an error occurs)
-- [`+onPageTransitionStart.ts`](https://vike.dev/onPageTransitionStart) and `+onPageTransitionEnd.ts` — For page transition animations
+Watch mode for GraphQL types:
 
-### Routing
+```bash
+pnpm codegen:watch
+```
 
-[Vike's built-in router](https://vike.dev/routing) lets you choose between:
+## Building for Production
 
-- [Filesystem Routing](https://vike.dev/filesystem-routing) (the URL of a page is determined based on where its `+Page.jsx` file is located on the filesystem)
-- [Route Strings](https://vike.dev/route-string)
-- [Route Functions](https://vike.dev/route-function)
+```bash
+pnpm build
+```
 
-### SSR
+The build process:
+1. Generates GraphQL types via codegen
+2. Builds optimized static assets
+3. Creates Cloudflare Workers bundle
 
-SSR is enabled by default. You can [disable it](https://vike.dev/ssr) for all or specific pages.
+## Deployment
 
-### HTML Streaming
+Deploy to Cloudflare Pages:
 
-You can [enable/disable HTML streaming](https://vike.dev/stream) for all or specific pages.
+```bash
+pnpm deploy
+```
 
-## shadcn/ui
+Requires Wrangler authentication. See `wrangler.jsonc` for configuration.
 
-Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.
+## Project Structure
 
-### Configuration
+- `/pages` - Vike pages with SSR support
+- `/components` - React components including custom retro-styled UI
+- `/lib` - Utilities, GraphQL client, and CMS helpers
+- `/assets` - Static assets
 
-see [shadcn/ui theming](https://ui.shadcn.com/docs/theming)
+## Tech Stack
 
-Base Configuration can be found in `components.json` file.
+- **Framework**: Vike (SSR/SSG)
+- **UI**: React 19, Tailwind CSS 4
+- **Data**: Apollo Client, GraphQL Codegen
+- **Hosting**: Cloudflare Pages + Workers
+- **Images**: Cloudflare Images for optimization
 
-> \[!NOTE]
-> changes to the `components.json` file **will not** be reflected in existing components. Only new components will be affected.
+## Scripts
 
-### Add Components to Your Project
+- `pnpm dev` - Start development server
+- `pnpm build` - Production build
+- `pnpm preview` - Preview production build locally
+- `pnpm deploy` - Deploy to Cloudflare
+- `pnpm lint` - Run ESLint
+- `pnpm codegen` - Generate GraphQL types
 
-**Example:** add a component to your project.
-`pnpm shadcn add button`
+## License
 
-use the `<Button />` component in your project:
-`import { Button } from "@/components/ui/button";`
-
-more [shadcn/ui components](https://ui.shadcn.com/docs/components/accordion)
-
+MIT

@@ -1,6 +1,5 @@
 import {
   RetroCard,
-  RetroBadge,
   RetroDivider,
   GeometricCircle,
   GeometricSquare,

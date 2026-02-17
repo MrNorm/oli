@@ -8,8 +8,6 @@ export async function data(pageContext: PageContext) {
   
   const megabyte = await fetchMegabyteBySlug(slug);
 
-  console.log(megabyte)
-
   return {
     megabyte,
   };

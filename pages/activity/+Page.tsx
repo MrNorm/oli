@@ -2,7 +2,6 @@ import { useState, useMemo } from 'react';
 import { useData } from 'vike-react/useData';
 import type { Data } from './+data';
 import {
-  RetroDivider,
   GeometricCircle,
   GeometricSquare,
 } from '@/components/retro';

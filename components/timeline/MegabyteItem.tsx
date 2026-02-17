@@ -15,7 +15,7 @@ interface MegabyteItemProps {
   tags?: string[];
 }
 
-export function MegabyteItem({ id, slug, title, date, excerpt, featuredImage, tags }: MegabyteItemProps) {
+export function MegabyteItem({ slug, title, date, excerpt, featuredImage, tags }: MegabyteItemProps) {
   return (
     <TimelineItem
       dotColor="bg-orange-500"

@@ -27,7 +27,6 @@ export const Logo: React.FC<LogoProps> = ({
     const width90 = width * 0.9;
     const width100 = width;
     const sideSegment = width * 0.3;
-    const hollowGap = width * 0.4;
     
     return (
       <svg 

@@ -8,6 +8,8 @@
  * @see https://developers.cloudflare.com/images/transform-images/
  */
 
+import { getEnv } from './env';
+
 export interface ImageLoaderProps {
   src: string;
   width?: number;
@@ -20,7 +22,7 @@ export interface ImageLoaderProps {
  * Transforms URLs from the CMS (/api/media/file/) and local assets (/assets/) to CDN URLs
  */
 const normalizeCMSUrl = (src: string): string => {
-  const CDN_URL = import.meta.env.VITE_CDN_URL || '';
+  const CDN_URL = getEnv('VITE_CDN_URL');
   
   // Check if this is a CMS media URL
   if (src.includes('/api/media/file/')) {
