@@ -4,7 +4,7 @@ import { gql } from '@apollo/client';
 export const GET_HOMEPAGE_DATA = gql`
   query GetHomepageData {
     # Featured Megabyte (long-form article)
-    featuredMegabyte: Megabytes(limit: 1, sort: "-date") {
+    featuredMegabyte: Megabytes(limit: 2, sort: "-date") {
       docs {
         id
         slug
@@ -21,7 +21,7 @@ export const GET_HOMEPAGE_DATA = gql`
     }
     
     # Recent Bytes (short posts/musings)
-    recentBytes: Bytes(limit: 1, sort: "-date") {
+    recentBytes: Bytes(limit: 2, sort: "-date") {
       docs {
         id
         date
@@ -36,7 +36,7 @@ export const GET_HOMEPAGE_DATA = gql`
     }
     
     # Today's Daily Photo
-    todayPhoto: DailyPhotos(limit: 1, sort: "-date") {
+    todayPhoto: DailyPhotos(limit: 2, sort: "-date") {
       docs {
         id
         title

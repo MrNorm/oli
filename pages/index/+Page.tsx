@@ -23,6 +23,43 @@ export default function Page() {
   const projects = homepage?.projects?.docs || [];
   const aboutMe = homepage?.aboutMe;
   
+  // Combine all timeline items and sort by date
+  const timelineItems: Array<{
+    type: 'megabyte' | 'photo' | 'byte';
+    date: string;
+    data: any;
+  }> = [];
+  
+  if (featuredMegabyte) {
+    timelineItems.push({
+      type: 'megabyte',
+      date: featuredMegabyte.date,
+      data: featuredMegabyte,
+    });
+  }
+  
+  if (todayPhoto) {
+    timelineItems.push({
+      type: 'photo',
+      date: todayPhoto.date,
+      data: todayPhoto,
+    });
+  }
+  
+  recentBytes.forEach((byte) => {
+    timelineItems.push({
+      type: 'byte',
+      date: byte.date,
+      data: byte,
+    });
+  });
+  
+  // Sort by date descending (newest first)
+  timelineItems.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  
+  // Take only the first 4 items for the homepage
+  const displayItems = timelineItems.slice(0, 4);
+  
   // Colors for VHS tapes - rotate through retro colors
   const tapeColors = ["#4ecdc4", "#ff9a76", "#c77dff", "#ffd93d", "#ff6b9d", "#95e1d3"];
   
@@ -97,43 +134,48 @@ export default function Page() {
               
               {/* Timeline Items */}
               <div className="space-y-12 relative">
-                {/* Featured Article - Timeline Item */}
-                {featuredMegabyte && (
-                  <MegabyteItem
-                    id={featuredMegabyte.id}
-                    slug={featuredMegabyte.slug}
-                    title={featuredMegabyte.title}
-                    date={featuredMegabyte.date}
-                    excerpt={featuredMegabyte.excerpt}
-                    featuredImage={featuredMegabyte.featuredImage}
-                    tags={featuredMegabyte.tags}
-                  />
-                )}
-
-                {/* Daily Photo - Timeline Item with Polaroid */}
-                {todayPhoto && todayPhoto.photo && (
-                  <DailyPhotoItem
-                    id={todayPhoto.id}
-                    title={todayPhoto.title}
-                    date={todayPhoto.date}
-                    photo={todayPhoto.photo}
-                    caption={todayPhoto.caption}
-                    location={todayPhoto.location}
-                  />
-                )}
-
-                {/* Recent Bytes - Compact Timeline Items */}
-                {recentBytes.slice(0, 2).map((byte, index) => (
-                  <ByteItem
-                    key={byte.id}
-                    id={byte.id}
-                    date={byte.date}
-                    content={byte.content}
-                    attachedMedia={byte.attachedMedia}
-                    tags={byte.tags}
-                    colorIndex={index}
-                  />
-                ))}
+                {/* Render items in date order */}
+                {displayItems.map((item, index) => {
+                  if (item.type === 'megabyte') {
+                    return (
+                      <MegabyteItem
+                        key={`megabyte-${item.data.id}`}
+                        id={item.data.id}
+                        slug={item.data.slug}
+                        title={item.data.title}
+                        date={item.data.date}
+                        excerpt={item.data.excerpt}
+                        featuredImage={item.data.featuredImage}
+                        tags={item.data.tags}
+                      />
+                    );
+                  } else if (item.type === 'photo') {
+                    return item.data.photo ? (
+                      <DailyPhotoItem
+                        key={`photo-${item.data.id}`}
+                        id={item.data.id}
+                        title={item.data.title}
+                        date={item.data.date}
+                        photo={item.data.photo}
+                        caption={item.data.caption}
+                        location={item.data.location}
+                      />
+                    ) : null;
+                  } else if (item.type === 'byte') {
+                    return (
+                      <ByteItem
+                        key={`byte-${item.data.id}`}
+                        id={item.data.id}
+                        date={item.data.date}
+                        content={item.data.content}
+                        attachedMedia={item.data.attachedMedia}
+                        tags={item.data.tags}
+                        colorIndex={index}
+                      />
+                    );
+                  }
+                  return null;
+                })}
               </div>
             </div>
             

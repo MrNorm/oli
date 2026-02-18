@@ -58,7 +58,7 @@ export function MegabyteItem({ slug, title, date, excerpt, featuredImage, tags }
             href={`/megabytes/${slug}`}
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium"
           >
-            Read the full story →
+            Read the full Megabyte →
           </a>
         </div>
       </RetroCard>
