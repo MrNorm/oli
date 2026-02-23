@@ -57,9 +57,6 @@ export default function Page() {
   // Sort by date descending (newest first)
   timelineItems.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   
-  // Take only the first 4 items for the homepage
-  const displayItems = timelineItems.slice(0, 4);
-  
   // Colors for VHS tapes - rotate through retro colors
   const tapeColors = ["#4ecdc4", "#ff9a76", "#c77dff", "#ffd93d", "#ff6b9d", "#95e1d3"];
   
@@ -135,7 +132,7 @@ export default function Page() {
               {/* Timeline Items */}
               <div className="space-y-12 relative">
                 {/* Render items in date order */}
-                {displayItems.map((item, index) => {
+                {timelineItems.map((item, index) => {
                   if (item.type === 'megabyte') {
                     return (
                       <MegabyteItem
