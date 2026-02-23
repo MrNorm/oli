@@ -17,9 +17,9 @@ export default function Page() {
   const { homepage } = useData<Data>();
   
   // Extract data with fallbacks
-  const featuredMegabyte = homepage?.featuredMegabyte?.docs?.[0];
+  const featuredMegabytes = homepage?.featuredMegabyte?.docs || [];
   const recentBytes = homepage?.recentBytes?.docs || [];
-  const todayPhoto = homepage?.todayPhoto?.docs?.[0];
+  const dailyPhotos = homepage?.todayPhoto?.docs || [];
   const projects = homepage?.projects?.docs || [];
   const aboutMe = homepage?.aboutMe;
   
@@ -30,21 +30,21 @@ export default function Page() {
     data: any;
   }> = [];
   
-  if (featuredMegabyte) {
+  featuredMegabytes.forEach((megabyte) => {
     timelineItems.push({
       type: 'megabyte',
-      date: featuredMegabyte.date,
-      data: featuredMegabyte,
+      date: megabyte.date,
+      data: megabyte,
     });
-  }
+  });
   
-  if (todayPhoto) {
+  dailyPhotos.forEach((photo) => {
     timelineItems.push({
       type: 'photo',
-      date: todayPhoto.date,
-      data: todayPhoto,
+      date: photo.date,
+      data: photo,
     });
-  }
+  });
   
   recentBytes.forEach((byte) => {
     timelineItems.push({
