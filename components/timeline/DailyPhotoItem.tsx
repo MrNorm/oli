@@ -24,7 +24,7 @@ export function DailyPhotoItem({ title, date, photo, caption, location }: DailyP
       badgeLabel={
         <span className="flex items-center gap-1.5">
           <Camera className="w-3.5 h-3.5" />
-          Daily Snapshot
+          Photo
         </span>
       }
       date={date}
