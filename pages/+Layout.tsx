@@ -58,6 +58,9 @@ function Header({ isIndexPage }: { isIndexPage: boolean }) {
             <Link href="/career" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Career
             </Link>
+            <Link href="/olithur" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+              OLI/TH/UR
+            </Link>
           </nav>
         </div>
       </div>

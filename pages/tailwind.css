@@ -128,3 +128,83 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ── OLI/TH/UR 6000 Terminal Styles ── */
+
+/* CRT screen flicker — very subtle white flash */
+@keyframes crt-flicker {
+  0%, 5%, 7%, 43%, 45%, 96%, 100% { opacity: 0; }
+  3%   { opacity: 0.018; }
+  6%   { opacity: 0; }
+  44%  { opacity: 0.025; }
+  97%  { opacity: 0.012; }
+}
+.animate-crt-flicker {
+  animation: crt-flicker 5s infinite;
+  background: rgba(255, 255, 255, 1);
+}
+
+/* Text interference / scan-bar roll — horizontal band slides down */
+@keyframes crt-interference {
+  0%   { top: -20%; opacity: 0; }
+  2%   { opacity: 0.06; }
+  15%  { opacity: 0.04; }
+  20%  { top: 120%; opacity: 0; }
+  100% { top: 120%; opacity: 0; }
+}
+.animate-crt-interference {
+  animation: crt-interference 7s infinite;
+  animation-delay: 1.5s;
+}
+
+/* Text glitch — line-level horizontal jitter on individual text rows */
+@keyframes text-glitch {
+  0%, 88%, 96%, 100% { transform: none; clip-path: none; filter: none; }
+  89% { transform: translateX(-3px) skewX(-2deg); filter: brightness(1.4) hue-rotate(2deg); }
+  90% { transform: translateX(2px); }
+  91% { transform: translateX(-1px) skewX(1deg); filter: brightness(0.85); }
+  92% { transform: none; }
+  97% { transform: translateX(1px); filter: brightness(1.2); }
+  98% { transform: none; }
+}
+.animate-text-glitch {
+  animation: text-glitch 9s infinite;
+}
+
+/* Terminal cursor blink */
+@keyframes terminal-blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.animate-terminal-blink {
+  animation: terminal-blink 1s steps(1) infinite;
+}
+
+/* Ambient indicator lights — three flash speeds */
+@keyframes light-flash-slow   { 0%, 48% { opacity: 1; } 50%, 98% { opacity: 0.08; } 100% { opacity: 1; } }
+@keyframes light-flash-medium { 0%, 34% { opacity: 1; } 36%, 70% { opacity: 0.08; } 72%, 100% { opacity: 1; } }
+@keyframes light-flash-fast   { 0%, 18% { opacity: 1; } 20%, 50% { opacity: 0.08; } 52%, 100% { opacity: 1; } }
+
+.animate-light-slow   { animation: light-flash-slow   2.4s infinite; }
+.animate-light-medium { animation: light-flash-medium 1.1s infinite; }
+.animate-light-fast   { animation: light-flash-fast   0.45s infinite; }
+
+/* Phosphor text bloom */
+.text-shadow-terminal {
+  text-shadow:
+    0 0 4px rgba(51, 255, 51, 0.9),
+    0 0 10px rgba(51, 255, 51, 0.5),
+    0 0 20px rgba(51, 255, 51, 0.25);
+}
+
+/* Underline for terminal headings / titles */
+.terminal-underline {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Thin scrollbar for terminal output */
+.scrollbar-terminal::-webkit-scrollbar      { width: 3px; }
+.scrollbar-terminal::-webkit-scrollbar-track { background: transparent; }
+.scrollbar-terminal::-webkit-scrollbar-thumb { background: rgba(51,255,51,0.12); border-radius: 2px; }
+.scrollbar-terminal::-webkit-scrollbar-thumb:hover { background: rgba(51,255,51,0.28); }
