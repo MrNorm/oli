@@ -5,13 +5,18 @@ import { cn } from "@/lib/utils";
 const PANEL_COLS = 6;
 const PANEL_ROWS = 5;
 
-// ── Pyramids per panel — 11 columns × 9 rows ─────────────────────
+// ── Full panel — 11 columns × 9 rows ────────────────────────────
 const D_COLS = 11;
 const D_ROWS = 9;
 
 // Lights at every intersection of 4 pyramids — (D_COLS-1) × (D_ROWS-1).
 const L_COLS = D_COLS - 1; // 10
 const L_ROWS = D_ROWS - 1; // 8
+
+// ── Slim panel — 11 columns × 2 rows → 1 sandwiched LED row ──────
+const SD_COLS = 11;
+const SD_ROWS = 2;
+const SL_COLS = SD_COLS - 1; // 10 lights in a single row
 
 // ── Light clusters ──────────────────────────────────────────────
 // All blinking lights share one animation (1s on / 1s off, quick snap).
@@ -32,8 +37,11 @@ export interface LightDef {
   delay: number;
 }
 
+export type PanelType = "full" | "slim" | "blank";
+
 export interface PanelData {
   id: number;
+  type: PanelType;
   lights: LightDef[];
 }
 
@@ -50,10 +58,20 @@ function makeLight(): LightDef {
 }
 
 export function makePanel(id: number): PanelData {
-  return { id, lights: Array.from({ length: L_COLS * L_ROWS }, makeLight) };
+  return { id, type: "full", lights: Array.from({ length: L_COLS * L_ROWS }, makeLight) };
 }
 
-// Stable tile data — created once at module load
+/** Slim panel: 10 lights in a single row (sandwiched between 2 pyramid rows). */
+export function makeSlimPanel(id: number): PanelData {
+  return { id, type: "slim", lights: Array.from({ length: SL_COLS }, makeLight) };
+}
+
+/** Blank panel: no pyramid content — just the raised outer border. */
+export function makeBlankPanel(id: number): PanelData {
+  return { id, type: "blank", lights: [] };
+}
+
+// Stable tile data for the standalone AmbientLights component
 const PANELS: PanelData[] = Array.from(
   { length: PANEL_COLS * PANEL_ROWS },
   (_, id) => makePanel(id)
@@ -192,24 +210,28 @@ export function MotherPanel({ panel }: { panel: PanelData }) {
           </div>
 
           {/* Light dots — absolutely positioned at every cell-corner intersection */}
-          <LightDots lights={panel.lights} />
+          <LightDots lights={panel.lights} dCols={D_COLS} dRows={D_ROWS} />
         </div>
       </div>
     </div>
   );
 }
 
-/** 10×8 = 80 light dots at every pyramid-corner intersection. */
-function LightDots({ lights }: { lights: LightDef[] }) {
+/**
+ * Light dots at every pyramid-corner intersection.
+ * dCols / dRows must match the pyramid grid dimensions so positions are correct.
+ */
+function LightDots({ lights, dCols, dRows }: { lights: LightDef[]; dCols: number; dRows: number }) {
+  const lCols = dCols - 1;
   return (
     <>
       {lights.map((light, i) => {
-        const lCol = i % L_COLS;
-        const lRow = Math.floor(i / L_COLS);
+        const lCol = i % lCols;
+        const lRow = Math.floor(i / lCols);
 
-        // Percentage position within the CSS grid (D_COLS wide × D_ROWS tall).
-        const left = `${((lCol + 1) / D_COLS) * 100}%`;
-        const top  = `${((lRow + 1) / D_ROWS) * 100}%`;
+        // Percentage position within the CSS grid (dCols wide × dRows tall).
+        const left = `${((lCol + 1) / dCols) * 100}%`;
+        const top  = `${((lRow + 1) / dRows) * 100}%`;
 
         const isLit = light.mode !== "off";
 
@@ -221,7 +243,7 @@ function LightDots({ lights }: { lights: LightDef[] }) {
               position: "absolute",
               left,
               top,
-              width:  `calc(100% / ${D_COLS} * 0.21)`,
+              width:  `calc(100% / ${dCols} * 0.21)`,
               aspectRatio: "1",
               borderRadius: "50%",
               transform: "translate(-50%, -50%)",
@@ -236,5 +258,66 @@ function LightDots({ lights }: { lights: LightDef[] }) {
         );
       })}
     </>
+  );
+}
+
+/**
+ * Slim wall panel: 2 pyramid rows × 11 cols with a single row of 10 LED dots
+ * sandwiched between them. Intended for the short top row of the room grid.
+ */
+export function SlimMotherPanel({ panel }: { panel: PanelData }) {
+  return (
+    <div className="relative" style={PANEL_OUTER_STYLE}>
+      {/* Recessed inner surface */}
+      <div style={PANEL_INSET_STYLE}>
+        {/*
+          2-row pyramid grid — same column count as the full panel so the
+          pyramid cells are wider than they are tall (matching the short row).
+          The single LED row sits at the intersection of rows 1 and 2 (50%).
+        */}
+        <div
+          className="relative w-full h-full"
+          style={{
+            display: "grid",
+            gridTemplateColumns: `repeat(${SD_COLS}, 1fr)`,
+            gridTemplateRows: `repeat(${SD_ROWS}, 1fr)`,
+          }}
+        >
+          {Array.from({ length: SD_COLS * SD_ROWS }, (_, i) => (
+            <div key={i} style={{ background: PYRAMID_BG }} />
+          ))}
+
+          {/* Grime / age overlay */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse 70% 60% at 35% 30%, rgba(255,245,215,0.07) 0%, rgba(100,70,20,0.05) 60%, rgba(0,0,0,0.30) 100%)",
+            }}
+          />
+
+          {/* Single row of 10 LED dots between the two pyramid rows */}
+          <LightDots lights={panel.lights} dCols={SD_COLS} dRows={SD_ROWS} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Blank decorative panel: raised cream border with a plain beige fill.
+ * No pyramid content or LEDs — used as visual padding in the bottom row.
+ */
+export function BlankMotherPanel({ panel: _panel }: { panel: PanelData }) {
+  return (
+    <div
+      className="relative"
+      style={{
+        ...PANEL_OUTER_STYLE,
+        // Slightly lighter/flatter fill than the pyramid panels — blank face
+        background:
+          "linear-gradient(145deg, #cdbfa8 0%, #b8a688 40%, #c4ae94 100%)",
+      }}
+    />
   );
 }

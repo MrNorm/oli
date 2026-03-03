@@ -2,21 +2,25 @@ import { useCallback, useEffect } from "react";
 import { CRTScreen } from "./CRTScreen";
 import { TerminalDisplay } from "./TerminalDisplay";
 import { TerminalInput } from "./TerminalInput";
-import { MotherPanel, makePanel, PANEL_OUTER_STYLE, PANEL_INSET_STYLE } from "./AmbientLights";
+import { MotherPanel, SlimMotherPanel, BlankMotherPanel, makePanel, makeSlimPanel, makeBlankPanel } from "./AmbientLights";
 import { useTypewriter } from "./useTypewriter";
 import { useTerminal } from "./useTerminal";
 import { useSoundEffects } from "./useSoundEffects";
 
-// Grid constants — must match AmbientLights
+// Grid columns — must match AmbientLights
 const PANEL_COLS = 6;
-const PANEL_ROWS = 5;
 
 // The screen occupies cols 3–4, rows 2–4 (1-based CSS grid).
 // That removes 2 cols × 3 rows = 6 cells from the 30-cell grid → 24 tiles.
-const TILE_COUNT = 24;
-
-// Stable tile data — created once at module level
-const TILES = Array.from({ length: TILE_COUNT }, (_, i) => makePanel(i));
+//
+// Auto-placement order around the screen cell:
+//   Row 1  → tiles  0–5   (6 slim panels — short decorative top strip)
+//   Rows 2–4 → tiles  6–17  (12 full panels — left & right of screen)
+//   Row 5  → tiles 18–23  (6 blank panels — plain beige bottom strip)
+const SLIM_TILES  = Array.from({ length: 6  }, (_, i) => makeSlimPanel(i));
+const FULL_TILES  = Array.from({ length: 12 }, (_, i) => makePanel(i + 6));
+const BLANK_TILES = Array.from({ length: 6  }, (_, i) => makeBlankPanel(i + 18));
+const TILES = [...SLIM_TILES, ...FULL_TILES, ...BLANK_TILES];
 
 /**
  * The OLI/TH/UR 6000 room. A single 6×5 CSS grid where 24 cells are
@@ -57,14 +61,15 @@ export function MotherRoom() {
   }, [playKeystroke]);
 
   return (
-    <div className="relative w-full min-h-[calc(100vh-5rem)] overflow-hidden">
+    <div className="relative w-full min-h-[calc(90vh-5rem)] overflow-hidden">
       {/* ── Unified 6×5 panel + screen grid ── */}
       <div
         className="absolute inset-0"
         style={{
           display: "grid",
           gridTemplateColumns: `repeat(${PANEL_COLS}, 1fr)`,
-          gridTemplateRows: `repeat(${PANEL_ROWS}, 1fr)`,
+          // Row 1: slim fixed-height strip; rows 2–4 equal; row 5 reduced by 40%
+          gridTemplateRows: `max(64px, 9vh) 1fr 1fr 1fr 0.6fr`,
         }}
       >
         {/*
@@ -140,10 +145,12 @@ export function MotherRoom() {
           </div>
         </div>
 
-        {/* 24 auto-placed tile panels — flow around the screen cell */}
-        {TILES.map((panel) => (
-          <MotherPanel key={panel.id} panel={panel} />
-        ))}
+        {/* Tiles: slim (row 1) → full (rows 2–4) → blank (row 5) — auto-placed around screen */}
+        {TILES.map((panel) => {
+          if (panel.type === "slim")  return <SlimMotherPanel  key={panel.id} panel={panel} />;
+          if (panel.type === "blank") return <BlankMotherPanel key={panel.id} panel={panel} />;
+          return <MotherPanel key={panel.id} panel={panel} />;
+        })}
       </div>
 
       {/* ── Room atmosphere — dim amber wash + depth vignette ── */}
