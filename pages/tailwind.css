@@ -180,14 +180,17 @@
   animation: terminal-blink 1s steps(1) infinite;
 }
 
-/* Ambient indicator lights — three flash speeds */
-@keyframes light-flash-slow   { 0%, 48% { opacity: 1; } 50%, 98% { opacity: 0.08; } 100% { opacity: 1; } }
-@keyframes light-flash-medium { 0%, 34% { opacity: 1; } 36%, 70% { opacity: 0.08; } 72%, 100% { opacity: 1; } }
-@keyframes light-flash-fast   { 0%, 18% { opacity: 1; } 20%, 50% { opacity: 0.08; } 52%, 100% { opacity: 1; } }
-
-.animate-light-slow   { animation: light-flash-slow   2.4s infinite; }
-.animate-light-medium { animation: light-flash-medium 1.1s infinite; }
-.animate-light-fast   { animation: light-flash-fast   0.45s infinite; }
+/* Ambient indicator lights — cluster-based blinking
+   3s on, near-instant snap, 3s off, near-instant snap.
+   5 clusters are phase-shifted via animationDelay in the component. */
+@keyframes light-cluster {
+  0%      { opacity: 1;    }
+  49.98%  { opacity: 1;    } /* dwell on  3s   */
+  50%     { opacity: 0.06; } /* snap off ~12ms */
+  99.98%  { opacity: 0.06; } /* dwell off 3s   */
+  100%    { opacity: 1;    } /* snap on        */
+}
+.animate-light-cluster { animation: light-cluster 6s linear infinite; }
 
 /* Phosphor text bloom */
 .text-shadow-terminal {
