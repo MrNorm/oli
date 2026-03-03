@@ -86,17 +86,17 @@ const MODE_CLASS: Record<LightMode, string> = {
 // ── Square-pyramid face palette — dirty warm space-tech tones ────
 // conic-gradient from -45deg produces 4 triangular sectors meeting at centre.
 // Light source from top-left: top brightest, right mid, bottom dark, left slight.
-const F_TOP = "#c8b89c";
-const F_RGT = "#a08868";
-const F_BOT = "#786050";
-const F_LFT = "#b0a080";
+const F_TOP = "#d0bc94";
+const F_RGT = "#a88c5e";
+const F_BOT = "#7c6244";
+const F_LFT = "#b8a476";
 
 // Each cell is a square div; this background splits it into 4 pyramid faces.
 const PYRAMID_BG = `conic-gradient(from -45deg at 50% 50%, ${F_TOP} 0deg 90deg, ${F_RGT} 90deg 180deg, ${F_BOT} 180deg 270deg, ${F_LFT} 270deg 360deg)`;
 
 // Shared panel outer styles — used by MotherPanel and the embedded screen cell.
 export const PANEL_OUTER_STYLE: CSSProperties = {
-  background: "linear-gradient(145deg, #c2ae92 0%, #8c7858 55%, #a08868 100%)",
+  background: "linear-gradient(145deg, #ccb88a 0%, #947c50 55%, #a88e5e 100%)",
   borderRadius: "8px",
   boxShadow:
     "0 4px 8px rgba(0,0,0,0.60), " +
@@ -316,7 +316,7 @@ export function BlankMotherPanel({ panel: _panel, tiltStyle }: { panel: PanelDat
         ...PANEL_OUTER_STYLE,
         // Slightly lighter/flatter fill than the pyramid panels — blank face
         background:
-          "linear-gradient(145deg, #cdbfa8 0%, #b8a688 40%, #c4ae94 100%)",
+          "linear-gradient(145deg, #d5c49c 0%, #c0ac7e 40%, #cdb888 100%)",
         ...tiltStyle,
       }}
     />

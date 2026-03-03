@@ -181,7 +181,7 @@ export function MotherRoom() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 65% 55% at 50% 44%, transparent 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.88) 100%)",
+            "radial-gradient(ellipse 65% 60% at 50% 45%, transparent 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.88) 100%)",
         }}
       />
       {/* Left edge shadow — simulates the side wall turning away */}
