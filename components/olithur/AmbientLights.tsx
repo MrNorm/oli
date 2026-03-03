@@ -148,7 +148,7 @@ export function AmbientLights({ className }: AmbientLightsProps) {
 }
 
 /** One wall panel: rounded 3D-raised border with inset pyramid grid + lights. */
-export function MotherPanel({ panel }: { panel: PanelData }) {
+export function MotherPanel({ panel, tiltStyle }: { panel: PanelData; tiltStyle?: CSSProperties }) {
   const col = panel.id % PANEL_COLS;
   const labels = ["05H", "CONTROL", "672MG", "08H", "CONTROL", "1978BO"];
   const label = labels[col % labels.length];
@@ -156,7 +156,7 @@ export function MotherPanel({ panel }: { panel: PanelData }) {
   return (
     <div
       className="relative"
-      style={PANEL_OUTER_STYLE}
+      style={{ ...PANEL_OUTER_STYLE, ...tiltStyle }}
     >
       {/* Recessed inner surface */}
       <div style={PANEL_INSET_STYLE}>
@@ -265,9 +265,9 @@ function LightDots({ lights, dCols, dRows }: { lights: LightDef[]; dCols: number
  * Slim wall panel: 2 pyramid rows × 11 cols with a single row of 10 LED dots
  * sandwiched between them. Intended for the short top row of the room grid.
  */
-export function SlimMotherPanel({ panel }: { panel: PanelData }) {
+export function SlimMotherPanel({ panel, tiltStyle }: { panel: PanelData; tiltStyle?: CSSProperties }) {
   return (
-    <div className="relative" style={PANEL_OUTER_STYLE}>
+    <div className="relative" style={{ ...PANEL_OUTER_STYLE, ...tiltStyle }}>
       {/* Recessed inner surface */}
       <div style={PANEL_INSET_STYLE}>
         {/*
@@ -308,7 +308,7 @@ export function SlimMotherPanel({ panel }: { panel: PanelData }) {
  * Blank decorative panel: raised cream border with a plain beige fill.
  * No pyramid content or LEDs — used as visual padding in the bottom row.
  */
-export function BlankMotherPanel({ panel: _panel }: { panel: PanelData }) {
+export function BlankMotherPanel({ panel: _panel, tiltStyle }: { panel: PanelData; tiltStyle?: CSSProperties }) {
   return (
     <div
       className="relative"
@@ -317,6 +317,7 @@ export function BlankMotherPanel({ panel: _panel }: { panel: PanelData }) {
         // Slightly lighter/flatter fill than the pyramid panels — blank face
         background:
           "linear-gradient(145deg, #cdbfa8 0%, #b8a688 40%, #c4ae94 100%)",
+        ...tiltStyle,
       }}
     />
   );

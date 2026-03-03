@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { type CSSProperties, useCallback, useEffect } from "react";
 import { CRTScreen } from "./CRTScreen";
 import { TerminalDisplay } from "./TerminalDisplay";
 import { TerminalInput } from "./TerminalInput";
@@ -21,6 +21,22 @@ const SLIM_TILES  = Array.from({ length: 6  }, (_, i) => makeSlimPanel(i));
 const FULL_TILES  = Array.from({ length: 12 }, (_, i) => makePanel(i + 6));
 const BLANK_TILES = Array.from({ length: 6  }, (_, i) => makeBlankPanel(i + 18));
 const TILES = [...SLIM_TILES, ...FULL_TILES, ...BLANK_TILES];
+
+// Auto-placement grid layout (screen at cols 3–4, rows 2–4):
+//   Row 1: IDs  0  1  2  3  4  5    → cols 1 2 3 4 5 6
+//   Row 2: IDs  6  7        8  9    → cols 1 2 . . 5 6
+//   Row 3: IDs 10 11       12 13    → cols 1 2 . . 5 6
+//   Row 4: IDs 14 15       16 17    → cols 1 2 . . 5 6
+//   Row 5: IDs 18 19 20 21 22 23    → cols 1 2 3 4 5 6
+const LEFT_EDGE_IDS  = new Set([0, 6, 10, 14, 18]);
+const RIGHT_EDGE_IDS = new Set([5, 9, 13, 17, 23]);
+
+// Tilt edge columns inward — plain rotateY only; perspective lives on the grid container.
+function edgeTiltStyle(edge: "left" | "right"): CSSProperties {
+  return edge === "left"
+    ? { transform: "rotateY(28deg)",  transformOrigin: "right center" }
+    : { transform: "rotateY(-28deg)", transformOrigin: "left center"  };
+}
 
 /**
  * The OLI/TH/UR 6000 room. A single 6×5 CSS grid where 24 cells are
@@ -70,6 +86,8 @@ export function MotherRoom() {
           gridTemplateColumns: `repeat(${PANEL_COLS}, 1fr)`,
           // Row 1: slim fixed-height strip; rows 2–4 equal; row 5 reduced by 40%
           gridTemplateRows: `max(64px, 9vh) 1fr 1fr 1fr 0.6fr`,
+          // Single shared perspective — all child rotateY transforms use this VP
+          perspective: "1400px",
         }}
       >
         {/*
@@ -147,18 +165,49 @@ export function MotherRoom() {
 
         {/* Tiles: slim (row 1) → full (rows 2–4) → blank (row 5) — auto-placed around screen */}
         {TILES.map((panel) => {
-          if (panel.type === "slim")  return <SlimMotherPanel  key={panel.id} panel={panel} />;
-          if (panel.type === "blank") return <BlankMotherPanel key={panel.id} panel={panel} />;
-          return <MotherPanel key={panel.id} panel={panel} />;
+          const tiltStyle = LEFT_EDGE_IDS.has(panel.id)
+            ? edgeTiltStyle("left")
+            : RIGHT_EDGE_IDS.has(panel.id)
+              ? edgeTiltStyle("right")
+              : undefined;
+          if (panel.type === "slim")  return <SlimMotherPanel  key={panel.id} panel={panel} tiltStyle={tiltStyle} />;
+          if (panel.type === "blank") return <BlankMotherPanel key={panel.id} panel={panel} tiltStyle={tiltStyle} />;
+          return <MotherPanel key={panel.id} panel={panel} tiltStyle={tiltStyle} />;
         })}
       </div>
 
-      {/* ── Room atmosphere — dim amber wash + depth vignette ── */}
+      {/* ── Dark room vignette — strong radial blackout at all edges ── */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 70% at 50% 50%, rgba(120,80,20,0.12) 0%, rgba(30,15,0,0.65) 100%)",
+            "radial-gradient(ellipse 65% 55% at 50% 44%, transparent 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.88) 100%)",
+        }}
+      />
+      {/* Left edge shadow — simulates the side wall turning away */}
+      <div
+        className="absolute inset-y-0 left-0 pointer-events-none"
+        style={{
+          width: "20%",
+          background:
+            "linear-gradient(to right, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.40) 45%, transparent 100%)",
+        }}
+      />
+      {/* Right edge shadow — mirror of left */}
+      <div
+        className="absolute inset-y-0 right-0 pointer-events-none"
+        style={{
+          width: "20%",
+          background:
+            "linear-gradient(to left, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.40) 45%, transparent 100%)",
+        }}
+      />
+      {/* Amber room-tone wash — preserves the warm space-tech atmosphere */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 60% at 50% 45%, rgba(120,80,20,0.10) 0%, transparent 70%)",
         }}
       />
     </div>
