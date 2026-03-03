@@ -1,3 +1,4 @@
+import { type CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 
 // ── Panel grid ────────────────────────────────────────────────────
@@ -25,12 +26,13 @@ const CLUSTER_DELAYS = Array.from(
 
 type LightMode = "off" | "cluster";
 
-interface LightDef {
+// ── Panel data types & factory (exported for MotherRoom) ────────
+export interface LightDef {
   mode: LightMode;
   delay: number;
 }
 
-interface PanelData {
+export interface PanelData {
   id: number;
   lights: LightDef[];
 }
@@ -47,10 +49,14 @@ function makeLight(): LightDef {
   };
 }
 
-// Stable data — created once at module load, never regenerated on re-render
+export function makePanel(id: number): PanelData {
+  return { id, lights: Array.from({ length: L_COLS * L_ROWS }, makeLight) };
+}
+
+// Stable tile data — created once at module load
 const PANELS: PanelData[] = Array.from(
   { length: PANEL_COLS * PANEL_ROWS },
-  (_, id) => ({ id, lights: Array.from({ length: L_COLS * L_ROWS }, makeLight) })
+  (_, id) => makePanel(id)
 );
 
 // ── CSS animation class per mode ─────────────────────────────────
@@ -69,6 +75,31 @@ const F_LFT = "#b0a080";
 
 // Each cell is a square div; this background splits it into 4 pyramid faces.
 const PYRAMID_BG = `conic-gradient(from -45deg at 50% 50%, ${F_TOP} 0deg 90deg, ${F_RGT} 90deg 180deg, ${F_BOT} 180deg 270deg, ${F_LFT} 270deg 360deg)`;
+
+// Shared panel outer styles — used by MotherPanel and the embedded screen cell.
+export const PANEL_OUTER_STYLE: CSSProperties = {
+  background: "linear-gradient(145deg, #c2ae92 0%, #8c7858 55%, #a08868 100%)",
+  borderRadius: "8px",
+  boxShadow:
+    "0 4px 8px rgba(0,0,0,0.60), " +
+    "0 1px 3px rgba(0,0,0,0.45), " +
+    "inset 1px 1px 0 rgba(255,255,255,0.22), " +
+    "inset 2px 2px 0 rgba(255,255,255,0.08), " +
+    "inset -1px -1px 0 rgba(0,0,0,0.50), " +
+    "inset -2px -2px 0 rgba(0,0,0,0.25)",
+  outline: "1px solid #2e2010",
+  margin: "1px",
+};
+
+export const PANEL_INSET_STYLE: CSSProperties = {
+  position: "absolute",
+  inset: "7px",
+  borderRadius: "4px",
+  boxShadow:
+    "inset 2px 2px 6px rgba(0,0,0,0.65), " +
+    "inset -1px -1px 3px rgba(0,0,0,0.35)",
+  overflow: "hidden",
+};
 
 // ── Components ────────────────────────────────────────────────────
 
@@ -99,7 +130,7 @@ export function AmbientLights({ className }: AmbientLightsProps) {
 }
 
 /** One wall panel: rounded 3D-raised border with inset pyramid grid + lights. */
-function MotherPanel({ panel }: { panel: PanelData }) {
+export function MotherPanel({ panel }: { panel: PanelData }) {
   const col = panel.id % PANEL_COLS;
   const labels = ["05H", "CONTROL", "672MG", "08H", "CONTROL", "1978BO"];
   const label = labels[col % labels.length];
@@ -107,31 +138,10 @@ function MotherPanel({ panel }: { panel: PanelData }) {
   return (
     <div
       className="relative"
-      style={{
-        background: "linear-gradient(145deg, #c2ae92 0%, #8c7858 55%, #a08868 100%)",
-        borderRadius: "8px",
-        boxShadow:
-          "0 4px 8px rgba(0,0,0,0.60), " +
-          "0 1px 3px rgba(0,0,0,0.45), " +
-          "inset 1px 1px 0 rgba(255,255,255,0.22), " +
-          "inset 2px 2px 0 rgba(255,255,255,0.08), " +
-          "inset -1px -1px 0 rgba(0,0,0,0.50), " +
-          "inset -2px -2px 0 rgba(0,0,0,0.25)",
-        outline: "1px solid #2e2010",
-        margin: "1px",
-      }}
+      style={PANEL_OUTER_STYLE}
     >
       {/* Recessed inner surface */}
-      <div
-        className="absolute overflow-hidden"
-        style={{
-          inset: "7px",
-          borderRadius: "4px",
-          boxShadow:
-            "inset 2px 2px 6px rgba(0,0,0,0.65), " +
-            "inset -1px -1px 3px rgba(0,0,0,0.35)",
-        }}
-      >
+      <div style={PANEL_INSET_STYLE}>
         {/*
           Pyramid cell grid — CSS grid, always fills the container.
           11 equal columns × 9 equal rows → cells stretch to cover the panel
