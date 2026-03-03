@@ -75,24 +75,68 @@ export function MotherRoom() {
         <div
           className="relative"
           style={{
-            ...PANEL_OUTER_STYLE,
             gridColumn: "3 / 5",
             gridRow: "2 / 5",
+            borderRadius: "24px",
+            outline: "1px solid #2e2010",
+            margin: "1px",
+            background:
+              "radial-gradient(ellipse 90% 75% at 50% 42%, #d8c4a0 10%, #bea07a 50%, #8a6a48 100%)",
+            boxShadow:
+              "0 10px 30px rgba(0,0,0,0.90), " +
+              "0 4px 10px rgba(0,0,0,0.65), " +
+              "inset 2px 2px 0 rgba(255,255,255,0.35), " +
+              "inset -2px -2px 0 rgba(0,0,0,0.55)",
           }}
         >
-          <div style={PANEL_INSET_STYLE}>
-            <CRTScreen embedded>
-              <TerminalDisplay
-                history={history}
-                typingLines={displayedLines}
-                isBooting={isBooting}
-              />
-              <TerminalInput
-                enabled={!isBooting && !isProcessing}
-                onSubmit={processCommand}
-                onKeystroke={handleKeystroke}
-              />
-            </CRTScreen>
+          {/* ── Step 1: Dark recessed channel — the moat between bezel face and inner ring ── */}
+          <div style={{
+            position: "absolute",
+            inset: "24px",
+            borderRadius: "12px",
+            background: "#111008",
+            boxShadow:
+              "inset 4px 4px 10px rgba(0,0,0,0.95), " +
+              "inset -2px -2px 6px rgba(0,0,0,0.70)",
+          }}>
+            {/* ── Step 2: Recessed inner frame — sits below the bezel face ── */}
+            <div style={{
+              position: "absolute",
+              inset: "3px",
+              borderRadius: "6px",
+              // Darker than the outer bezel — shadowed cavity floor
+              background:
+                "linear-gradient(160deg, #6a5238 0%, #7a6248 40%, #8a7258 100%)",
+              boxShadow:
+                // Inset bevel flipped: dark top-left, bright bottom-right = sunken
+                "inset 3px 3px 8px rgba(0,0,0,0.85), " +
+                "inset 6px 6px 16px rgba(0,0,0,0.65), " +
+                "inset -2px -2px 4px rgba(255,255,255,0.12)",
+            }}>
+              {/* ── Step 3: Screen glass inset ── */}
+              <div style={{
+                position: "absolute",
+                inset: "27px",
+                borderRadius: "14px",
+                overflow: "hidden",
+                boxShadow:
+                  "inset 4px 4px 14px rgba(0,0,0,0.98), " +
+                  "inset -2px -2px 8px rgba(0,0,0,0.80)",
+              }}>
+                <CRTScreen embedded>
+                  <TerminalDisplay
+                    history={history}
+                    typingLines={displayedLines}
+                    isBooting={isBooting}
+                  />
+                  <TerminalInput
+                    enabled={!isBooting && !isProcessing}
+                    onSubmit={processCommand}
+                    onKeystroke={handleKeystroke}
+                  />
+                </CRTScreen>
+              </div>
+            </div>
           </div>
         </div>
 
