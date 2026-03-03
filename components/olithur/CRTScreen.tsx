@@ -1,6 +1,52 @@
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
+// ── Reflected room lights on the glass ───────────────────────────
+// Stable positions generated once — scattered across the screen surface,
+// biased toward the upper half (lights are above/behind viewer).
+// Each uses the panel cluster animation so they blink in sync with the wall.
+const N_CLUSTERS = 5;
+const CLUSTER_CYCLE = 6;
+const CLUSTER_DELAYS = Array.from(
+  { length: N_CLUSTERS },
+  (_, i) => parseFloat(((i / N_CLUSTERS) * CLUSTER_CYCLE).toFixed(3))
+);
+
+interface ReflectionLight {
+  top: string; left: string;
+  w: string;   h: string;
+  opacity: number;
+  delay: number;
+  blur: number;
+}
+
+// Seeded pseudo-random so positions are stable across renders
+function seededRand(seed: number) {
+  let s = seed;
+  return () => { s = (s * 1664525 + 1013904223) & 0xffffffff; return (s >>> 0) / 0xffffffff; };
+}
+
+const REFLECTION_LIGHTS: ReflectionLight[] = (() => {
+  const rand = seededRand(0xdeadbeef);
+  return Array.from({ length: 42 }, (_, i) => {
+    // Upper 70% of screen, full width
+    const top  = rand() * 70;
+    const left = rand() * 92 + 2;
+    const size = 1.2 + rand() * 2.2;
+    const cluster = Math.floor(rand() * N_CLUSTERS);
+    const jitter = (rand() - 0.5) * 0.15;
+    return {
+      top:     `${top.toFixed(1)}%`,
+      left:    `${left.toFixed(1)}%`,
+      w:       `${size.toFixed(1)}%`,
+      h:       `${(size * 1.5).toFixed(1)}%`,
+      opacity: 0.10 + rand() * 0.14,
+      delay:   parseFloat((CLUSTER_DELAYS[cluster] + jitter).toFixed(3)),
+      blur:    2 + rand() * 4,
+    };
+  });
+})();
+
 interface CRTScreenProps {
   children: ReactNode;
   className?: string;
@@ -47,8 +93,42 @@ export function CRTScreen({ children, className, embedded }: CRTScreenProps) {
       {/* Outer vignette — darkens corners like CRT curvature */}
       <div className="absolute inset-0 z-30 pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(0,0,0,0.6)_100%)]" />
 
-      {/* Glass reflection — faint white highlight top-left */}
-      <div className="absolute inset-0 z-30 pointer-events-none bg-[radial-gradient(ellipse_30%_20%_at_25%_15%,rgba(255,255,255,0.04)_0%,transparent_100%)]" />
+      {/* Glass reflection — simulates room lights behind the viewer */}
+      {/* Primary broad smear: overhead strip light reflected across upper glass */}
+      <div className="absolute inset-0 z-40 pointer-events-none" style={{
+        background:
+          "linear-gradient(160deg, rgba(255,255,240,0.07) 0%, rgba(255,255,240,0.03) 30%, transparent 55%)",
+      }} />
+      {/* Secondary angled streak — off-centre, mimics a second light source */}
+      <div className="absolute z-40 pointer-events-none" style={{
+        top: "4%", left: "30%", width: "45%", height: "28%",
+        background:
+          "radial-gradient(ellipse 100% 60% at 50% 50%, rgba(255,255,230,0.06) 0%, transparent 100%)",
+        transform: "rotate(-12deg)",
+        filter: "blur(6px)",
+      }} />
+      {/* Light dot — upper-left: bright small room light reflected */}
+      {REFLECTION_LIGHTS.map((l, i) => (
+        <div
+          key={i}
+          className="absolute z-40 pointer-events-none animate-light-cluster"
+          style={{
+            top: l.top, left: l.left,
+            width: l.w, height: l.h,
+            background: `radial-gradient(ellipse at 50% 40%, rgba(255,252,220,${l.opacity}) 0%, rgba(255,248,200,${(l.opacity * 0.3).toFixed(3)}) 45%, transparent 100%)`,
+            filter: `blur(${l.blur}px)`,
+            animationDelay: `${l.delay}s`,
+          }}
+        />
+      ))}
+      {/* Light dot — upper-right: twin light reflected */}
+      {/* Faint broad top-edge catchlight — glass curvature highlight */}
+      <div className="absolute z-40 pointer-events-none" style={{
+        top: 0, left: "10%", right: "10%", height: "2px",
+        background:
+          "linear-gradient(to right, transparent, rgba(255,255,240,0.12) 30%, rgba(255,255,240,0.12) 70%, transparent)",
+        filter: "blur(1px)",
+      }} />
     </div>
   );
 
