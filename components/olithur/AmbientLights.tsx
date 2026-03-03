@@ -139,8 +139,6 @@ function MotherPanel({ panel }: { panel: PanelData }) {
       >
         <svg
           className="absolute inset-0 w-full h-full"
-          viewBox={`0 0 ${SVG_W} ${SVG_H}`}
-          preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
@@ -185,10 +183,10 @@ function MotherPanel({ panel }: { panel: PanelData }) {
           </defs>
 
           {/* Full-surface pyramid tile fill */}
-          <rect width={SVG_W} height={SVG_H} fill={`url(#pyr-${panel.id})`} />
+          <rect width="100%" height="100%" fill={`url(#pyr-${panel.id})`} />
 
           {/* Grime / age overlay on top of pyramids */}
-          <rect width={SVG_W} height={SVG_H} fill={`url(#${grimeId})`} />
+          <rect width="100%" height="100%" fill={`url(#${grimeId})`} />
 
           {/* Panel label text (faintly etched) */}
           <PanelLabels panelId={panel.id} />
@@ -208,7 +206,7 @@ function PanelLabels({ panelId }: { panelId: number }) {
   const label = labels[col % labels.length];
   return (
     <text
-      x={SVG_W / 2}
+      x="50%"
       y={10}
       fontSize={7}
       fontFamily="monospace"
