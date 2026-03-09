@@ -14,7 +14,7 @@ const BOOT_SEQUENCE = [
   { text: "", pauseAfter: 200 },
   { text: "INITIALIZING SYSTEM...", pauseAfter: 1000 },
   { text: "", pauseAfter: 200 },
-  { text: "READY FOR INQUIRY.", pauseAfter: 400 },
+  { text: "SYSTEM READY FOR INQUIRY FOR SUBJECT OLIVER NORTHAM.", pauseAfter: 400 },
   { text: "", pauseAfter: 100 },
 ];
 
