@@ -23,11 +23,6 @@ export function Polaroid({
 
   return (
     <>
-      <style>
-        {`
-          @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-        `}
-      </style>
       <div
         className={cn(
           "relative inline-block group cursor-pointer",

@@ -54,12 +54,6 @@ export function VHSTapeSpine({
 
   return (
     <div className={cn("relative w-full max-w-3xl", className)} {...props}>
-      {/* Add Google Fonts */}
-      <style>
-        {`
-          @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Indie+Flower&display=swap');
-        `}
-      </style>
 
       {/* Main tape body - wide and shallow */}
       <div 
